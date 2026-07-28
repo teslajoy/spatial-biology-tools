@@ -42,6 +42,8 @@
     - SVS/TIFF/OME-TIFF WSI tiles 224px
     output:
     - 1280-d tile embedding (use CLS+mean)
+  omics:
+  - morphology
 - id: virchow2g
   name: Virchow2G / Virchow2G-Mini
   category: patch-encoder
@@ -74,6 +76,8 @@
     - WSI tiles
     output:
     - tile embedding
+  omics:
+  - morphology
 - id: uni
   name: UNI / UNI2
   category: patch-encoder
@@ -108,6 +112,8 @@
     - WSI tiles 256px
     output:
     - 1024-d (UNI) / 1536-d (UNI2) tile embedding
+  omics:
+  - morphology
 - id: conch
   name: CONCH / CONCHv1.5
   category: vision-language-encoder
@@ -149,6 +155,9 @@
     output:
     - 512-d joint image-text embedding
     - zero-shot logits
+  omics:
+  - morphology
+  - text
 - id: prov-gigapath
   name: Prov-GigaPath
   category: patch-encoder + slide-encoder
@@ -190,6 +199,8 @@
     output:
     - 1536-d tile embedding
     - slide embedding via LongNet
+  omics:
+  - morphology
 - id: h-optimus
   name: H-optimus-0 / H-optimus-1
   category: patch-encoder
@@ -225,6 +236,8 @@
     - WSI tiles
     output:
     - tile embedding
+  omics:
+  - morphology
 - id: phikon
   name: Phikon / Phikon-v2
   category: patch-encoder
@@ -254,6 +267,8 @@
     - WSI tiles
     output:
     - tile embedding
+  omics:
+  - morphology
 - id: titan
   name: TITAN
   category: slide-encoder + vision-language
@@ -292,6 +307,9 @@
     - slide embedding
     - generated report text
     - zero-shot logits
+  omics:
+  - morphology
+  - text
 - id: threads
   name: THREADS
   category: slide-encoder
@@ -322,6 +340,9 @@
     - paired molecular profiles
     output:
     - slide embedding
+  omics:
+  - morphology
+  - multi
 - id: prism
   name: PRISM
   category: slide-encoder + vision-language
@@ -351,6 +372,9 @@
     output:
     - slide embedding
     - report text
+  omics:
+  - morphology
+  - text
 - id: chief
   name: CHIEF
   category: slide-encoder
@@ -372,6 +396,8 @@
     output:
     - slide embedding
     - survival risk score
+  omics:
+  - morphology
 - id: pathchat
   name: PathChat / PathChat DX
   category: LLM / multimodal assistant
@@ -400,6 +426,9 @@
     - natural language
     output:
     - natural language diagnosis support
+  omics:
+  - morphology
+  - text
 - id: nicheformer
   name: Nicheformer
   category: spatial-omics-FM
@@ -440,6 +469,9 @@
     - cell embedding
     - spatial label
     - niche density
+  omics:
+  - RNA-sc
+  - RNA-spatial
 - id: scgpt-spatial
   name: scGPT-spatial
   category: spatial-omics-FM
@@ -477,6 +509,8 @@
     - cell/spot embedding
     - imputed expression
     - deconvolution
+  omics:
+  - RNA-spatial
 - id: kronos
   name: KRONOS
   category: spatial-proteomics-FM
@@ -519,6 +553,8 @@
     claim: spatial proteomics named as one of six areas AI is actively reshaping, following Method of
       the Year 2024
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-img
 - id: novae
   name: Novae
   category: spatial-omics-FM
@@ -544,6 +580,8 @@
     output:
     - niche assignment
     - graph embedding
+  omics:
+  - RNA-spatial
 - id: stofm
   name: SToFM
   category: spatial-omics-FM
@@ -563,6 +601,8 @@
     - ST expression + coordinates
     output:
     - multi-scale embedding
+  omics:
+  - RNA-spatial
 - id: heist
   name: HEIST
   category: spatial-omics-FM
@@ -581,6 +621,9 @@
     - spatial graph
     output:
     - node/graph embedding
+  omics:
+  - RNA-spatial
+  - protein-img
 - id: cellplm
   name: CellPLM
   category: spatial-omics-FM
@@ -603,3 +646,6 @@
     output:
     - cell embedding
     - imputed expression
+  omics:
+  - RNA-sc
+  - RNA-spatial

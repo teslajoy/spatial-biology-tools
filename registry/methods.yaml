@@ -37,6 +37,8 @@
     output:
     - instance label mask (uint16)
     - flows
+  omics:
+  - morphology
 - id: stardist
   name: StarDist
   category: segmentation
@@ -64,6 +66,8 @@
     output:
     - star-convex polygon instances
     - label mask
+  omics:
+  - morphology
 - id: mesmer
   name: Mesmer (DeepCell)
   category: segmentation
@@ -102,6 +106,8 @@
     - '2-channel image: nuclear + membrane'
     output:
     - whole-cell and nuclear label masks
+  omics:
+  - protein-img
 - id: instanseg
   name: InstanSeg
   category: segmentation
@@ -125,6 +131,9 @@
     output:
     - instance masks
     - QuPath objects
+  omics:
+  - protein-img
+  - morphology
 - id: cellsam
   name: CellSAM
   category: segmentation
@@ -145,6 +154,8 @@
     - image
     output:
     - instance masks
+  omics:
+  - morphology
 - id: baysor
   name: Baysor
   category: transcript-assignment
@@ -175,6 +186,8 @@
     output:
     - cell assignment per molecule
     - polygons
+  omics:
+  - RNA-spatial
 - id: rna2seg
   name: RNA2seg
   category: transcript-assignment
@@ -206,6 +219,9 @@
     output:
     - cell instance masks
     - transcript-cell assignment
+  omics:
+  - RNA-spatial
+  - protein-img
 - id: segmentation-error-correction
   name: Segmentation error impact and correction (Mason et al.)
   category: qc
@@ -229,6 +245,8 @@
     output:
     - error estimates
     - corrected assignments
+  omics:
+  - RNA-spatial
 - id: valis
   name: VALIS
   category: registration
@@ -259,6 +277,9 @@
     - registered ome.tiff
     - transformation matrices
     - 3D stack
+  omics:
+  - morphology
+  - protein-img
 - id: ashlar
   name: ASHLAR
   category: registration
@@ -282,6 +303,8 @@
     - per-cycle tiled images
     output:
     - stitched registered OME-TIFF pyramid
+  omics:
+  - protein-img
 - id: coda
   name: CODA
   category: 3d-reconstruction
@@ -315,6 +338,9 @@
     - 3D labelled volume
     - microanatomy segmentation
     - cell coordinates
+  omics:
+  - morphology
+  - DNA
 - id: paste
   name: PASTE / PASTE2
   category: alignment
@@ -340,6 +366,8 @@
     output:
     - pairwise alignment matrix
     - stacked 3D coordinates
+  omics:
+  - RNA-spatial
 - id: stalign
   name: STalign
   category: alignment
@@ -366,6 +394,9 @@
     output:
     - diffeomorphic transform
     - aligned coordinates
+  omics:
+  - RNA-spatial
+  - morphology
 - id: openst
   name: Open-ST
   category: platform + 3d
@@ -394,6 +425,8 @@
     output:
     - AnnData
     - 3D virtual tissue block
+  omics:
+  - RNA-spatial
 - id: soapy
   name: SOAPy
   category: alignment
@@ -413,6 +446,8 @@
     - multi-platform spatial data
     output:
     - aligned multi-modal object
+  omics:
+  - multi
 - id: cell2location
   name: cell2location
   category: deconvolution
@@ -451,6 +486,9 @@
     - scRNA reference AnnData
     output:
     - absolute cell-type abundance per spot (posterior)
+  omics:
+  - RNA-spatial
+  - RNA-sc
 - id: rctd
   name: RCTD (spacexr)
   category: deconvolution
@@ -473,6 +511,9 @@
     - scRNA reference
     output:
     - cell-type weights per spot
+  omics:
+  - RNA-spatial
+  - RNA-sc
 - id: card
   name: CARD
   category: deconvolution
@@ -495,6 +536,9 @@
     output:
     - cell-type proportions
     - refined spatial map
+  omics:
+  - RNA-spatial
+  - RNA-sc
 - id: tangram
   name: Tangram
   category: deconvolution + mapping
@@ -520,6 +564,9 @@
     output:
     - cell-to-spot mapping matrix
     - imputed genes
+  omics:
+  - RNA-spatial
+  - RNA-sc
 - id: baseline-regression
   name: plain NNLS / ridge regression baseline
   category: deconvolution
@@ -543,6 +590,9 @@
     - reference signature matrix
     output:
     - proportions
+  omics:
+  - RNA-spatial
+  - RNA-sc
 - id: bayesspace
   name: BayesSpace
   category: domain-detection
@@ -561,6 +611,8 @@
     output:
     - spatial domain labels
     - enhanced sub-spot resolution
+  omics:
+  - RNA-spatial
 - id: spagcn
   name: SpaGCN
   category: domain-detection
@@ -582,6 +634,9 @@
     output:
     - spatial domain labels
     - SVG list
+  omics:
+  - RNA-spatial
+  - morphology
 - id: graphst
   name: GraphST
   category: domain-detection + deconvolution
@@ -604,6 +659,8 @@
     - domain labels
     - cell-type proportions
     - embedding
+  omics:
+  - RNA-spatial
 - id: cellcharter
   name: CellCharter
   category: niche-detection
@@ -629,6 +686,9 @@
     output:
     - niche labels
     - neighbourhood composition
+  omics:
+  - RNA-spatial
+  - protein-img
 - id: banksy
   name: BANKSY
   category: domain-detection
@@ -649,6 +709,8 @@
     - counts + coordinates
     output:
     - cell type and domain labels in one embedding
+  omics:
+  - RNA-spatial
 - id: bass
   name: BASS
   category: domain-detection
@@ -666,6 +728,8 @@
     - multi-slice ST counts + coordinates
     output:
     - joint cell-type and domain labels across slices
+  omics:
+  - RNA-spatial
 - id: spado
   name: SpaDo
   category: domain-detection
@@ -684,6 +748,8 @@
     - multi-slice ST or cell-type annotations
     output:
     - cross-slice domain labels
+  omics:
+  - RNA-spatial
 - id: cellchat
   name: CellChat
   category: cell-cell-communication
@@ -702,6 +768,9 @@
     output:
     - ligand-receptor interaction scores
     - signalling pathway networks
+  omics:
+  - RNA-sc
+  - RNA-spatial
 - id: cellphonedb
   name: CellPhoneDB v5
   category: cell-cell-communication
@@ -719,6 +788,8 @@
     - counts + cell-type labels
     output:
     - LR pairs with permutation p-values
+  omics:
+  - RNA-sc
 - id: commot
   name: COMMOT
   category: cell-cell-communication
@@ -738,6 +809,8 @@
     - ST counts + coordinates
     output:
     - spatially constrained LR signalling fields
+  omics:
+  - RNA-spatial
 - id: liana
   name: LIANA+
   category: cell-cell-communication
@@ -766,6 +839,9 @@
     - AnnData, optional spatial
     output:
     - consensus LR ranking across methods
+  omics:
+  - RNA-sc
+  - RNA-spatial
 - id: hest
   name: HEST-1k / HEST-Benchmark / HEST-Library
   category: benchmark + dataset
@@ -802,6 +878,9 @@
     - harmonised AnnData + patches
     - benchmark splits
     - nuclei segmentations
+  omics:
+  - morphology
+  - RNA-spatial
 - id: istar
   name: iSTAR
   category: virtual-st
@@ -822,6 +901,9 @@
     - Visium counts
     output:
     - super-resolution gene expression map
+  omics:
+  - morphology
+  - RNA-spatial
 - id: scellst
   name: sCellST
   category: virtual-st
@@ -846,6 +928,9 @@
     - cell segmentations
     output:
     - per-cell predicted expression
+  omics:
+  - morphology
+  - RNA-spatial
 - id: stflow
   name: STFlow
   category: virtual-st
@@ -864,6 +949,9 @@
     - H&E WSI
     output:
     - whole-slide predicted expression
+  omics:
+  - morphology
+  - RNA-spatial
 - id: triplex
   name: TRIPLEX
   category: virtual-st
@@ -880,3 +968,6 @@
     - H&E WSI multi-resolution
     output:
     - spot-level predicted expression
+  omics:
+  - morphology
+  - RNA-spatial

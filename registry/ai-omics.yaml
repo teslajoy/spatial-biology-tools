@@ -30,6 +30,8 @@
     argument, not a modelling one.
 
     '
+  omics:
+  - protein-MS
 - id: mm-foundation-models-cell-bio
   name: Towards multimodal foundation models in molecular cell biology
   category: review
@@ -46,6 +48,8 @@
     - literature
     output:
     - conceptual framework
+  omics:
+  - multi
 - id: dia-nn
   name: DIA-NN
   category: ms-proteomics
@@ -80,6 +84,8 @@
     claim: singled out as the widely adopted neural-network tool for improving peptide and protein identification
       in MS proteomics
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: dia-bert
   name: DIA-BERT
   category: ms-proteomics
@@ -108,6 +114,8 @@
     claim: highlighted as demonstrating that LLM architectures can be adapted to improve peptide identification,
       quantification and overall AI-driven MS interpretation
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: massnet
   name: MassNet
   category: ms-proteomics + dataset
@@ -133,6 +141,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: presented as the AI-friendly spectral corpus enabling robust de novo peptide sequencing
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: idia-qc
   name: iDIA-QC
   category: qc
@@ -158,6 +168,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited as AI-empowered quality control for DIA-MS
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: quantms
   name: quantms
   category: pipeline
@@ -189,6 +201,8 @@
     claim: highlighted for enabling large-scale reanalysis of public datasets, providing standardised
       and reproducible resources for machine learning
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: deep-visual-proteomics
   name: Deep Visual Proteomics (DVP)
   category: spatial-proteomics
@@ -224,6 +238,9 @@
   - source: Nature 2025
     claim: mapped proteotoxicity in a genetic liver disease
     url: https://doi.org/10.1038/s41586-025-08885-4
+  omics:
+  - protein-MS
+  - morphology
 - id: spatial-proteomics-jaki
   name: spatial proteomics -> therapy selection (Nordmann et al.)
   category: spatial-proteomics
@@ -248,6 +265,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited as spatial proteomics driving a therapy decision
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: spatial-proteomics-pdac
   name: multimodal single-cell spatial proteomics of pancreatic tumour heterogeneity (Xu et al.)
   category: spatial-proteomics
@@ -271,6 +290,9 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited under spatial proteomics of tumour heterogeneity
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
+  - protein-img
 - id: microfluidic-spatial-proteomics
   name: microfluidics + transfer learning spatial proteomics (Hu et al.)
   category: spatial-proteomics
@@ -295,6 +317,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: highlighted as an AI-driven approach enabling precise high-throughput mapping of tissue microenvironments
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: glue
   name: GLUE
   category: multi-omics-integration
@@ -323,6 +347,10 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited under multi-omics data integration
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
+  - DNA
+  - multi
 - id: totalvi
   name: totalVI
   category: multi-omics-integration
@@ -344,6 +372,10 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited under multi-omics data integration
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
+  - protein-img
+  - multi
 - id: geneformer
   name: Geneformer
   category: single-cell-FM
@@ -369,6 +401,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited among foundation models pretrained for transfer learning in network biology
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
 - id: scfoundation
   name: scFoundation
   category: single-cell-FM
@@ -390,6 +424,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited among large-scale single-cell transcriptomic foundation models
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
 - id: state
   name: STATE
   category: perturbation-model
@@ -414,6 +450,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited as predicting cellular responses to perturbation across diverse contexts
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
 - id: cellbox
   name: CellBox
   category: perturbation-model
@@ -440,6 +478,9 @@
     claim: highlighted as an interpretable ML framework modelling cellular perturbation responses, enabling
       rational design of cancer combination therapy
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
+  - RNA-bulk
 - id: virtual-cell-challenge
   name: Virtual Cell Challenge
   category: benchmark-harness
@@ -465,6 +506,8 @@
     claim: situated as part of the virtual-cell framework combining multi-scale state representations
       with virtual instruments
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
 - id: hca-foundation-model
   name: 'Human Cell Atlas: from cell census to unified foundation model'
   category: consortium
@@ -485,6 +528,9 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited in the atlas-to-foundation-model transition
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - RNA-sc
+  - RNA-spatial
 - id: llm-agent-benchmark-singlecell
   name: Benchmarking LLM-based agents for single-cell omics analysis
   category: benchmark-harness
@@ -511,6 +557,9 @@
     agents fail - which is precisely what a registry like this one exists to fix.
 
     '
+  omics:
+  - RNA-sc
+  - RNA-spatial
 - id: qust-llm
   name: QuST-LLM
   category: llm-tooling
@@ -530,6 +579,9 @@
     - natural language
     output:
     - natural language interpretation
+  omics:
+  - RNA-spatial
+  - morphology
 - id: pride
   name: PRIDE
   category: data-archive
@@ -554,6 +606,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: central to the argument that public archives are not yet AI-ready
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: massive-kb
   name: MassIVE / MassIVE-KB
   category: data-archive
@@ -573,6 +627,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited as a reuse-oriented proteomics archive
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: proteomicsml
   name: ProteomicsML
   category: benchmark + dataset
@@ -597,6 +653,8 @@
   - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
     claim: cited as community-curated ML-ready datasets and tutorials
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS
 - id: federated-proteomics
   name: federated deep learning for proteomic cancer subtyping (Cai et al.)
   category: method
@@ -624,3 +682,5 @@
     claim: highlighted as showing privacy-preserving AI can integrate decentralised datasets while improving
       generalisation and data security
     url: https://www.nature.com/articles/s41592-026-03085-y
+  omics:
+  - protein-MS

@@ -121,6 +121,21 @@ def training_cell(e):
     return "<br>".join(bits)
 
 
+OMICS_LABEL = {
+    "DNA": "DNA", "RNA-bulk": "RNA (bulk)", "RNA-sc": "scRNA",
+    "RNA-spatial": "spatial RNA", "protein-img": "protein (imaging)",
+    "protein-MS": "protein (MS)", "morphology": "morphology",
+    "text": "text", "multi": "multi-omic", "n/a": "-",
+}
+
+
+def omics_cell(e):
+    v = e.get("omics") or []
+    if isinstance(v, str):
+        v = [v]
+    return "<br>".join(f"`{OMICS_LABEL.get(x, x)}`" for x in v) or "-"
+
+
 def datatype_cell(e):
     d = e.get("data_types")
     if not d:
@@ -185,6 +200,24 @@ def main():
         "",
     ]
 
+    # molecular-layer index
+    omics_map = {}
+    for e in entries:
+        for o in (e.get("omics") or ["n/a"]):
+            omics_map.setdefault(o, []).append(e["name"])
+    lines += ["## index by molecular layer", "",
+              "the axis `modality` cannot answer: which of these touch scRNA at all.",
+              "",
+              "| layer | n | tools |", "|---|---|---|"]
+    for o in ["DNA", "RNA-bulk", "RNA-sc", "RNA-spatial", "protein-img",
+              "protein-MS", "morphology", "text", "multi", "n/a"]:
+        names = sorted(omics_map.get(o, []), key=str.lower)
+        if not names:
+            continue
+        shown = ", ".join(names[:14]) + (f" *+{len(names)-14} more*" if len(names) > 14 else "")
+        lines.append(f"| `{OMICS_LABEL.get(o, o)}` | {len(names)} | {shown} |")
+    lines += ["", "---", ""]
+
     seen_cats = set()
     ordered = [(c, label) for c, label in CATEGORY_ORDER if c in by_cat]
     ordered += [(c, c) for c in sorted(by_cat) if c not in dict(CATEGORY_ORDER)]
@@ -194,12 +227,13 @@ def main():
             continue
         seen_cats.add(cat)
         lines += [f"## {label}", "",
-                  "| tool | model type | modality | tissue | data types (in / out) | trained on | links | maturity | reality check | who speaks well of it |",
-                  "|---|---|---|---|---|---|---|---|---|---|"]
+                  "| tool | model type | omics layer | modality | tissue | data types (in / out) | trained on | links | maturity | reality check | who speaks well of it |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|"]
         for e in sorted(by_cat[cat], key=lambda x: x["name"].lower()):
             lines.append("| " + " | ".join([
                 f"**{e['name']}**" + (f"<br><sub>{e['org']}</sub>" if e.get("org") else ""),
                 clean(e.get("model_type")),
+                omics_cell(e),
                 clean(", ".join(e["modality"]) if isinstance(e.get("modality"), list) else e.get("modality")),
                 clean(e.get("tissue")),
                 clean(datatype_cell(e)),

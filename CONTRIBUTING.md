@@ -19,6 +19,9 @@ minimum viable entry:
   category: segmentation
   model_type: U-Net variant with attention
   modality: [multiplexed IF]
+  omics: [protein-img]        # DNA | RNA-bulk | RNA-sc | RNA-spatial |
+                              # protein-img | protein-MS | morphology |
+                              # text | multi | n/a
   tissue: breast, lung (validated on TCGA)
   data_types:
     input: [OME-TIFF, nuclear + membrane channels]
