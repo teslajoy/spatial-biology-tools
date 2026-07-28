@@ -1,0 +1,882 @@
+- id: cellpose-sam
+  name: Cellpose-SAM
+  category: segmentation
+  tasks:
+  - cell-instance-segmentation
+  model_type: SAM image encoder + newly trained decoder + Cellpose-style flow postprocessing
+  modality:
+  - phase contrast
+  - brightfield
+  - fluorescence microscopy
+  - H&E
+  training:
+    corpus: Cellpose generalist corpus + SAM pretraining
+    tissues: multi-modality cell culture and tissue
+    public: true
+  org: Stringer/Pachitariu, Janelia
+  paper: https://doi.org/10.1101/2025.04.28.651001
+  github: MouseLand/cellpose
+  license: BSD-3
+  maturity: R
+  reality_check: 'strongest general default and dominant on phase contrast. a March 2026 comparative study
+    places it among the strongest microscopy-specific baselines and reports it outperforming SAM, SAM3
+    and CellSAM in aggregate. still needs diameter sanity-checking per dataset.
+
+    '
+  endorsements:
+  - source: Revisiting foundation models for cell instance segmentation (Archit et al., Mar 2026)
+    claim: outperforms SAM, SAM3 and CellSAM in aggregate; SAM2 excluded as inferior
+    url: https://www.emergentmind.com/topics/cellposesam
+  - source: bioRxiv 2026.04.18 foundation segmentation benchmark
+    claim: strong performance on phase contrast; SAM-based models consistent on fluorescence cell culture
+    url: https://www.biorxiv.org/content/10.64898/2026.04.18.719315v1
+  tissue: any; cell culture, tissue sections
+  data_types:
+    input:
+    - TIFF/PNG 2D or 3D image stacks
+    output:
+    - instance label mask (uint16)
+    - flows
+- id: stardist
+  name: StarDist
+  category: segmentation
+  tasks:
+  - nuclear-segmentation
+  model_type: CNN with star-convex polygon parameterisation
+  modality:
+  - DAPI/Hoechst fluorescence
+  - H&E
+  - IHC
+  org: Weigert/Schmidt
+  paper: https://arxiv.org/abs/1806.03535
+  github: stardist/stardist
+  license: BSD-3
+  maturity: T
+  reality_check: 'still the best single choice for IHC and DAPI nuclei despite the foundation model wave.
+    fine-tunes from as few as 20-50 annotated images and is often faster than Cellpose on the same GPU.
+    star-convexity fails on complex whole-cell morphology - nuclei only.
+
+    '
+  tissue: histology and DAPI, any organ
+  data_types:
+    input:
+    - 2D/3D image, nuclear channel
+    output:
+    - star-convex polygon instances
+    - label mask
+- id: mesmer
+  name: Mesmer (DeepCell)
+  category: segmentation
+  tasks:
+  - whole-cell-segmentation
+  - nuclear-segmentation
+  model_type: CNN (ResNet-FPN), dual-channel nuclear + membrane input
+  modality:
+  - CODEX
+  - MIBI
+  - IMC
+  - Vectra
+  - multiplexed IF
+  training:
+    corpus: TissueNet
+    tissues: multi-tissue multiplexed
+    public: true
+  org: Van Valen lab, Caltech
+  paper: https://www.nature.com/articles/s41587-021-01094-0
+  github: vanvalenlab/deepcell-tf
+  data: TissueNet (https://datasets.deepcell.org)
+  license: modified Apache (non-commercial terms)
+  maturity: T
+  reality_check: 'purpose-built beats generalist here. takes nuclear AND membrane channels and produces
+    masks that respect real membrane boundaries, which generalist models cannot do from a single channel.
+    the default for CyCIF/CODEX/mIHC pipelines.
+
+    '
+  endorsements:
+  - source: J Imaging 2026 segmentation review
+    claim: strong generalisability across tissues and imaging protocols for multiplexed images
+    url: https://doi.org/10.3390/jimaging12070297
+  tissue: multi-tissue (TissueNet)
+  data_types:
+    input:
+    - '2-channel image: nuclear + membrane'
+    output:
+    - whole-cell and nuclear label masks
+- id: instanseg
+  name: InstanSeg
+  category: segmentation
+  tasks:
+  - cell-instance-segmentation
+  model_type: embedding-based instance segmentation, GPU-efficient
+  modality:
+  - brightfield
+  - fluorescence
+  - multiplexed
+  org: Edinburgh / QuPath group
+  paper: https://arxiv.org/abs/2408.15954
+  github: instanseg/InstanSeg
+  license: Apache-2.0
+  maturity: R
+  reality_check: fast and QuPath-integrated. benchmarked against Mesmer on CODEX in the 2026 bioRxiv comparison.
+  tissue: brightfield and fluorescence tissue
+  data_types:
+    input:
+    - image, arbitrary channels
+    output:
+    - instance masks
+    - QuPath objects
+- id: cellsam
+  name: CellSAM
+  category: segmentation
+  tasks:
+  - cell-instance-segmentation
+  model_type: SAM encoder + box detector + promptable mask decoder
+  modality:
+  - multi-modality microscopy
+  org: Van Valen lab
+  paper: https://doi.org/10.1101/2023.11.17.567630
+  github: vanvalenlab/cellSAM
+  maturity: R
+  reality_check: strong on fluorescence cell culture, beaten by Cellpose-SAM in aggregate in the 2026
+    comparison.
+  tissue: multi-modality culture and tissue
+  data_types:
+    input:
+    - image
+    output:
+    - instance masks
+- id: baysor
+  name: Baysor
+  category: transcript-assignment
+  tasks:
+  - segmentation-free-cell-calling
+  - transcript-to-cell-assignment
+  model_type: Bayesian mixture model over transcript point clouds
+  modality:
+  - MERFISH
+  - Xenium
+  - CosMx
+  - Stereo-seq
+  - ISS
+  org: Kharchenko lab
+  paper: https://www.nature.com/articles/s41587-021-01044-w
+  github: kharchenkolab/Baysor
+  license: MIT
+  maturity: T
+  reality_check: 'the reference for using molecule positions rather than stains to define cells. essential
+    when membrane staining is poor. Julia, which is a real adoption barrier in python shops.
+
+    '
+  tissue: multi-organ IST
+  data_types:
+    input:
+    - transcript table (x,y,gene)
+    - optional prior mask
+    output:
+    - cell assignment per molecule
+    - polygons
+- id: rna2seg
+  name: RNA2seg
+  category: transcript-assignment
+  tasks:
+  - cell-segmentation-in-IST
+  model_type: teacher-student deep model fusing RNA point clouds with membrane and nuclear stains
+  modality:
+  - MERFISH
+  - CosMx
+  training:
+    corpus: 4M+ cells
+    tissues: seven organs
+    public: true
+  org: Institut Curie
+  paper: https://link.springer.com/article/10.1186/s13059-025-03908-9
+  github: fish-quant/rna2seg
+  license: open
+  maturity: R
+  reality_check: 'current frontier for imaging-based ST segmentation. superior in zero-shot and few-shot
+    settings against image-based, RNA-based and hybrid approaches including vendor segmentation. published
+    Genome Biology Jan 2026.
+
+    '
+  tissue: seven organs (MERFISH, CosMx)
+  data_types:
+    input:
+    - transcript point cloud
+    - membrane + nuclear stains
+    output:
+    - cell instance masks
+    - transcript-cell assignment
+- id: segmentation-error-correction
+  name: Segmentation error impact and correction (Mason et al.)
+  category: qc
+  tasks:
+  - segmentation-error-quantification
+  model_type: analysis / correction method
+  modality:
+  - imaging-based spatial transcriptomics
+  paper: https://www.nature.com/articles/s41588-025-02393-x
+  maturity: R
+  reality_check: 'Nature Genetics 2026. read before trusting any cell-type proportion you have ever computed
+    from IST. segmentation error is the largest single source of downstream irreproducibility in this
+    field.
+
+    '
+  tissue: IST, multi-organ
+  data_types:
+    input:
+    - segmentation masks
+    - count matrix
+    output:
+    - error estimates
+    - corrected assignments
+- id: valis
+  name: VALIS
+  category: registration
+  tasks:
+  - wsi-registration
+  - multi-stain-alignment
+  - 3d-reconstruction
+  model_type: feature-based + non-rigid registration, ome.tiff output
+  modality:
+  - brightfield WSI
+  - immunofluorescence WSI
+  org: Moffitt (Gatenby/Anderson group)
+  paper: https://www.nature.com/articles/s41467-023-40218-9
+  github: MathOnco/valis
+  license: MIT
+  maturity: T
+  reality_check: 'aligns arbitrary numbers of brightfield and/or IF WSIs and writes ome.tiff, which is
+    the part that actually matters - registration is a two-part problem and applying transforms to multi-gigapixel
+    images is the half everyone underestimates. reports state-of-the-art accuracy on public benchmarks
+    for both registration and 3D reconstruction.
+
+    '
+  tissue: any; serial and multi-stain
+  data_types:
+    input:
+    - brightfield + IF WSI (any format)
+    output:
+    - registered ome.tiff
+    - transformation matrices
+    - 3D stack
+- id: ashlar
+  name: ASHLAR
+  category: registration
+  tasks:
+  - cyclic-if-registration
+  - tile-stitching
+  model_type: phase-correlation stitching and cycle alignment
+  modality:
+  - CyCIF
+  - cyclic IF
+  - mIHC
+  org: Laboratory of Systems Pharmacology, Harvard
+  paper: https://academic.oup.com/bioinformatics/article/38/19/4613/6668279
+  github: labsyspharm/ashlar
+  license: MIT
+  maturity: T
+  reality_check: the HTAN-native cycle registration step. if you run MCMICRO you are already running this.
+  tissue: any; cyclic IF
+  data_types:
+    input:
+    - per-cycle tiled images
+    output:
+    - stitched registered OME-TIFF pyramid
+- id: coda
+  name: CODA
+  category: 3d-reconstruction
+  tasks:
+  - serial-section-3d-reconstruction
+  - microanatomy-segmentation
+  - cell-detection
+  model_type: image registration + deep semantic segmentation + cell detection
+  modality:
+  - serial H&E histology
+  training:
+    corpus: institution-specific
+    tissues: pancreas (primary)
+    extended to other organs: null
+    public: partial
+  org: Kiemen / Wirtz lab, JHU
+  paper: https://www.nature.com/articles/s41592-022-01650-9
+  github: ashleylk/CODA
+  license: academic
+  maturity: T
+  reality_check: 'builds micron-resolution 3D maps from serial H&E and can carry molecular and mutational
+    data into the volume. destructive by design - section loss and tearing are the practical limiters,
+    not the software. every third section (~12um) is the published sampling.
+
+    '
+  tissue: pancreas primary; extended to other organs
+  data_types:
+    input:
+    - serial H&E WSI, every ~12um
+    output:
+    - 3D labelled volume
+    - microanatomy segmentation
+    - cell coordinates
+- id: paste
+  name: PASTE / PASTE2
+  category: alignment
+  tasks:
+  - st-slice-alignment
+  - 3d-stacking
+  model_type: fused Gromov-Wasserstein optimal transport
+  modality:
+  - Visium
+  - Slide-seq
+  - spatial transcriptomics
+  org: Raphael lab, Princeton
+  paper: https://www.nature.com/articles/s41592-022-01459-6
+  github: raphael-group/paste
+  license: BSD-3
+  maturity: R
+  reality_check: PASTE2 handles partial overlap between slices, which PASTE cannot. use PASTE2 for real
+    serial data.
+  tissue: multi-organ ST
+  data_types:
+    input:
+    - AnnData per slice + coordinates
+    output:
+    - pairwise alignment matrix
+    - stacked 3D coordinates
+- id: stalign
+  name: STalign
+  category: alignment
+  tasks:
+  - st-to-atlas-alignment
+  - cross-technology-alignment
+  model_type: diffeomorphic metric mapping (LDDMM)
+  modality:
+  - Visium
+  - MERFISH
+  - Slide-seq
+  - histology
+  org: JEFworks lab, JHU
+  paper: https://www.nature.com/articles/s41467-023-43915-7
+  github: JEFworks-Lab/STalign
+  license: GPL-3
+  maturity: R
+  reality_check: the right tool when aligning ST to a reference atlas rather than slice-to-slice.
+  tissue: brain and multi-organ
+  data_types:
+    input:
+    - ST coordinates
+    - reference atlas or histology
+    output:
+    - diffeomorphic transform
+    - aligned coordinates
+- id: openst
+  name: Open-ST
+  category: platform + 3d
+  tasks:
+  - subcellular-st-protocol
+  - serial-registration
+  - 3d-virtual-tissue-block
+  model_type: wet-lab protocol + computational pipeline
+  modality:
+  - open-source subcellular spatial transcriptomics
+  org: Rajewsky lab, MDC Berlin
+  paper: https://www.cell.com/cell/fulltext/S0092-8674(24)00636-6
+  github: rajewsky-lab/openst
+  license: open
+  maturity: R
+  reality_check: 'end-to-end 2D/3D protocol plus tooling including serial-section registration and virtual
+    tissue block reconstruction. the lowest-cost route into volumetric ST, since it is not tied to a commercial
+    platform.
+
+    '
+  tissue: multi-organ
+  data_types:
+    input:
+    - Open-ST raw reads
+    - serial section images
+    output:
+    - AnnData
+    - 3D virtual tissue block
+- id: soapy
+  name: SOAPy
+  category: alignment
+  tasks:
+  - multi-modal-spatial-integration
+  - landmark-registration
+  modality:
+  - multi-platform spatial omics
+  paper: https://www.nature.com/articles/s41467-024-52368-5
+  github: LiHongCSBLab/SOAPy
+  maturity: R
+  reality_check: cited in the Advanced Science 2026 guide as a reference for landmark-aware cross-platform
+    registration.
+  tissue: multi-organ
+  data_types:
+    input:
+    - multi-platform spatial data
+    output:
+    - aligned multi-modal object
+- id: cell2location
+  name: cell2location
+  category: deconvolution
+  tasks:
+  - spot-deconvolution
+  - cell-abundance-estimation
+  model_type: Bayesian hierarchical model (pyro/scvi-tools)
+  modality:
+  - Visium
+  - Slide-seq
+  - ST
+  org: Bayraktar lab, Sanger
+  paper: https://www.nature.com/articles/s41587-021-01139-4
+  github: BayraktarLab/cell2location
+  license: Apache-2.0
+  maturity: T
+  reality_check: 'estimates absolute densities rather than proportions and models technical variation
+    explicitly. consistently top-2 across independent benchmarks. slow, GPU-hungry, and sensitive to reference
+    quality - a bad scRNA reference beats the algorithm every time.
+
+    '
+  endorsements:
+  - source: bioRxiv 2026 spDDB (21 methods, 37 datasets, 4 technologies)
+    claim: top-performing alongside RCTD and SONAR
+    url: https://www.biorxiv.org/content/10.64898/2026.05.11.724248v1.full
+  - source: eLife Spotless benchmark
+    claim: top-performing with RCTD and SpatialDWLS
+    url: https://elifesciences.org/articles/88431
+  - source: Nature Communications 2023 (18 methods, 50 datasets)
+    claim: best methods are CARD, cell2location and Tangram
+    url: https://www.nature.com/articles/s41467-023-37168-7
+  tissue: multi-organ (brain, gut, lymphoid, tumour)
+  data_types:
+    input:
+    - Visium AnnData
+    - scRNA reference AnnData
+    output:
+    - absolute cell-type abundance per spot (posterior)
+- id: rctd
+  name: RCTD (spacexr)
+  category: deconvolution
+  tasks:
+  - spot-deconvolution
+  model_type: supervised probabilistic MLE with platform-effect correction
+  modality:
+  - Visium
+  - Slide-seq
+  org: Macosko/Irizarry labs, Broad
+  paper: https://www.nature.com/articles/s41587-021-00830-w
+  github: dmcable/spacexr
+  license: GPL-3
+  maturity: T
+  reality_check: top-2 in essentially every benchmark and much faster than cell2location. R-only.
+  tissue: multi-organ
+  data_types:
+    input:
+    - Visium/Slide-seq counts
+    - scRNA reference
+    output:
+    - cell-type weights per spot
+- id: card
+  name: CARD
+  category: deconvolution
+  tasks:
+  - spot-deconvolution
+  model_type: conditional autoregressive NMF using spatial correlation
+  modality:
+  - Visium
+  - ST
+  paper: https://www.nature.com/articles/s41587-022-01273-7
+  github: YMa-lab/CARD
+  maturity: R
+  reality_check: uses spatial correlation in the deconvolution itself, unlike most competitors. top-3
+    in the Nat Commun 2023 benchmark.
+  tissue: multi-organ
+  data_types:
+    input:
+    - ST counts + coordinates
+    - scRNA reference
+    output:
+    - cell-type proportions
+    - refined spatial map
+- id: tangram
+  name: Tangram
+  category: deconvolution + mapping
+  tasks:
+  - sc-to-spatial-mapping
+  - gene-imputation
+  model_type: deep-learning optimal-transport-style alignment
+  modality:
+  - Visium
+  - MERFISH
+  - STARmap
+  org: Broad Institute
+  paper: https://www.nature.com/articles/s41592-021-01264-7
+  github: broadinstitute/Tangram
+  maturity: R
+  reality_check: maps single cells onto space rather than estimating proportions - different question,
+    often the one you actually want.
+  tissue: brain, multi-organ
+  data_types:
+    input:
+    - scRNA AnnData
+    - spatial AnnData
+    output:
+    - cell-to-spot mapping matrix
+    - imputed genes
+- id: baseline-regression
+  name: plain NNLS / ridge regression baseline
+  category: deconvolution
+  tasks:
+  - spot-deconvolution
+  model_type: linear
+  maturity: I
+  reality_check: 'ALWAYS RUN THIS. the Spotless benchmark found a simple regression model outperforms
+    almost half of dedicated spatial deconvolution methods. if your fancy method cannot beat NNLS on your
+    data, it is not earning its dependency.
+
+    '
+  endorsements:
+  - source: eLife Spotless
+    claim: a simple regression model outperforms almost half of dedicated deconvolution methods
+    url: https://elifesciences.org/articles/88431
+  tissue: any
+  data_types:
+    input:
+    - ST counts
+    - reference signature matrix
+    output:
+    - proportions
+- id: bayesspace
+  name: BayesSpace
+  category: domain-detection
+  model_type: Bayesian Markov random field, sub-spot resolution enhancement
+  modality:
+  - Visium
+  - ST
+  paper: https://www.nature.com/articles/s41587-021-00935-2
+  github: edward130603/BayesSpace
+  maturity: R
+  reality_check: strong on layered tissue (brain cortex), weaker on irregular tumour architecture.
+  tissue: layered tissue, brain cortex, tumour
+  data_types:
+    input:
+    - Visium counts + coordinates
+    output:
+    - spatial domain labels
+    - enhanced sub-spot resolution
+- id: spagcn
+  name: SpaGCN
+  category: domain-detection
+  model_type: graph convolutional network integrating expression, position and histology
+  modality:
+  - Visium
+  - MERFISH
+  - Slide-seq
+  paper: https://www.nature.com/articles/s41592-021-01255-8
+  github: jianhuupenn/SpaGCN
+  maturity: R
+  reality_check: one of the few that actually consumes the H&E image alongside expression.
+  tissue: multi-organ
+  data_types:
+    input:
+    - ST counts
+    - coordinates
+    - H&E image
+    output:
+    - spatial domain labels
+    - SVG list
+- id: graphst
+  name: GraphST
+  category: domain-detection + deconvolution
+  model_type: graph self-supervised contrastive learning
+  modality:
+  - Visium
+  - Stereo-seq
+  - Slide-seq
+  paper: https://www.nature.com/articles/s41467-023-36796-3
+  github: JinmiaoChenLab/GraphST
+  maturity: R
+  reality_check: best-performing alongside cell2location in the SpatialPrompt comparison. does domains
+    and deconvolution in one model.
+  tissue: multi-organ
+  data_types:
+    input:
+    - ST counts + coordinates
+    - optional scRNA reference
+    output:
+    - domain labels
+    - cell-type proportions
+    - embedding
+- id: cellcharter
+  name: CellCharter
+  category: niche-detection
+  model_type: scaled Gaussian mixture over neighbourhood-aggregated embeddings
+  modality:
+  - IMC
+  - CODEX
+  - Visium
+  - Xenium
+  - MERFISH
+  org: Ciriello lab, Lausanne
+  paper: https://www.nature.com/articles/s41588-023-01588-4
+  github: CSOgroup/cellcharter
+  maturity: R
+  reality_check: 'scales to millions of cells and works on proteomics as well as transcriptomics, which
+    most domain methods do not. the standard for tissue-remodelling and plasticity niches.
+
+    '
+  tissue: multi-organ; works on proteomics and transcriptomics
+  data_types:
+    input:
+    - cell-level embedding + coordinates
+    output:
+    - niche labels
+    - neighbourhood composition
+- id: banksy
+  name: BANKSY
+  category: domain-detection
+  model_type: neighbourhood-augmented feature space (azimuthal Gabor filters)
+  modality:
+  - Visium
+  - Slide-seq
+  - MERFISH
+  - CosMx
+  paper: https://www.nature.com/articles/s41588-024-01664-3
+  github: prabhakarlab/Banksy
+  maturity: R
+  reality_check: unifies cell typing and domain segmentation in one embedding. fast, and unusually easy
+    to reason about.
+  tissue: multi-organ
+  data_types:
+    input:
+    - counts + coordinates
+    output:
+    - cell type and domain labels in one embedding
+- id: bass
+  name: BASS
+  category: domain-detection
+  model_type: Bayesian hierarchical, joint multi-slice cell-type and domain inference
+  modality:
+  - multi-slice ST
+  paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02734-7
+  github: zhengli09/BASS
+  maturity: R
+  reality_check: multi-slice consistency is the underserved case and the one consortium data actually
+    needs. this and SpaDo are the options.
+  tissue: multi-slice, brain and tumour
+  data_types:
+    input:
+    - multi-slice ST counts + coordinates
+    output:
+    - joint cell-type and domain labels across slices
+- id: spado
+  name: SpaDo
+  category: domain-detection
+  model_type: neighbourhood cell-type-proportion profiles + hierarchical clustering
+  modality:
+  - multi-slice
+  - cross-platform ST
+  paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03213-x
+  github: bm2-lab/SpaDo
+  maturity: R
+  reality_check: cross-slice domain annotation and large-scale clustering across platforms. infrastructure
+    for stack-aware reasoning.
+  tissue: multi-slice, cross-platform
+  data_types:
+    input:
+    - multi-slice ST or cell-type annotations
+    output:
+    - cross-slice domain labels
+- id: cellchat
+  name: CellChat
+  category: cell-cell-communication
+  model_type: mass-action law of communication probability + pattern recognition
+  modality:
+  - scRNA-seq
+  - spatial transcriptomics
+  paper: https://www.nature.com/articles/s41467-021-21246-9
+  github: jinworks/CellChat
+  maturity: R
+  reality_check: the most-used option. v2 adds spatial constraint; v1 is not spatially aware at all.
+  tissue: multi-organ
+  data_types:
+    input:
+    - AnnData/Seurat with cell-type labels
+    output:
+    - ligand-receptor interaction scores
+    - signalling pathway networks
+- id: cellphonedb
+  name: CellPhoneDB v5
+  category: cell-cell-communication
+  model_type: curated LR complexes + permutation testing
+  modality:
+  - scRNA-seq
+  - spatial
+  paper: https://arxiv.org/abs/2311.04567
+  github: ventolab/CellphoneDB
+  maturity: R
+  reality_check: not spatially aware by construction. treat spatial claims from it with suspicion.
+  tissue: multi-organ
+  data_types:
+    input:
+    - counts + cell-type labels
+    output:
+    - LR pairs with permutation p-values
+- id: commot
+  name: COMMOT
+  category: cell-cell-communication
+  model_type: collective optimal transport with spatial distance constraints
+  modality:
+  - Visium
+  - MERFISH
+  - Stereo-seq
+  paper: https://www.nature.com/articles/s41592-022-01728-4
+  github: zcang/COMMOT
+  maturity: R
+  reality_check: genuinely spatial - transport cost encodes physical distance. the right default for spatial
+    CCC.
+  tissue: multi-organ
+  data_types:
+    input:
+    - ST counts + coordinates
+    output:
+    - spatially constrained LR signalling fields
+- id: liana
+  name: LIANA+
+  category: cell-cell-communication
+  model_type: consensus framework wrapping multiple LR methods
+  modality:
+  - scRNA-seq
+  - spatial
+  - multi-omics
+  org: Saez-Rodriguez lab
+  paper: https://www.nature.com/articles/s41556-024-01469-w
+  github: saezlab/liana-py
+  maturity: R
+  reality_check: 'the pragmatic answer to method disagreement - run several and take consensus. given
+    the 2026 Genome Biology benchmark showing method performance varies by platform and metric, consensus
+    is defensible where a single method is not.
+
+    '
+  endorsements:
+  - source: Genome Biology 2026, 9 CCI methods on Visium/Stereo-seq/Xenium
+    claim: performance varies by LR accuracy, spatial coherence, pathway relevance and efficiency - no
+      single winner
+    url: https://link.springer.com/article/10.1186/s13059-026-04063-5
+  tissue: multi-organ
+  data_types:
+    input:
+    - AnnData, optional spatial
+    output:
+    - consensus LR ranking across methods
+- id: hest
+  name: HEST-1k / HEST-Benchmark / HEST-Library
+  category: benchmark + dataset
+  tasks:
+  - gene-expression-from-histology
+  modality:
+  - paired H&E WSI + spatial transcriptomics
+  training:
+    corpus: 1229 paired ST + H&E samples, 2.1M expression-morphology pairs, 60M detected nuclei
+    tissues: 25 organs, 2 species, 320 cancer samples across 25 subtypes, 131 cohorts
+    public: true
+  org: Mahmood Lab
+  paper: https://arxiv.org/abs/2406.16192
+  github: mahmoodlab/HEST
+  hf: MahmoodLab/hest
+  license: open (per-cohort terms vary)
+  maturity: R
+  reality_check: 'the reference benchmark, and its own authors flag the limits - ST data is inherently
+    noisy and label noise is unavoidable. downstream papers add that HEST-1k is heterogeneous in acquisition
+    technology, resolution, species (mouse-heavy) and therapeutic domain, so topping HEST does not imply
+    transfer to your cohort. best correlations sit near 0.3 Pearson on top variable genes.
+
+    '
+  endorsements:
+  - source: Nature Communications 2025 multiscale spatial omics integration
+    claim: introduced to address dataset-size limitations, but remains heterogeneous across technology,
+      resolution and species
+    url: https://www.nature.com/articles/s41467-025-66691-y
+  tissue: 25 organs, 2 species, 25 cancer subtypes
+  data_types:
+    input:
+    - paired H&E WSI + ST
+    output:
+    - harmonised AnnData + patches
+    - benchmark splits
+    - nuclei segmentations
+- id: istar
+  name: iSTAR
+  category: virtual-st
+  tasks:
+  - super-resolution-gene-expression
+  model_type: hierarchical ViT feature extraction + expression prediction
+  modality:
+  - H&E + Visium
+  paper: https://www.nature.com/articles/s41551-024-01193-8
+  github: daviddaiweizhang/istar
+  maturity: R
+  reality_check: near-single-cell resolution inference from spot data. widely cited as the strongest of
+    the pre-foundation-model generation.
+  tissue: multi-organ
+  data_types:
+    input:
+    - H&E WSI
+    - Visium counts
+    output:
+    - super-resolution gene expression map
+- id: scellst
+  name: sCellST
+  category: virtual-st
+  tasks:
+  - single-cell-expression-from-histology
+  model_type: multiple-instance learning over segmented cells
+  modality:
+  - H&E + Visium
+  org: Institut Curie
+  paper: https://www.nature.com/articles/s41467-025-67965-1
+  github: LoicChadoutaud/sCellST
+  maturity: R
+  reality_check: 'matches patch-based methods at spot level while recovering finer cell populations. the
+    point is that patch-based methods discard subcellular morphology by construction. Nat Commun Jan 2026.
+
+    '
+  tissue: breast and other cancers
+  data_types:
+    input:
+    - H&E WSI
+    - Visium counts
+    - cell segmentations
+    output:
+    - per-cell predicted expression
+- id: stflow
+  name: STFlow
+  category: virtual-st
+  tasks:
+  - whole-slide-expression-generation
+  model_type: flow matching over whole-slide graphs
+  modality:
+  - H&E + HEST-1k / STImage-1K4M
+  paper: https://arxiv.org/abs/2506.05361
+  maturity: R
+  reality_check: scalable whole-slide generation rather than per-spot regression. evaluated on HEST-1k
+    with patient-stratified splits.
+  tissue: multi-organ
+  data_types:
+    input:
+    - H&E WSI
+    output:
+    - whole-slide predicted expression
+- id: triplex
+  name: TRIPLEX
+  category: virtual-st
+  model_type: multi-resolution transformer
+  modality:
+  - H&E + Visium
+  paper: https://openaccess.thecvf.com/content/CVPR2024/html/Chung_Accurate_Spatial_Gene_Expression_Prediction_by_Integrating_Multi-Resolution_Features_CVPR_2024_paper.html
+  github: NEXGEM/TRIPLEX
+  maturity: R
+  reality_check: CVPR 2024, multi-resolution context. a standard baseline in the 2025-2026 comparisons.
+  tissue: multi-organ
+  data_types:
+    input:
+    - H&E WSI multi-resolution
+    output:
+    - spot-level predicted expression

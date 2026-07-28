@@ -1,0 +1,626 @@
+- id: ai-proteomics-perspective
+  name: 'AI proteomics: from protein identification to virtual cells'
+  category: review
+  tasks:
+  - landscape-orientation
+  model_type: Perspective (Nature Methods), 60+ authors
+  modality:
+  - MS-based proteomics
+  - spatial proteomics
+  - multi-omics
+  tissue: cross-tissue
+  data_types:
+    input:
+    - literature
+    output:
+    - six-area taxonomy
+    - curated tool table (Supplementary Table 1
+    - XLSX)
+  org: Guo (Westlake), Mann (MPI), Zhang (Baylor) et al.
+  paper: https://www.nature.com/articles/s41592-026-03085-y
+  data: https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-026-03085-y/MediaObjects/41592_2026_3085_MOESM1_ESM.xlsx
+  license: subscription (abstract + refs open)
+  maturity: I
+  reality_check: 'published 28 July 2026. six areas where AI is moving MS proteomics: peptide/protein
+    identification and quantification, protein-protein interactions and complexes, spatial and perturbation
+    proteomics, multi-omics integration, and AI virtual cells. the operationally useful part is Supplementary
+    Table 1 - a curated table of tools with model, model type, task, year and article link, which is close
+    to this registry''s schema and worth ingesting directly. note the framing: the paper''s closing argument
+    is a call for an "AI-friendly ecosystem" among data producers and consumers. that is a data-infrastructure
+    argument, not a modelling one.
+
+    '
+- id: mm-foundation-models-cell-bio
+  name: Towards multimodal foundation models in molecular cell biology
+  category: review
+  modality:
+  - multi-omics
+  tissue: cross-tissue
+  org: Cui et al.
+  paper: https://doi.org/10.1038/s41586-025-08911-5
+  maturity: I
+  reality_check: Nature 2025. the conceptual bridge between the pathology-FM literature and the single-cell/omics-FM
+    literature, which mostly do not cite each other.
+  data_types:
+    input:
+    - literature
+    output:
+    - conceptual framework
+- id: dia-nn
+  name: DIA-NN
+  category: ms-proteomics
+  tasks:
+  - peptide-identification
+  - protein-quantification
+  model_type: neural network with interference correction
+  modality:
+  - data-independent acquisition MS
+  tissue: any (sample-type agnostic)
+  data_types:
+    input:
+    - .raw
+    - .mzML
+    - .d (Bruker)
+    - spectral library or FASTA
+    output:
+    - precursor/protein report TSV
+    - quantitative matrix
+  org: Demichev / Ralser
+  paper: https://doi.org/10.1038/s41592-019-0638-x
+  github: vdemichev/DiaNN
+  license: free for academic use
+  maturity: T
+  reality_check: 'the widely adopted DIA workhorse and the reference point every newer method is measured
+    against. described in the 2026 Perspective as a widely adopted neural-network tool for improving identification.
+    entrenched enough that switching costs are real.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: singled out as the widely adopted neural-network tool for improving peptide and protein identification
+      in MS proteomics
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: dia-bert
+  name: DIA-BERT
+  category: ms-proteomics
+  tasks:
+  - peptide-identification
+  - quantification
+  model_type: pretrained end-to-end transformer (BERT-style)
+  modality:
+  - data-independent acquisition MS
+  tissue: cross-tissue
+  data_types:
+    input:
+    - DIA spectra
+    output:
+    - peptide identifications
+    - quantities
+  paper: https://doi.org/10.1038/s41467-025-58866-4
+  maturity: R
+  reality_check: 'Nat Commun 2025. the proof that LLM-style architectures transfer to MS spectra, which
+    is the same argument DINOv2-on-histology made three years earlier. expect the same trajectory: strong
+    headline numbers, slow displacement of the incumbent.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: highlighted as demonstrating that LLM architectures can be adapted to improve peptide identification,
+      quantification and overall AI-driven MS interpretation
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: massnet
+  name: MassNet
+  category: ms-proteomics + dataset
+  tasks:
+  - de-novo-peptide-sequencing
+  - pretraining-corpus
+  model_type: billion-scale spectral corpus + model
+  modality:
+  - tandem MS
+  tissue: cross-tissue
+  data_types:
+    input:
+    - MS/MS spectra
+    output:
+    - de novo peptide sequences
+  paper: https://doi.org/10.1101/2025.06.20.660691
+  maturity: R
+  reality_check: 'explicitly framed as an "AI-friendly" corpus rather than a model. this is the proteomics
+    equivalent of HEST-1k - the corpus is the contribution, the model is the demonstration. preprint.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: presented as the AI-friendly spectral corpus enabling robust de novo peptide sequencing
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: idia-qc
+  name: iDIA-QC
+  category: qc
+  tasks:
+  - ms-quality-control
+  model_type: supervised ML on instrument QC metrics
+  modality:
+  - DIA-MS
+  tissue: n/a
+  data_types:
+    input:
+    - QC run spectra
+    output:
+    - instrument performance flags
+  paper: https://doi.org/10.1038/s41467-024-54871-1
+  maturity: T
+  reality_check: 'Nat Commun 2025. automated instrument QC, which is the unglamorous prerequisite for
+    any multi-centre study. the direct analogue of the imaging-ST QC metrics in infra.yaml, and equally
+    skipped.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as AI-empowered quality control for DIA-MS
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: quantms
+  name: quantms
+  category: pipeline
+  tasks:
+  - quantitative-proteomics-reanalysis
+  model_type: cloud-native nextflow pipeline
+  modality:
+  - DDA and DIA MS
+  tissue: cross-tissue
+  data_types:
+    input:
+    - PRIDE/MassIVE public datasets
+    - SDRF-Proteomics metadata
+    output:
+    - standardised quantitative matrices
+    - mzTab
+  paper: https://doi.org/10.1038/s41592-024-02343-1
+  github: bigbio/quantms
+  license: Apache-2.0
+  maturity: I
+  reality_check: 'Nat Methods 2024. enables large-scale reanalysis of public proteomics data with standardised
+    output - the thing that makes public archives trainable rather than merely deposited. structurally
+    the closest analogue in this registry to the FHIR-aggregation problem: heterogeneous repositories,
+    one queryable surface.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: highlighted for enabling large-scale reanalysis of public datasets, providing standardised
+      and reproducible resources for machine learning
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: deep-visual-proteomics
+  name: Deep Visual Proteomics (DVP)
+  category: spatial-proteomics
+  tasks:
+  - single-cell-spatial-proteome
+  - laser-microdissection-guided-MS
+  model_type: deep-learning image segmentation + classification driving laser capture, then ultrasensitive
+    MS
+  modality:
+  - microscopy imaging + MS proteomics
+  tissue: multi-tissue; demonstrated in liver (proteotoxicity), skin, cancer
+  data_types:
+    input:
+    - IF/H&E images
+    - LMD coordinates
+    - MS raw
+    output:
+    - cell-type-resolved protein abundance matrices with spatial provenance
+  org: Mann lab, MPI Biochemistry
+  paper: https://doi.org/10.1038/s41587-022-01302-5
+  maturity: T
+  reality_check: 'the most important entry in this file for anyone doing imaging. DVP closes the loop
+    that antibody-panel spatial proteomics cannot: unbiased, discovery-scale protein measurement with
+    cell-level spatial attribution. no 40-marker panel ceiling. cost is throughput - it is microdissection,
+    so it does not scale to whole-slide the way CODEX does.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective
+    claim: highlighted as the AI-driven framework integrating imaging with ultrasensitive MS to map protein
+      expression at single-cell resolution
+    url: https://www.nature.com/articles/s41592-026-03085-y
+  - source: Nature 2025
+    claim: mapped proteotoxicity in a genetic liver disease
+    url: https://doi.org/10.1038/s41586-025-08885-4
+- id: spatial-proteomics-jaki
+  name: spatial proteomics -> therapy selection (Nordmann et al.)
+  category: spatial-proteomics
+  tasks:
+  - therapy-target-identification
+  modality:
+  - spatial proteomics
+  tissue: skin (lethal inflammatory skin disease)
+  paper: https://doi.org/10.1038/s41586-024-08061-0
+  maturity: T
+  reality_check: 'Nature 2024. spatial proteomics identified JAK inhibition as treatment for a lethal
+    skin disease. one of the very few instances where a spatial assay changed clinical management rather
+    than describing a cohort. worth citing whenever someone asks what spatial is actually for.
+
+    '
+  data_types:
+    input:
+    - spatial proteomic profiles
+    output:
+    - therapeutic target hypothesis
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as spatial proteomics driving a therapy decision
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: spatial-proteomics-pdac
+  name: multimodal single-cell spatial proteomics of pancreatic tumour heterogeneity (Xu et al.)
+  category: spatial-proteomics
+  modality:
+  - spatial proteomics
+  - single-cell
+  tissue: pancreas (pancreatic tumour)
+  paper: https://doi.org/10.1038/s41467-024-54364-1
+  maturity: R
+  reality_check: 'Nat Commun 2024. directly relevant to pancreatic precancer work - a spatial proteomic
+    view of PDAC heterogeneity that complements the transcriptomic and H&E-based atlases.
+
+    '
+  data_types:
+    input:
+    - multiplex spatial proteomics
+    - single-cell
+    output:
+    - cell-state maps of tumour heterogeneity
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited under spatial proteomics of tumour heterogeneity
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: microfluidic-spatial-proteomics
+  name: microfluidics + transfer learning spatial proteomics (Hu et al.)
+  category: spatial-proteomics
+  model_type: microfluidic sampling + transfer learning
+  modality:
+  - spatially resolved MS proteomics
+  tissue: complex tissues, multi-organ
+  paper: https://doi.org/10.1016/j.cell.2024.12.006
+  maturity: R
+  reality_check: 'Cell 2025. high-resolution spatially resolved proteomics at throughput, using transfer
+    learning to compensate for sparse sampling. the sparse-sampling trick is the same idea as virtual
+    ST - measure less, infer the rest - and inherits the same validation burden.
+
+    '
+  data_types:
+    input:
+    - tissue section, microfluidic sampling
+    - MS raw
+    output:
+    - spatially resolved protein abundance maps
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: highlighted as an AI-driven approach enabling precise high-throughput mapping of tissue microenvironments
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: glue
+  name: GLUE
+  category: multi-omics-integration
+  tasks:
+  - unpaired-multi-omics-integration
+  - regulatory-inference
+  model_type: graph-linked variational autoencoder
+  modality:
+  - scRNA-seq
+  - scATAC-seq
+  - snmC-seq
+  tissue: cross-tissue
+  data_types:
+    input:
+    - AnnData per modality
+    - prior regulatory graph
+    output:
+    - joint embedding
+    - regulatory links
+  paper: https://doi.org/10.1038/s41587-022-01284-4
+  github: gao-lab/GLUE
+  maturity: R
+  reality_check: handles unpaired modalities, which is the realistic case. most integration methods quietly
+    assume paired cells you do not have.
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited under multi-omics data integration
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: totalvi
+  name: totalVI
+  category: multi-omics-integration
+  model_type: joint probabilistic model (scvi-tools)
+  modality:
+  - CITE-seq (RNA + surface protein)
+  tissue: cross-tissue
+  data_types:
+    input:
+    - paired RNA + ADT counts
+    output:
+    - joint latent space
+    - denoised protein
+  paper: https://doi.org/10.1038/s41592-020-01050-x
+  github: scverse/scvi-tools
+  maturity: R
+  reality_check: same family as cell2location. if you already use scvi-tools this is a free addition.
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited under multi-omics data integration
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: geneformer
+  name: Geneformer
+  category: single-cell-FM
+  tasks:
+  - network-biology-prediction
+  - in-silico-perturbation
+  model_type: transformer, rank-value gene encoding
+  modality:
+  - scRNA-seq
+  tissue: cross-tissue (Genecorpus-30M)
+  data_types:
+    input:
+    - rank-ordered gene expression
+    output:
+    - cell/gene embeddings
+    - perturbation predictions
+  paper: https://doi.org/10.1038/s41586-023-06139-9
+  hf: ctheodoris/Geneformer
+  maturity: R
+  reality_check: the original transfer-learning-in-network-biology result. independent evaluations have
+    been more mixed than the headline, as with the pathology FMs.
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited among foundation models pretrained for transfer learning in network biology
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: scfoundation
+  name: scFoundation
+  category: single-cell-FM
+  model_type: large transformer, 100M parameters
+  modality:
+  - scRNA-seq
+  tissue: cross-tissue
+  paper: https://doi.org/10.1038/s41592-024-02305-7
+  github: biomap-research/scFoundation
+  maturity: R
+  reality_check: Nat Methods 2024. scale-first approach. the open question across all single-cell FMs
+    is whether they beat a well-tuned PCA plus kNN, and that comparison is still not routinely reported.
+  data_types:
+    input:
+    - scRNA-seq count matrix
+    output:
+    - cell/gene embeddings
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited among large-scale single-cell transcriptomic foundation models
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: state
+  name: STATE
+  category: perturbation-model
+  tasks:
+  - perturbation-response-prediction
+  model_type: transformer trained across cellular contexts
+  modality:
+  - perturbation scRNA-seq
+  tissue: cross-context
+  paper: https://doi.org/10.1101/2025.06.26.661135
+  org: Arc Institute
+  maturity: R
+  reality_check: predicting cellular responses to perturbation across contexts. paired with the Virtual
+    Cell Challenge as the field's attempt to define a falsifiable benchmark, which is more than the spatial
+    FM literature currently has.
+  data_types:
+    input:
+    - perturbation scRNA-seq
+    output:
+    - predicted post-perturbation expression
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as predicting cellular responses to perturbation across diverse contexts
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: cellbox
+  name: CellBox
+  category: perturbation-model
+  model_type: interpretable ODE-based ML
+  modality:
+  - perturbation proteomics/transcriptomics
+  tissue: cancer cell lines
+  paper: https://doi.org/10.1016/j.cels.2020.11.013
+  github: sanderlab/CellBox
+  maturity: R
+  reality_check: 'interpretable rather than black-box, and designs combination therapy rather than describing
+    variance. cited in the 2026 Perspective as the model for mechanistic perturbation prediction. the
+    counter-argument to scaling-only approaches.
+
+    '
+  data_types:
+    input:
+    - perturbation response matrices
+    output:
+    - interpretable interaction network
+    - combination therapy predictions
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: highlighted as an interpretable ML framework modelling cellular perturbation responses, enabling
+      rational design of cancer combination therapy
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: virtual-cell-challenge
+  name: Virtual Cell Challenge
+  category: benchmark-harness
+  tasks:
+  - virtual-cell-evaluation
+  modality:
+  - perturbation single-cell
+  tissue: cross-context
+  paper: https://doi.org/10.1016/j.cell.2025.05.045
+  maturity: I
+  reality_check: 'Cell 2025, framed as a Turing test for the virtual cell. whether or not the target is
+    reachable, a community benchmark with held-out ground truth is exactly what the spatial foundation
+    model space lacks.
+
+    '
+  data_types:
+    input:
+    - held-out perturbation data
+    output:
+    - leaderboard metrics
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: situated as part of the virtual-cell framework combining multi-scale state representations
+      with virtual instruments
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: hca-foundation-model
+  name: 'Human Cell Atlas: from cell census to unified foundation model'
+  category: consortium
+  modality:
+  - scRNA-seq
+  - spatial
+  tissue: whole human body
+  paper: https://doi.org/10.1038/s41586-024-08338-4
+  maturity: I
+  reality_check: Nature 2025. the atlas-to-model transition argument. relevant to any consortium data-model
+    work, since it makes the case that atlas schemas should be designed for training, not only for browsing.
+  data_types:
+    input:
+    - atlas-scale scRNA + spatial
+    output:
+    - unified cell reference / model
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited in the atlas-to-foundation-model transition
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: llm-agent-benchmark-singlecell
+  name: Benchmarking LLM-based agents for single-cell omics analysis
+  category: benchmark-harness
+  tasks:
+  - agent-evaluation
+  - automated-analysis
+  model_type: LLM agents orchestrating standard bioinformatics tools
+  modality:
+  - scRNA-seq
+  - spatial transcriptomics
+  tissue: cross-tissue
+  data_types:
+    input:
+    - natural language task + AnnData
+    output:
+    - executed analysis
+    - tool calls
+    - results
+  paper: https://arxiv.org/abs/2508.13201
+  maturity: R
+  reality_check: 'evaluates agents on real analysis tasks including spatial deconvolution (DestVI, Stereoscope,
+    cell2location, Tangram) and cell-cell communication (CellPhoneDB, NicheNet, CellChat). the important
+    finding for anyone building agentic pipelines is that tool selection, not tool execution, is where
+    agents fail - which is precisely what a registry like this one exists to fix.
+
+    '
+- id: qust-llm
+  name: QuST-LLM
+  category: llm-tooling
+  tasks:
+  - spatial-transcriptomics-interpretation
+  model_type: LLM wrapper over QuPath/QuST spatial analysis
+  modality:
+  - spatial transcriptomics + histology
+  tissue: cross-tissue
+  paper: https://arxiv.org/abs/2406.14307
+  maturity: R
+  reality_check: natural-language interface to spatial analysis. useful as an interpretation layer, not
+    an analysis layer - it does not remove the need to know whether the deconvolution was valid.
+  data_types:
+    input:
+    - QuST spatial analysis output
+    - natural language
+    output:
+    - natural language interpretation
+- id: pride
+  name: PRIDE
+  category: data-archive
+  modality:
+  - MS proteomics
+  tissue: all
+  data_types:
+    input:
+    - submitted raw + search results
+    output:
+    - public datasets
+    - SDRF metadata
+  paper: https://doi.org/10.1093/nar/gkae1011
+  url: https://www.ebi.ac.uk/pride/
+  maturity: I
+  reality_check: 'the proteomics equivalent of GDC/HTAN. 20+ years of deposits, and the 2026 Perspective''s
+    central complaint is that the archives are not AI-ready - metadata heterogeneity, not data volume,
+    is the binding constraint. familiar problem.
+
+    '
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: central to the argument that public archives are not yet AI-ready
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: massive-kb
+  name: MassIVE / MassIVE-KB
+  category: data-archive
+  modality:
+  - MS proteomics
+  tissue: all
+  url: https://massive.ucsd.edu/
+  paper: https://doi.org/10.1038/s41592-018-0283-9
+  maturity: I
+  reality_check: reuse-oriented archive. pairs with quantms for reanalysis at scale.
+  data_types:
+    input:
+    - submitted MS datasets
+    output:
+    - public spectral libraries
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as a reuse-oriented proteomics archive
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: proteomicsml
+  name: ProteomicsML
+  category: benchmark + dataset
+  tasks:
+  - ml-ready-datasets
+  - tutorials
+  modality:
+  - MS proteomics
+  tissue: cross-tissue
+  paper: https://doi.org/10.1021/acs.jproteome.2c00629
+  url: https://www.proteomicsml.org/
+  maturity: I
+  reality_check: community-curated ML-ready datasets with tutorials. the model other modalities should
+    copy - it separates "data exists" from "data is trainable".
+  data_types:
+    input:
+    - curated MS datasets
+    output:
+    - ML-ready train/test splits
+    - tutorials
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as community-curated ML-ready datasets and tutorials
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: federated-proteomics
+  name: federated deep learning for proteomic cancer subtyping (Cai et al.)
+  category: method
+  tasks:
+  - privacy-preserving-training
+  - cancer-subtyping
+  model_type: federated deep learning
+  modality:
+  - MS proteomics
+  tissue: pan-cancer
+  paper: https://doi.org/10.1158/2159-8290.CD-24-1488
+  maturity: R
+  reality_check: 'Cancer Discovery 2025. federated training across decentralised cohorts without moving
+    patient data. directly relevant to consortium settings where data-sharing agreements, not model quality,
+    are the blocker.
+
+    '
+  data_types:
+    input:
+    - decentralised proteomic cohorts
+    output:
+    - subtype model without data movement
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: highlighted as showing privacy-preserving AI can integrate decentralised datasets while improving
+      generalisation and data security
+    url: https://www.nature.com/articles/s41592-026-03085-y

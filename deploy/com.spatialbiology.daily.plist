@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+macOS. edit the two paths, then:
+  cp deploy/com.spatialbiology.daily.plist ~/Library/LaunchAgents/
+  launchctl load  ~/Library/LaunchAgents/com.spatialbiology.daily.plist
+  launchctl start com.spatialbiology.daily          # test immediately
+  launchctl list | grep spatialbiology
+unload with: launchctl unload ~/Library/LaunchAgents/com.spatialbiology.daily.plist
+
+launchd (unlike cron) runs a missed job when the machine wakes, which is what you
+want on a laptop that is asleep at 06:00.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.spatialbiology.daily</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/CHANGEME/spatial-biology-tools/deploy/run_daily.sh</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>SPATIAL_TOOLS_DIR</key>
+    <string>/Users/CHANGEME/spatial-biology-tools</string>
+    <key>WATCH_DAYS</key>
+    <string>1</string>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardErrorPath</key>
+  <string>/tmp/spatialbiology.err</string>
+  <key>StandardOutPath</key>
+  <string>/tmp/spatialbiology.out</string>
+</dict>
+</plist>

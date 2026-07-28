@@ -1,0 +1,14 @@
+# linux / any machine that stays awake.
+# install with:  crontab -e   (paste the line, adjust the path)
+#
+# note: cron has almost no environment. run_daily.sh sets its own PATH-sensitive
+# bits, but if gh or python live somewhere unusual, set PATH here explicitly.
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# every day at 06:00 local
+0 6 * * *  SPATIAL_TOOLS_DIR=$HOME/spatial-biology-tools $HOME/spatial-biology-tools/deploy/run_daily.sh
+
+# alternative: weekly on monday, wider window, better signal-to-noise
+# 0 6 * * 1  WATCH_DAYS=7 SPATIAL_TOOLS_DIR=$HOME/spatial-biology-tools $HOME/spatial-biology-tools/deploy/run_daily.sh

@@ -1,0 +1,165 @@
+# scope, queries and triage weights for the daily watcher.
+# this file is the thing you tune. the scripts should rarely change.
+
+scope: >
+  spatial biology and associated modalities: spatial transcriptomics (sequencing-
+  and imaging-based), spatial proteomics, multiplexed tissue imaging, computational
+  pathology on H&E and IHC, 3D and volumetric tissue reconstruction, spatial
+  metabolomics, and the foundation-model, benchmarking and data-standards layer
+  underneath all of them.
+
+disabled_sources: []   # ex. [github] if you have no token
+
+queries:
+
+  # europe pmc supports real boolean syntax - use it
+  europepmc:
+    - '(TITLE:"spatial transcriptomics" OR TITLE:"spatial omics" OR TITLE:"spatially resolved") AND (TITLE:"benchmark" OR TITLE:"method" OR TITLE:"tool" OR TITLE:"framework" OR TITLE:"model")'
+    - '(TITLE:"foundation model") AND (ABSTRACT:"pathology" OR ABSTRACT:"histology" OR ABSTRACT:"spatial" OR ABSTRACT:"tissue")'
+    - '(TITLE:"spatial proteomics" OR TITLE:"multiplexed imaging" OR TITLE:"imaging mass cytometry" OR TITLE:"CODEX" OR TITLE:"CyCIF")'
+    - '(TITLE:"cell segmentation" OR TITLE:"transcript assignment") AND (ABSTRACT:"spatial" OR ABSTRACT:"tissue")'
+    - '(TITLE:"3D reconstruction" OR TITLE:"serial section" OR TITLE:"volumetric") AND (ABSTRACT:"tissue" OR ABSTRACT:"histology" OR ABSTRACT:"spatial")'
+    - '(TITLE:"whole slide" OR TITLE:"whole-slide") AND (TITLE:"model" OR TITLE:"benchmark" OR TITLE:"pipeline")'
+    - '(ABSTRACT:"spatial transcriptomics") AND (TITLE:"clinical" OR TITLE:"diagnostic" OR TITLE:"biomarker" OR TITLE:"validation")'
+    - '(TITLE:"deconvolution" OR TITLE:"spatial domain" OR TITLE:"cell-cell communication" OR TITLE:"niche") AND ABSTRACT:"spatial"'
+    - '(TITLE:"virtual cell" OR TITLE:"AI virtual cell") OR (TITLE:"perturbation" AND ABSTRACT:"foundation model")'
+    - '(ABSTRACT:"mass spectrometry") AND (TITLE:"deep learning" OR TITLE:"foundation model" OR TITLE:"transformer") AND ABSTRACT:"proteomics"'
+    - '(TITLE:"spatial proteomics") AND (ABSTRACT:"mass spectrometry" OR ABSTRACT:"laser microdissection")'
+    - '(TITLE:"agent" OR TITLE:"LLM" OR TITLE:"large language model") AND (ABSTRACT:"omics" OR ABSTRACT:"bioinformatics" OR ABSTRACT:"pathology")'
+
+  # broad-then-filter: biorxiv API has no search, so we pull the date range
+  # and filter on these
+  keyword_filter:
+    - spatial transcriptomic
+    - spatial omics
+    - spatial proteomic
+    - spatially resolved
+    - multiplex(ed)? imaging
+    - whole.slide
+    - computational pathology
+    - histopathology foundation
+    - foundation model
+    - cell segmentation
+    - transcript assignment
+    - Visium
+    - Xenium
+    - MERFISH
+    - CosMx
+    - Stereo-seq
+    - Slide-seq
+    - CODEX
+    - CyCIF
+    - imaging mass cytometry
+    - serial section
+    - 3D reconstruction
+    - tissue registration
+    - spatial deconvolution
+    - spatial domain
+    - tumou?r microenvironment.*spatial
+    - virtual cell
+    - deep visual proteomics
+    - perturbation prediction
+    - mass spectrometry.*deep learning
+    - LLM agent
+    - agentic.*(omics|analysis)
+    - multi.?omics integration
+
+  arxiv:
+    - 'abs:"spatial transcriptomics" OR abs:"spatial omics"'
+    - 'abs:"computational pathology" AND (abs:"foundation model" OR abs:"whole slide")'
+    - 'abs:"spatial proteomics" OR abs:"multiplexed imaging"'
+    - 'abs:"cell segmentation" AND (abs:"tissue" OR abs:"microscopy")'
+    - 'abs:"histopathology" AND abs:"benchmark"'
+    - 'abs:"3D" AND abs:"histology" AND abs:"reconstruction"'
+    - 'abs:"virtual cell" OR abs:"perturbation prediction"'
+    - 'abs:"LLM agent" AND (abs:"biology" OR abs:"omics")'
+    - 'abs:"proteomics" AND abs:"deep learning"'
+
+  github:
+    - 'spatial transcriptomics in:name,description,readme'
+    - 'spatial proteomics in:name,description,readme'
+    - 'computational pathology in:name,description,readme'
+    - 'whole slide image foundation model in:name,description,readme'
+    - 'multiplexed imaging analysis in:name,description,readme'
+
+  huggingface:
+    - pathology
+    - histopathology
+    - spatial transcriptomics
+    - spatial omics
+    - multiplex immunofluorescence
+    - whole slide
+
+  clinicaltrials:
+    - spatial transcriptomics
+    - spatial proteomics
+    - digital pathology artificial intelligence
+    - multiplex immunofluorescence biomarker
+
+  openfda:
+    - pathology
+    - digital pathology
+    - immunohistochemistry image analysis
+
+# ---------------------------------------------------------------- triage
+
+scoring:
+  min_score: 2          # raise to 4 once the noise floor annoys you
+
+  signal_terms:
+    benchmark: 4          # independent evaluation beats another new method
+    comparison: 3
+    evaluation: 2
+    reproducib: 3
+    foundation model: 3
+    "3d": 3
+    volumetric: 3
+    serial section: 3
+    registration: 2
+    segmentation: 2
+    clinical: 3
+    validation: 3
+    prospective: 4
+    multi-center: 4
+    multi-centre: 4
+    standard: 2
+    interoperab: 3
+    provenance: 4         # your differentiator - almost nobody works on this
+    fair data: 3
+    schema: 2
+    ome-zarr: 4
+    spatialdata: 3
+    atlas: 2
+    pan-cancer: 2
+    pancreat: 3           # tune to your active projects (BForePC)
+    precancer: 4
+    limitation: 3
+    failure: 3
+    pitfall: 3
+    virtual cell: 3
+    agent: 2
+    proteomic: 2
+    perturbation: 2
+    data type: 1
+
+  noise_terms:
+    review: 1             # useful but rarely actionable
+    perspective: 2
+    editorial: 4
+    commentary: 4
+    correction: 5
+    erratum: 5
+    "case report": 4
+    covid: 2
+
+  source_bonus:
+    europepmc: 1
+    biorxiv: 1
+    medrxiv: 1
+    arxiv: 0
+    github: 2             # a repo is an adoption decision, a paper is not
+    hf-models: 2
+    hf-datasets: 2
+    clinicaltrials: 3     # rare and always meaningful
+    fda-510k: 5
+    fda-pma: 5

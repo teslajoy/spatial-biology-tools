@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# regenerate TOOLS.md whenever registry/*.yaml changes, so the table can never
+# drift from its source. install with: make hooks
+set -euo pipefail
+
+# only fire when a registry file is actually staged
+if ! git diff --cached --name-only | grep -q '^registry/.*\.yaml$'; then
+  exit 0
+fi
+
+echo "pre-commit: registry changed, re-rendering TOOLS.md"
+
+PY="./.venv/bin/python"
+[ -x "$PY" ] || PY="$(command -v python3)"
+
+# fail the commit on malformed yaml rather than committing a broken registry
+if ! "$PY" - <<'PYEOF'
+import yaml, pathlib, sys
+bad = 0
+for p in sorted(pathlib.Path("registry").glob("*.yaml")):
+    try:
+        entries = yaml.safe_load(open(p))
+    except yaml.YAMLError as e:
+        print(f"  {p}: YAML error: {e}"); bad += 1; continue
+    for e in entries or []:
+        for req in ("id", "name", "category", "maturity", "reality_check"):
+            if req not in e:
+                print(f"  {p}: entry '{e.get('id', '?')}' missing required field '{req}'")
+                bad += 1
+        # the colon-in-flow-sequence trap
+        for k in ("modality", "tasks"):
+            v = e.get(k)
+            if isinstance(v, list) and any(isinstance(x, dict) for x in v):
+                print(f"  {p}: '{e.get('id')}' field '{k}' parsed as dict - quote the value containing ':'")
+                bad += 1
+ids = [e["id"] for p in pathlib.Path("registry").glob("*.yaml")
+       for e in (yaml.safe_load(open(p)) or []) if "id" in e]
+dupes = {i for i in ids if ids.count(i) > 1}
+if dupes:
+    print(f"  duplicate ids: {sorted(dupes)}"); bad += 1
+sys.exit(1 if bad else 0)
+PYEOF
+then
+  echo "pre-commit: registry validation failed, commit aborted"
+  exit 1
+fi
+
+"$PY" scripts/render.py
+git add TOOLS.md
+echo "pre-commit: TOOLS.md updated and staged"

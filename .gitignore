@@ -1,0 +1,33 @@
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.python-version
+
+# --- secrets: never commit a token ---
+.env
+.env.*
+*.pem
+*.key
+!*.example
+
+# --- local runtime, not shared state ---
+logs/
+*.log
+.watch.lock
+.DS_Store
+Thumbs.db
+
+# --- editors ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- scratch ---
+evals/scratch/
+tmp/
+*.tmp

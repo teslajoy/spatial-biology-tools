@@ -1,0 +1,465 @@
+- id: trident
+  name: TRIDENT
+  category: pipeline
+  tasks:
+  - tissue-segmentation
+  - patching
+  - patch-embedding
+  - slide-embedding
+  - format-conversion
+  model_type: orchestration toolkit (not a model)
+  modality:
+  - H&E WSI
+  - IHC
+  - multi-stain; OpenSlide/CuCIM/OME-Zarr/CZI/SDPC/PNG/JPEG readers
+  org: Mahmood Lab
+  paper: https://arxiv.org/abs/2502.06750
+  github: mahmoodlab/TRIDENT
+  license: CC-BY-NC-ND-4.0 - non-commercial academic only
+  maturity: I
+  reality_check: 'the single highest-leverage adoption on this page. one command from WSI directory to
+    embeddings, 22+ patch encoders and 5 slide encoders (Titan, GigaPath, PRISM, CHIEF, Madeleine, Feather)
+    behind one API, plus tissue segmentation via GrandQC/HEST/Otsu and optional artifact and pen-mark
+    removal. successor to CLAM. LICENCE WARNING - CC-BY-NC-ND blocks any commercial or industry-collaboration
+    use.
+
+    '
+  tissue: any tissue, any stain
+  data_types:
+    input:
+    - 'WSI: SVS, TIFF, OME-Zarr, CZI, SDPC, PNG/JPEG'
+    output:
+    - tissue masks (GeoJSON)
+    - patch coords (h5)
+    - patch/slide features (h5)
+- id: clam
+  name: CLAM
+  category: pipeline
+  tasks:
+  - weakly-supervised-slide-classification
+  - attention-MIL
+  org: Mahmood Lab
+  paper: https://www.nature.com/articles/s41551-020-00682-w
+  github: mahmoodlab/CLAM
+  maturity: I
+  reality_check: five years of community use, now superseded by TRIDENT for processing but still the reference
+    attention-MIL implementation.
+  tissue: pan-cancer
+  data_types:
+    input:
+    - patch features h5
+    output:
+    - slide-level prediction
+    - attention heatmaps
+- id: mcmicro
+  name: MCMICRO
+  category: pipeline
+  tasks:
+  - multiplex-image-processing
+  - registration
+  - segmentation
+  - quantification
+  model_type: modular Nextflow pipeline (ASHLAR, Coreograph, Cypository, UnMICST, S3segmenter)
+  modality:
+  - CyCIF
+  - CODEX
+  - mIHC
+  - IMC
+  - MIBI
+  - TMA and WSI
+  org: Laboratory of Systems Pharmacology, Harvard / HTAN
+  paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8916956/
+  github: labsyspharm/mcmicro
+  docs: https://mcmicro.org
+  license: MIT
+  maturity: I
+  reality_check: 'HTAN-native and community-maintained, which matters more than any benchmark - it will
+    still exist in three years. modular, so you can swap the segmenter without rewriting.
+
+    '
+  tissue: any; TMA and WSI
+  data_types:
+    input:
+    - per-cycle multiplex images
+    output:
+    - registered OME-TIFF
+    - segmentation masks
+    - single-cell feature CSV
+- id: scimap
+  name: SCIMAP
+  category: analysis-toolkit
+  tasks:
+  - phenotyping
+  - neighbourhood-analysis
+  - spatial-statistics
+  modality:
+  - multiplexed imaging feature tables
+  org: Laboratory of Systems Pharmacology
+  paper: https://joss.theoj.org/papers/10.21105/joss.06604
+  github: labsyspharm/scimap
+  license: MIT
+  maturity: I
+  reality_check: consumes MCMICRO output directly. prior-knowledge phenotyping (marker-rule based) is
+    often more reproducible than unsupervised clustering for clinical cohorts.
+  tissue: any multiplexed tissue
+  data_types:
+    input:
+    - single-cell feature table (CSV/AnnData)
+    output:
+    - phenotypes
+    - neighbourhood statistics
+    - plots
+- id: steinbock
+  name: steinbock
+  category: pipeline
+  tasks:
+  - imc-processing
+  - segmentation
+  - quantification
+  modality:
+  - Imaging Mass Cytometry
+  org: Bodenmiller lab
+  paper: https://www.nature.com/articles/s41596-023-00881-0
+  github: BodenmillerGroup/steinbock
+  maturity: I
+  reality_check: the IMC equivalent of MCMICRO. containerised, reproducible.
+  tissue: any; IMC
+  data_types:
+    input:
+    - IMC .mcd/.txt
+    output:
+    - OME-TIFF
+    - masks
+    - single-cell tables
+- id: spatialdata
+  name: SpatialData
+  category: data-framework
+  tasks:
+  - storage
+  - coordinate-transforms
+  - cross-modal-query
+  - ML-dataloading
+  model_type: format spec + python library, built on OME-NGFF / OME-Zarr + Parquet
+  modality:
+  - all major spatial omics platforms via spatialdata-io readers
+  org: scverse (Stegle/Marconato et al.)
+  paper: https://www.nature.com/articles/s41592-024-02212-x
+  github: scverse/spatialdata
+  docs: https://spatialdata.scverse.org
+  license: BSD-3
+  maturity: I
+  reality_check: 'THE convergence point. five primitives (images, labels, points, shapes, tables), explicit
+    coordinate transforms tracked on disk, lazy loading of larger-than-memory data, cloud IO, and a PyTorch
+    Dataset class so you can train directly off the store. as of the June 2026 hackathon it also has R/Bioconductor
+    interop, 2.5D/3D rendering, chunked multiscale points, and a language-agnostic OME-NGFF coordinate-transform
+    conformance test suite. if you are designing schema work, design against this.
+
+    '
+  endorsements:
+  - source: Advanced Science 2026 spatial omics guide
+    claim: named with OME-Zarr as the standardisation effort providing unified data architectures
+    url: https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202520806
+  - source: 2nd SpatialData Hackathon report (BioHackrXiv, June 2026)
+    claim: R interop, 3D rendering, cloud IO, lazy file linking and NGFF conformance suite delivered
+    url: https://index.biohackrxiv.org/2026/06/07/s6bph.html
+  tissue: any
+  data_types:
+    input:
+    - 'vendor formats via spatialdata-io: Visium, Xenium, MERSCOPE, CosMx, IMC, CODEX'
+    output:
+    - OME-Zarr + Parquet SpatialData store
+    - PyTorch Dataset
+- id: ome-ngff
+  name: OME-NGFF / OME-Zarr
+  category: standard
+  tasks:
+  - cloud-native-bioimage-storage
+  org: Open Microscopy Environment
+  paper: https://www.nature.com/articles/s41592-021-01326-w
+  github: ome/ngff
+  license: BSD-2
+  maturity: I
+  reality_check: readers exist in python, java and javascript. the substrate under SpatialData, and the
+    thing consortium submissions will eventually require.
+  tissue: any
+  data_types:
+    input:
+    - bioimaging arrays
+    output:
+    - OME-Zarr with multiscale + transform metadata
+- id: squidpy
+  name: Squidpy
+  category: analysis-toolkit
+  tasks:
+  - spatial-statistics
+  - neighbourhood-enrichment
+  - ligand-receptor
+  - image-features
+  org: scverse / Theis lab
+  paper: https://www.nature.com/articles/s41592-021-01358-2
+  github: scverse/squidpy
+  maturity: I
+  reality_check: the python default, SpatialData-native. scanpy for expression, squidpy for the spatial
+    layer.
+  tissue: any
+  data_types:
+    input:
+    - AnnData / SpatialData
+    output:
+    - spatial statistics
+    - neighbourhood graphs
+    - image features
+- id: giotto
+  name: Giotto Suite
+  category: analysis-toolkit
+  modality:
+  - multi-platform spatial omics
+  paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2
+  github: drieslab/Giotto
+  maturity: I
+  reality_check: R ecosystem equivalent. Giotto Suite adds multi-modal and 3D support over the original.
+  tissue: any
+  data_types:
+    input:
+    - multi-platform spatial
+    output:
+    - Giotto object
+    - domains
+    - statistics
+- id: voyager
+  name: Voyager
+  category: analysis-toolkit
+  tasks:
+  - exploratory-spatial-data-analysis
+  - spatial-autocorrelation
+  org: Pachter lab
+  paper: https://www.nature.com/articles/s41592-024-02502-4
+  github: pachterlab/voyager
+  maturity: I
+  reality_check: brings classical geospatial statistics (Moran's I, local indicators) properly into ST.
+    underused and conceptually the most rigorous of the toolkits.
+  tissue: any
+  data_types:
+    input:
+    - SpatialFeatureExperiment
+    output:
+    - spatial autocorrelation statistics (Moran's I, LISA)
+- id: vitessce
+  name: Vitessce
+  category: visualisation
+  tasks:
+  - web-based-multimodal-visualisation
+  org: Gehlenborg lab, HMS
+  paper: https://www.nature.com/articles/s41592-024-02436-x
+  github: vitessce/vitessce
+  maturity: I
+  reality_check: browser-based, reads OME-NGFF remotely. what HTAN and HuBMAP portals use for public data
+    views.
+  tissue: any
+  data_types:
+    input:
+    - OME-Zarr, AnnData-Zarr over HTTP
+    output:
+    - interactive browser view
+- id: napari-spatialdata
+  name: napari-spatialdata
+  category: visualisation
+  github: scverse/napari-spatialdata
+  maturity: I
+  reality_check: local interactive annotation over SpatialData objects. the annotation loop most projects
+    hand-roll badly.
+  tissue: any
+  data_types:
+    input:
+    - SpatialData store
+    output:
+    - annotations, shapes
+- id: patho-bench
+  name: Patho-Bench
+  category: benchmark-harness
+  tasks:
+  - model-evaluation
+  org: Mahmood Lab
+  paper: https://arxiv.org/abs/2502.06750
+  github: mahmoodlab/patho-bench
+  hf: MahmoodLab/patho-bench
+  maturity: I
+  reality_check: '42 public WSI-level and patient-level tasks with canonical train-test splits across
+    six families - morphological subtyping, tumour grading, molecular subtyping, mutation prediction,
+    treatment response, survival. handles thousands of parallel experiments. the most extensive public
+    computational pathology benchmark released to date.
+
+    '
+  tissue: pan-cancer, 42 tasks
+  data_types:
+    input:
+    - slide/patient features h5
+    output:
+    - benchmark metrics with canonical splits
+- id: pathbench
+  name: PathBench
+  category: benchmark-harness
+  org: HKUST (birkhoffkiki)
+  github: birkhoffkiki/PathBench
+  docs: https://birkhoffkiki.github.io/PathBench/
+  maturity: I
+  reality_check: '20+ pathology foundation models, multi-organ real-world clinical datasets, 10 validation
+    runs with varied seeds on identical hardware and preprocessing. dynamic leaderboards. check this before
+    believing any single-paper claim.
+
+    '
+  tissue: breast, lung, colorectal, prostate, kidney and others
+  data_types:
+    input:
+    - WSI + labels
+    output:
+    - leaderboard metrics, heatmaps
+- id: spddb
+  name: spDDB
+  category: benchmark-harness
+  tasks:
+  - deconvolution-benchmark
+  - domain-detection-benchmark
+  paper: https://www.biorxiv.org/content/10.64898/2026.05.11.724248v1.full
+  maturity: I
+  reality_check: '21 deconvolution methods across 37 datasets, 4 technologies, plus SynthST (graph attention
+    autoencoder simulator) and a bivariate Geary''s C metric. May 2026, the current reference.
+
+    '
+  tissue: brain, cancer, multi-organ; 37 datasets
+  data_types:
+    input:
+    - ST + reference
+    output:
+    - deconvolution and domain benchmark metrics
+    - SynthST simulations
+- id: spotless
+  name: Spotless
+  category: benchmark-harness
+  tasks:
+  - deconvolution-benchmark
+  paper: https://elifesciences.org/articles/88431
+  github: saeyslab/spotless-benchmark
+  maturity: I
+  reality_check: reproducible nextflow benchmarking pipeline. the source of the "plain regression beats
+    half of them" finding.
+  tissue: multi-organ, synthetic + real
+  data_types:
+    input:
+    - ST + scRNA reference
+    output:
+    - benchmark metrics
+- id: paige-prostate
+  name: Paige Prostate (Detect / Grade & Quantify / Perineural Invasion)
+  category: clinical-product
+  tasks:
+  - prostate-cancer-detection
+  - gleason-grading
+  modality:
+  - H&E prostate core biopsy WSI
+  org: Paige (acquired by Tempus, August 2025)
+  regulatory:
+  - FDA de novo class II marketing authorisation, 2021 - first AI in pathology
+  - EU IVDR certification, 2025 (all three modules)
+  url: https://www.paige.ai/diagnostic-ai
+  maturity: C
+  reality_check: 'reported 7.3 percentage-point sensitivity gain, 70% reduction in false negatives and
+    24% reduction in false positives in the pivotal study; non-specialists using it matched unassisted
+    specialists. validated across 150+ institutions. adjunct only - it does not make the diagnosis.
+
+    '
+  tissue: prostate core biopsy
+  data_types:
+    input:
+    - H&E WSI via FullFocus viewer
+    output:
+    - suspicious-focus flags
+    - Gleason grade
+    - tumour quantification
+- id: ibex-prostate
+  name: Ibex Prostate Detect (Galen Second Read)
+  category: clinical-product
+  org: Ibex Medical Analytics
+  regulatory:
+  - FDA 510(k) clearance
+  - February 2025
+  maturity: C
+  reality_check: second entrant into the regulated prostate niche. the market is validating one organ
+    at a time.
+  tissue: prostate biopsy
+  data_types:
+    input:
+    - H&E WSI
+    output:
+    - cancer detection flags
+- id: paige-pancancer
+  name: Paige PanCancer Detect
+  category: clinical-product
+  regulatory:
+  - FDA Breakthrough Device Designation
+  - April 2025 - first for multi-tissue AI assist
+  maturity: T
+  reality_check: designation, not clearance. multi-tissue is the hard generalisation problem and this
+    is the first serious attempt at regulatory scale.
+  tissue: multi-tissue
+  data_types:
+    input:
+    - H&E WSI
+    output:
+    - suspicious-focus flags
+- id: spatial-clinical-gap
+  name: spatial omics clinical status (placeholder row - track, do not adopt)
+  category: clinical-product
+  maturity: T
+  reality_check: 'THERE IS NO FDA-CLEARED SPATIAL TRANSCRIPTOMICS OR SPATIAL PROTEOMICS DIAGNOSTIC. CLIA/CAP-accredited
+    service labs exist and trials are running (ex. NCT07624981 DIAGNO-KA, spatial transcriptomics for
+    cutaneous precancer progression, active 2026). named blockers are cost at clinical scale, reproducibility
+    across centres, and the absence of multi-centre prospective validation with clinically compliant SOPs.
+    every regulated product above is an H&E morphology classifier.
+
+    '
+  endorsements:
+  - source: Nature Reviews Bioengineering 2026, Clinical translation of spatial omics
+    claim: dedicated review of the translation gap
+    url: https://www.nature.com/articles/s44222-026-00458-y
+  - source: PLOS Medicine 2026
+    claim: H&E morphology plus virtual spatial proteomics outperformed conventional approaches for immunotherapy
+      response in lung
+    url: https://journals.plos.org/plosmedicine/article?id=10.1371%2Fjournal.pmed.1005049
+  tissue: all
+  data_types:
+    input:
+    - n/a
+    output:
+    - n/a
+- id: ist-qc-standards
+  name: imaging-based ST QC metrics and best practice
+  category: standard
+  tasks:
+  - dataset-qc
+  - reproducibility
+  paper: https://www.nature.com/articles/s41587-025-02556-5
+  maturity: I
+  reality_check: 'standardised metrics for assessment and reproducibility of imaging-based ST (Nat Biotech
+    2025) plus Xenium-specific best-practice QC workflows (Nat Methods 2025). adopt now - these become
+    submission requirements, and GESTALT (Global Alliance for Spatial Technologies) is pushing them.
+
+    '
+  tissue: any IST
+  data_types:
+    input:
+    - Xenium/MERFISH/CosMx output
+    output:
+    - QC metric set, pass/fail criteria
+- id: gestalt
+  name: GESTALT
+  category: consortium
+  paper: https://www.nature.com/articles/s41588-024-02069-y
+  maturity: I
+  reality_check: the standards body to watch for minimum-information requirements in spatial biology.
+  tissue: all
+  data_types:
+    input:
+    - n/a
+    output:
+    - minimum-information specifications

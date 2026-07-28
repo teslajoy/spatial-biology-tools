@@ -1,0 +1,605 @@
+- id: virchow2
+  name: Virchow2
+  category: patch-encoder
+  tasks:
+  - tile-embedding
+  - tile-classification
+  - biomarker-prediction
+  model_type: vision SSL (modified DINOv2), ViT-H/14, 632M params
+  modality:
+  - H&E WSI
+  - IHC
+  - multi-stain brightfield
+  training:
+    corpus: 3.1M WSIs / 1.7B tiles, 225401 patients
+    tissues: pan-cancer, globally diverse institutions, mixed magnification, diverse stains
+    public: false
+  org: Paige + MSK (with Microsoft Research)
+  paper: https://arxiv.org/abs/2408.00738
+  github: null
+  hf: paige-ai/Virchow2
+  data: null
+  license: CC-BY-NC-ND-4.0 (gated, institutional email required)
+  maturity: R
+  reality_check: 'top-tier but not uniformly. CLS+mean-of-patch-tokens embedding is required to reproduce
+    reported numbers, not CLS alone. pretraining corpus is proprietary so benchmark contamination cannot
+    be audited. licence blocks anything commercial.
+
+    '
+  endorsements:
+  - source: Nature Biomedical Engineering 2025, 19 FMs / 13 cohorts / 6818 patients
+    claim: best vision-only model, significantly better than all others on 6-12 tasks; ties CONCH overall
+    url: https://www.nature.com/articles/s41551-025-01516-3
+  - source: medRxiv/PMC 2025, 31 FMs across 41 tasks
+    claim: highest mean performance on TCGA tasks (0.706 +/- 0.10); top-3 on CPTAC
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12236927/
+  - source: Bioengineering 2026 review
+    claim: named top-tier alongside CONCH and H-Optimus-1
+    url: https://www.mdpi.com/2306-5354/13/5/577
+  tissue: pan-cancer, multi-organ (3.1M WSI, globally diverse)
+  data_types:
+    input:
+    - SVS/TIFF/OME-TIFF WSI tiles 224px
+    output:
+    - 1280-d tile embedding (use CLS+mean)
+- id: virchow2g
+  name: Virchow2G / Virchow2G-Mini
+  category: patch-encoder
+  tasks:
+  - tile-embedding
+  model_type: vision SSL (DINOv2), ViT-G, 1.9B params; Mini distilled to 22M
+  modality:
+  - H&E WSI
+  training:
+    corpus: 1.9B tiles from 3.1M WSIs
+    tissues: pan-cancer
+    public: false
+  org: Paige
+  paper: https://arxiv.org/abs/2408.00738
+  github: null
+  hf: null
+  license: CC-BY-NC-ND-4.0
+  maturity: R
+  reality_check: 'Virchow2G-Mini at 22M params is competitive with 632M-1.1B models on HEST-Benchmark.
+    if inference cost matters this is the interesting entry, not the giant.
+
+    '
+  endorsements:
+  - source: Virchow2 paper self-report
+    claim: Virchow2G best average on HEST-Benchmark (0.350), ahead of H-optimus-0 (0.347)
+    url: https://arxiv.org/html/2408.00738v3
+  tissue: pan-cancer, multi-organ
+  data_types:
+    input:
+    - WSI tiles
+    output:
+    - tile embedding
+- id: uni
+  name: UNI / UNI2
+  category: patch-encoder
+  tasks:
+  - tile-embedding
+  - tile-classification
+  - weakly-supervised-slide
+  model_type: vision SSL (DINOv2), ViT-L (UNI) / ViT-H (UNI2)
+  modality:
+  - H&E WSI
+  training:
+    corpus: 100M tiles / ~100k WSIs (Mass-100K)
+    tissues: pan-cancer BWH+MGH+GTEx
+    public: false
+  org: Mahmood Lab, Harvard/BWH
+  paper: https://www.nature.com/articles/s41591-024-02857-3
+  github: mahmoodlab/UNI
+  hf: MahmoodLab/UNI
+  license: CC-BY-NC-ND-4.0 (gated)
+  maturity: R
+  reality_check: 'UNI2 does NOT uniformly beat UNI - at least one 41-task benchmark has UNI ahead (0.70
+    vs 0.69). do not upgrade on version number. UNI is the most pretraining-token-efficient model tested.
+
+    '
+  endorsements:
+  - source: Nature Communications 2025 clinical benchmark
+    claim: most efficient model per pretraining dataset size; best on lung NGS mutation tasks
+    url: https://www.nature.com/articles/s41467-025-58796-1
+  tissue: pan-cancer (BWH/MGH/GTEx)
+  data_types:
+    input:
+    - WSI tiles 256px
+    output:
+    - 1024-d (UNI) / 1536-d (UNI2) tile embedding
+- id: conch
+  name: CONCH / CONCHv1.5
+  category: vision-language-encoder
+  tasks:
+  - tile-embedding
+  - zero-shot-classification
+  - cross-modal-retrieval
+  model_type: vision-language (CoCa-style contrastive captioning)
+  modality:
+  - H&E WSI
+  - pathology text captions
+  training:
+    corpus: 1.17M image-caption pairs
+    tissues: pan-cancer
+    public: false
+  org: Mahmood Lab
+  paper: https://www.nature.com/articles/s41591-024-02856-4
+  github: mahmoodlab/CONCH
+  hf: MahmoodLab/CONCH
+  license: CC-BY-NC-ND-4.0 (gated)
+  maturity: R
+  reality_check: 'the quiet winner. far smaller than the giants yet matches Virchow2 overall and leads
+    on prognostic tasks. lower embedding dimension also behaves better under ridge regression - the giants
+    suffer curse-of-dimensionality on small-n spatial tasks.
+
+    '
+  endorsements:
+  - source: Nature Biomedical Engineering 2025
+    claim: highest AUROC across 29 binary tasks; leads 7 prognostic tasks; on par with Virchow2 overall
+    url: https://www.nature.com/articles/s41551-025-01516-3
+  - source: HEST-Benchmark
+    claim: best ridge-regression result for gene expression prediction (0.316)
+    url: https://github.com/mahmoodlab/HEST
+  tissue: pan-cancer
+  data_types:
+    input:
+    - WSI tiles
+    - free text
+    output:
+    - 512-d joint image-text embedding
+    - zero-shot logits
+- id: prov-gigapath
+  name: Prov-GigaPath
+  category: patch-encoder + slide-encoder
+  tasks:
+  - tile-embedding
+  - slide-embedding
+  - mutation-prediction
+  - subtyping
+  model_type: DINOv2 tile encoder (ViT-G) + LongNet slide aggregator (masked autoencoder)
+  modality:
+  - H&E WSI
+  - IHC WSI
+  training:
+    corpus: 1.3B tiles / 171189 WSIs / 30000+ patients
+    tissues: 31 tissue types, Providence Health network, 28 US cancer centers
+    public: false
+  org: Microsoft Research + Providence
+  paper: https://www.nature.com/articles/s41586-024-07441-w
+  github: prov-gigapath/prov-gigapath
+  hf: prov-gigapath/prov-gigapath
+  license: gated, non-commercial
+  maturity: R
+  reality_check: 'excels on lung and pan-cancer - almost certainly because lung is over-represented in
+    pretraining. this is the canonical worked example of why you read pretraining composition before trusting
+    a leaderboard. real-world US cohort, so distribution is closer to clinic than TCGA-trained models.
+
+    '
+  endorsements:
+  - source: PMC 2025 41-task benchmark
+    claim: highest performance on tumor type classification; top-3 on CPTAC
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12236927/
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: cited as the whole-slide foundation model precedent from digital pathology
+    url: https://www.nature.com/articles/s41592-026-03085-y
+  tissue: 31 tissue types, Providence real-world US cohort
+  data_types:
+    input:
+    - WSI tiles 256px
+    output:
+    - 1536-d tile embedding
+    - slide embedding via LongNet
+- id: h-optimus
+  name: H-optimus-0 / H-optimus-1
+  category: patch-encoder
+  tasks:
+  - tile-embedding
+  - tile-classification
+  - slide-level-biomarker
+  model_type: vision SSL (DINOv2), ViT-G/14, 1.1B params, 4 register tokens
+  modality:
+  - H&E WSI
+  training:
+    corpus: 500000+ WSIs
+    tissues: undisclosed
+    public: false
+  org: Bioptimus
+  paper: null
+  github: null
+  hf: bioptimus/H-optimus-1
+  license: proprietary / gated
+  maturity: R
+  reality_check: 'consistently top-3 and no published pretraining description. zero reproducibility and
+    zero contamination auditing possible. fine for a production embedding, weak for a paper where a reviewer
+    asks about data leakage.
+
+    '
+  endorsements:
+  - source: Bioengineering 2026 review
+    claim: named top-tier alongside Virchow2 and CONCH
+    url: https://www.mdpi.com/2306-5354/13/5/577
+  tissue: undisclosed
+  data_types:
+    input:
+    - WSI tiles
+    output:
+    - tile embedding
+- id: phikon
+  name: Phikon / Phikon-v2
+  category: patch-encoder
+  tasks:
+  - tile-embedding
+  model_type: vision SSL (iBOT / DINOv2), ViT
+  modality:
+  - H&E WSI
+  training:
+    corpus: TCGA-derived
+    tissues: pan-cancer
+    public: true
+  org: Owkin
+  paper: https://arxiv.org/abs/2409.09173
+  github: owkin/HistoSSLscaling
+  hf: owkin/phikon-v2
+  license: open (permissive relative to peers)
+  maturity: R
+  reality_check: 'the honest open baseline. TCGA-pretrained, which means it is contaminated with respect
+    to TCGA benchmarks - use it on non-TCGA cohorts. underperforms the giants but the licence lets you
+    actually ship.
+
+    '
+  tissue: pan-cancer (TCGA)
+  data_types:
+    input:
+    - WSI tiles
+    output:
+    - tile embedding
+- id: titan
+  name: TITAN
+  category: slide-encoder + vision-language
+  tasks:
+  - slide-embedding
+  - zero-shot-classification
+  - rare-cancer-retrieval
+  - report-generation
+  model_type: multimodal whole-slide VLM, built on CONCHv1.5 patch features (512px @ 20x)
+  modality:
+  - H&E WSI
+  - pathology reports
+  - synthetic captions
+  training:
+    corpus: 335645 WSIs (Mass-340K) + 182000 reports + 423000 PathChat-generated synthetic captions
+    tissues: neoplastic, infectious, inflammatory; BWH/MGH private + GTEx public
+    public: partial (GTEx portion)
+  org: Mahmood Lab
+  paper: https://www.nature.com/articles/s41591-025-03824-2
+  github: mahmoodlab/TITAN
+  hf: MahmoodLab/TITAN
+  data: https://huggingface.co/MahmoodLab/TITAN (TCGA_TITAN_features.pkl precomputed)
+  license: CC-BY-NC-ND-4.0 (gated, institutional email)
+  maturity: T
+  reality_check: 'published in Nature Medicine and genuinely strong, but 423k of its captions are machine-generated
+    by PathChat. that is a provenance question nobody is asking loudly enough - a model trained on another
+    model''s output, evaluated by the same lab. precomputed TCGA features are a real time-saver.
+
+    '
+  tissue: neoplastic/infectious/inflammatory, pan-organ
+  data_types:
+    input:
+    - CONCHv1.5 patch features 512px@20x
+    - pathology report text
+    output:
+    - slide embedding
+    - generated report text
+    - zero-shot logits
+- id: threads
+  name: THREADS
+  category: slide-encoder
+  tasks:
+  - slide-embedding
+  - molecular-subtyping
+  model_type: molecularly-supervised slide foundation model
+  modality:
+  - H&E WSI
+  - paired molecular profiles
+  training:
+    corpus: undisclosed at preprint
+    tissues: pan-cancer
+    public: false
+  org: Mahmood Lab
+  paper: https://arxiv.org/abs/2501.16652
+  github: null
+  hf: null
+  maturity: R
+  reality_check: 'the interesting idea is supervising slide representations with molecular rather than
+    text labels. preprint stage, no independent evaluation. watchlist, not adoption.
+
+    '
+  tissue: pan-cancer
+  data_types:
+    input:
+    - patch features
+    - paired molecular profiles
+    output:
+    - slide embedding
+- id: prism
+  name: PRISM
+  category: slide-encoder + vision-language
+  tasks:
+  - slide-embedding
+  - report-generation
+  model_type: multimodal slide-level model over Virchow tile features
+  modality:
+  - H&E WSI
+  - clinical reports
+  training:
+    corpus: 587000 WSIs + 195000 paired clinical reports
+    tissues: pan-cancer
+    public: false
+  org: Paige
+  paper: https://arxiv.org/abs/2405.10254
+  hf: paige-ai/Prism
+  license: CC-BY-NC-ND-4.0 (gated)
+  maturity: R
+  reality_check: slide-encoder choice moves numbers more than patch-encoder choice. swap this against
+    TITAN before committing.
+  tissue: pan-cancer
+  data_types:
+    input:
+    - Virchow tile features
+    - report text
+    output:
+    - slide embedding
+    - report text
+- id: chief
+  name: CHIEF
+  category: slide-encoder
+  tasks:
+  - slide-embedding
+  - survival-prediction
+  model_type: weakly-supervised slide aggregator
+  modality:
+  - H&E WSI
+  org: Harvard (Yu lab)
+  paper: https://www.nature.com/articles/s41586-024-07894-z
+  github: hms-dbmi/CHIEF
+  maturity: R
+  reality_check: wrapped by TRIDENT, easy to A/B against TITAN and PRISM.
+  tissue: pan-cancer
+  data_types:
+    input:
+    - patch features
+    output:
+    - slide embedding
+    - survival risk score
+- id: pathchat
+  name: PathChat / PathChat DX
+  category: LLM / multimodal assistant
+  tasks:
+  - conversational-diagnosis-support
+  - caption-generation
+  model_type: multimodal LLM (vision encoder + LLM), pathology-instruction-tuned
+  modality:
+  - H&E WSI ROIs
+  - natural language
+  org: Mahmood Lab / Modella AI
+  paper: https://www.nature.com/articles/s41586-024-07618-3
+  github: null
+  hf: null
+  license: commercial (DX version)
+  maturity: T
+  reality_check: 'FDA Breakthrough Device Designation - one of the first generative AI tools in pathology
+    to get it. designation is NOT clearance and confers no diagnostic authority. also note PathChat generated
+    the synthetic captions inside TITAN''s training set.
+
+    '
+  tissue: pan-organ diagnostic
+  data_types:
+    input:
+    - ROI image
+    - natural language
+    output:
+    - natural language diagnosis support
+- id: nicheformer
+  name: Nicheformer
+  category: spatial-omics-FM
+  tasks:
+  - cell-embedding
+  - spatial-label-transfer
+  - niche-density-prediction
+  - spatial-deconvolution
+  model_type: transformer (autoregressive/masked), single-cell + spatial joint pretraining
+  modality:
+  - scRNA-seq dissociated
+  - imaging-based spatial transcriptomics
+  training:
+    corpus: SpatialCorpus-110M (110M+ cells; ~57M dissociated + ~53M spatially resolved)
+    tissues: 73 human and mouse tissues, 17 organs, 18 cell lines
+    public: true
+  org: Theis lab, Helmholtz Munich
+  paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12695652/
+  github: theislab/nicheformer
+  hf: null
+  data: SpatialCorpus-110M
+  license: open
+  maturity: R
+  reality_check: 'genuinely useful trick - transfers spatial context onto dissociated scRNA-seq, so legacy
+    single-cell archives gain neighbourhood information. but it uses gene expression ONLY and discards
+    spatial coordinates, which several follow-ups call out explicitly.
+
+    '
+  endorsements:
+  - source: SToFM (ICML 2025)
+    claim: acknowledged as the ST-specialised single-cell model, while noting it ignores spatial coordinates
+    url: https://arxiv.org/pdf/2507.11588
+  tissue: 73 human and mouse tissues, 17 organs
+  data_types:
+    input:
+    - AnnData (.h5ad) expression, no coordinates used
+    output:
+    - cell embedding
+    - spatial label
+    - niche density
+- id: scgpt-spatial
+  name: scGPT-spatial
+  category: spatial-omics-FM
+  tasks:
+  - cross-modal-imputation
+  - deconvolution
+  - protocol-harmonisation
+  model_type: transformer with Mixture-of-Experts decoder, continual pretraining from scGPT
+  modality:
+  - Visium
+  - Visium HD
+  - Xenium
+  - MERFISH
+  training:
+    corpus: SpatialHuman30M - 30M human cells/spots
+    tissues: human, four protocols
+    public: true
+  org: Wang lab, Toronto
+  paper: https://www.biorxiv.org/content/10.1101/2025.02.05.636714
+  github: bowang-lab/scGPT-spatial
+  maturity: R
+  reality_check: 'the MoE-per-protocol decoder is the right architectural response to platform heterogeneity
+    and is the part worth stealing even if you do not use the model. human-only.
+
+    '
+  endorsements:
+  - source: Advanced Science 2026 spatial omics guide
+    claim: cited as the reference approach for cross-modal imputation of sparse spatial data
+    url: https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202520806
+  tissue: human, four ST protocols
+  data_types:
+    input:
+    - AnnData spatial (Visium/VisiumHD/Xenium/MERFISH)
+    output:
+    - cell/spot embedding
+    - imputed expression
+    - deconvolution
+- id: kronos
+  name: KRONOS
+  category: spatial-proteomics-FM
+  tasks:
+  - cell-phenotyping
+  - region-classification
+  - patient-stratification
+  - artifact-detection
+  model_type: ViT-S/16 DINOv2 with channel-wise stem + sinusoidal marker-identity embeddings
+  modality:
+  - CODEX
+  - COMET
+  - IBEX
+  - and 5 other fluorescence multiplex platforms
+  training:
+    corpus: SPM-47M - 47M single-marker patches from 3.67M multiplex patches
+    tissues: 16 tissue types (normal + malignant), 175 protein markers, 30 cohorts, 5 institutions
+    public: partial (56% public / 44% in-house)
+  org: Mahmood Lab
+  paper: https://arxiv.org/abs/2506.03373
+  github: mahmoodlab/KRONOS
+  license: CC-BY-NC-ND-4.0
+  maturity: R
+  reality_check: 'panel-agnostic by construction - marker-identity embeddings mean it does not break when
+    your antibody panel differs from the training panels. that solves the single biggest blocker to cross-study
+    spatial proteomics. small model (ViT-S), cheap to run.
+
+    '
+  tissue: 16 tissue types, normal and malignant
+  data_types:
+    input:
+    - multiplex OME-TIFF, per-marker channels + DAPI
+    - cell masks
+    output:
+    - marker-specific patch embedding
+    - cell phenotype
+    - region class
+  endorsements:
+  - source: Nat Methods 2026 AI proteomics Perspective (Sun et al.)
+    claim: spatial proteomics named as one of six areas AI is actively reshaping, following Method of
+      the Year 2024
+    url: https://www.nature.com/articles/s41592-026-03085-y
+- id: novae
+  name: Novae
+  category: spatial-omics-FM
+  tasks:
+  - niche-identification
+  - domain-detection
+  model_type: graph neural network foundation model, self-supervised
+  modality:
+  - Visium
+  - Xenium
+  - MERFISH
+  - CosMx
+  org: MICS Lab / Gustave Roussy
+  paper: https://www.biorxiv.org/content/10.1101/2024.09.09.612009
+  github: MICS-Lab/novae
+  maturity: R
+  reality_check: graph-native rather than sequence-native, so it actually uses coordinates. zero-shot
+    niche assignment across slides is the selling point.
+  tissue: multi-tissue
+  data_types:
+    input:
+    - AnnData spatial + coordinates
+    output:
+    - niche assignment
+    - graph embedding
+- id: stofm
+  name: SToFM
+  category: spatial-omics-FM
+  tasks:
+  - multi-scale-representation
+  - tissue-context-modelling
+  model_type: multi-scale transformer
+  modality:
+  - spatial transcriptomics
+  paper: https://arxiv.org/abs/2507.11588
+  github: null
+  maturity: R
+  reality_check: ICML 2025, self-reported benchmarks only. no third-party evaluation yet.
+  tissue: multi-tissue
+  data_types:
+    input:
+    - ST expression + coordinates
+    output:
+    - multi-scale embedding
+- id: heist
+  name: HEIST
+  category: spatial-omics-FM
+  tasks:
+  - spatial-representation
+  model_type: graph foundation model
+  modality:
+  - spatial transcriptomics
+  - spatial proteomics
+  paper: https://arxiv.org/abs/2506.11152
+  maturity: R
+  reality_check: preprint. tracked, not adopted.
+  tissue: multi-tissue
+  data_types:
+    input:
+    - spatial graph
+    output:
+    - node/graph embedding
+- id: cellplm
+  name: CellPLM
+  category: spatial-omics-FM
+  tasks:
+  - imputation
+  - cell-embedding
+  model_type: transformer treating cells as spatial tokens
+  modality:
+  - scRNA-seq
+  - spatial transcriptomics
+  paper: https://openreview.net/forum?id=BKXvPDekud
+  github: OmicsML/CellPLM
+  maturity: R
+  reality_check: first model to jointly use expression and spatial position in ST. predates the current
+    wave, still a fair baseline.
+  tissue: multi-tissue
+  data_types:
+    input:
+    - AnnData + coordinates
+    output:
+    - cell embedding
+    - imputed expression
