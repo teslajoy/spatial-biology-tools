@@ -1,0 +1,5681 @@
+[
+  {
+    "id": "ai-proteomics-perspective",
+    "name": "AI proteomics: from protein identification to virtual cells",
+    "category": "review",
+    "tasks": [
+      "landscape-orientation"
+    ],
+    "model_type": "Perspective (Nature Methods), 60+ authors",
+    "modality": [
+      "MS-based proteomics",
+      "spatial proteomics",
+      "multi-omics"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "literature"
+      ],
+      "output": [
+        "six-area taxonomy",
+        "curated tool table (Supplementary Table 1",
+        "XLSX)"
+      ]
+    },
+    "org": "Guo (Westlake), Mann (MPI), Zhang (Baylor) et al.",
+    "paper": "https://www.nature.com/articles/s41592-026-03085-y",
+    "data": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-026-03085-y/MediaObjects/41592_2026_3085_MOESM1_ESM.xlsx",
+    "license": "subscription (abstract + refs open)",
+    "maturity": "I",
+    "reality_check": "published 28 July 2026. six areas where AI is moving MS proteomics: peptide/protein identification and quantification, protein-protein interactions and complexes, spatial and perturbation proteomics, multi-omics integration, and AI virtual cells. the operationally useful part is Supplementary Table 1 - a curated table of tools with model, model type, task, year and article link, which is close to this registry's schema and worth ingesting directly. note the framing: the paper's closing argument is a call for an \"AI-friendly ecosystem\" among data producers and consumers. that is a data-infrastructure argument, not a modelling one.\n",
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "literature": {
+        "status": "not_found"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:17.188613+00:00"
+  },
+  {
+    "id": "mm-foundation-models-cell-bio",
+    "name": "Towards multimodal foundation models in molecular cell biology",
+    "category": "review",
+    "modality": [
+      "multi-omics"
+    ],
+    "tissue": "cross-tissue",
+    "org": "Cui et al.",
+    "paper": "https://doi.org/10.1038/s41586-025-08911-5",
+    "maturity": "I",
+    "reality_check": "Nature 2025. the conceptual bridge between the pathology-FM literature and the single-cell/omics-FM literature, which mostly do not cite each other.",
+    "data_types": {
+      "input": [
+        "literature"
+      ],
+      "output": [
+        "conceptual framework"
+      ]
+    },
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 15,
+        "influential_citations": 0,
+        "venue": "Nature"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Author Correction: Sulfide-rich continental roots at cratonic margins formed by carbonated melts.",
+        "journal": "Nature",
+        "year": "2025",
+        "doi": "10.1038/s41586-025-08911-5",
+        "pmid": "40216944",
+        "pmcid": "PMC12043498",
+        "cited_by": 4,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/40216944"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:17.885387+00:00"
+  },
+  {
+    "id": "dia-nn",
+    "name": "DIA-NN",
+    "category": "ms-proteomics",
+    "tasks": [
+      "peptide-identification",
+      "protein-quantification"
+    ],
+    "model_type": "neural network with interference correction",
+    "modality": [
+      "data-independent acquisition MS"
+    ],
+    "tissue": "any (sample-type agnostic)",
+    "data_types": {
+      "input": [
+        ".raw",
+        ".mzML",
+        ".d (Bruker)",
+        "spectral library or FASTA"
+      ],
+      "output": [
+        "precursor/protein report TSV",
+        "quantitative matrix"
+      ]
+    },
+    "org": "Demichev / Ralser",
+    "paper": "https://doi.org/10.1038/s41592-019-0638-x",
+    "github": "vdemichev/DiaNN",
+    "license": "free for academic use",
+    "maturity": "T",
+    "reality_check": "the widely adopted DIA workhorse and the reference point every newer method is measured against. described in the 2026 Perspective as a widely adopted neural-network tool for improving identification. entrenched enough that switching costs are real.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "singled out as the widely adopted neural-network tool for improving peptide and protein identification in MS proteomics",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/vdemichev/DiaNN",
+        "stars": 462,
+        "forks": 82,
+        "open_issues": 848,
+        "pushed_at": "2026-06-30T19:52:37Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "C++",
+        "description": "DIA-NN - a universal automated software suite for DIA proteomics data analysis. ",
+        "days_since_push": 27
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 2617,
+        "influential_citations": 531,
+        "venue": "Nature Methods"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "DIA-NN: neural networks and interference correction enable deep proteome coverage in high throughput.",
+        "journal": "Nature methods",
+        "year": "2020",
+        "doi": "10.1038/s41592-019-0638-x",
+        "pmid": "31768060",
+        "pmcid": "PMC6949130",
+        "cited_by": 2972,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/31768060"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:18.884088+00:00"
+  },
+  {
+    "id": "dia-bert",
+    "name": "DIA-BERT",
+    "category": "ms-proteomics",
+    "tasks": [
+      "peptide-identification",
+      "quantification"
+    ],
+    "model_type": "pretrained end-to-end transformer (BERT-style)",
+    "modality": [
+      "data-independent acquisition MS"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "DIA spectra"
+      ],
+      "output": [
+        "peptide identifications",
+        "quantities"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41467-025-58866-4",
+    "maturity": "R",
+    "reality_check": "Nat Commun 2025. the proof that LLM-style architectures transfer to MS spectra, which is the same argument DINOv2-on-histology made three years earlier. expect the same trajectory: strong headline numbers, slow displacement of the incumbent.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "highlighted as demonstrating that LLM architectures can be adapted to improve peptide identification, quantification and overall AI-driven MS interpretation",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 8,
+        "influential_citations": 0,
+        "venue": "Nature Communications"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "DIA-BERT: pre-trained end-to-end transformer models for enhanced DIA proteomics data analysis.",
+        "journal": "Nature communications",
+        "year": "2025",
+        "doi": "10.1038/s41467-025-58866-4",
+        "pmid": "40229248",
+        "pmcid": "PMC11997033",
+        "cited_by": 4,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/40229248"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:19.507322+00:00"
+  },
+  {
+    "id": "massnet",
+    "name": "MassNet",
+    "category": "ms-proteomics + dataset",
+    "tasks": [
+      "de-novo-peptide-sequencing",
+      "pretraining-corpus"
+    ],
+    "model_type": "billion-scale spectral corpus + model",
+    "modality": [
+      "tandem MS"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "MS/MS spectra"
+      ],
+      "output": [
+        "de novo peptide sequences"
+      ]
+    },
+    "paper": "https://doi.org/10.1101/2025.06.20.660691",
+    "maturity": "R",
+    "reality_check": "explicitly framed as an \"AI-friendly\" corpus rather than a model. this is the proteomics equivalent of HEST-1k - the corpus is the contribution, the model is the demonstration. preprint.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "presented as the AI-friendly spectral corpus enabling robust de novo peptide sequencing",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 3,
+        "influential_citations": 0,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "MassNet: billion-scale AI-friendly mass spectral corpus enables robust  <i>de novo</i>  peptide sequencing",
+        "journal": null,
+        "year": "2025",
+        "doi": "10.1101/2025.06.20.660691",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1042680"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:20.095925+00:00"
+  },
+  {
+    "id": "idia-qc",
+    "name": "iDIA-QC",
+    "category": "qc",
+    "tasks": [
+      "ms-quality-control"
+    ],
+    "model_type": "supervised ML on instrument QC metrics",
+    "modality": [
+      "DIA-MS"
+    ],
+    "tissue": "n/a",
+    "data_types": {
+      "input": [
+        "QC run spectra"
+      ],
+      "output": [
+        "instrument performance flags"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41467-024-54871-1",
+    "maturity": "T",
+    "reality_check": "Nat Commun 2025. automated instrument QC, which is the unglamorous prerequisite for any multi-centre study. the direct analogue of the imaging-ST QC metrics in infra.yaml, and equally skipped.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as AI-empowered quality control for DIA-MS",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 8,
+        "influential_citations": 0,
+        "venue": "Nature Communications"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "iDIA-QC: AI-empowered data-independent acquisition mass spectrometry-based quality control.",
+        "journal": "Nature communications",
+        "year": "2025",
+        "doi": "10.1038/s41467-024-54871-1",
+        "pmid": "39837863",
+        "pmcid": "PMC11751188",
+        "cited_by": 5,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/39837863"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:20.739027+00:00"
+  },
+  {
+    "id": "quantms",
+    "name": "quantms",
+    "category": "pipeline",
+    "tasks": [
+      "quantitative-proteomics-reanalysis"
+    ],
+    "model_type": "cloud-native nextflow pipeline",
+    "modality": [
+      "DDA and DIA MS"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "PRIDE/MassIVE public datasets",
+        "SDRF-Proteomics metadata"
+      ],
+      "output": [
+        "standardised quantitative matrices",
+        "mzTab"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41592-024-02343-1",
+    "github": "bigbio/quantms",
+    "license": "Apache-2.0",
+    "maturity": "I",
+    "reality_check": "Nat Methods 2024. enables large-scale reanalysis of public proteomics data with standardised output - the thing that makes public archives trainable rather than merely deposited. structurally the closest analogue in this registry to the FHIR-aggregation problem: heterogeneous repositories, one queryable surface.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "highlighted for enabling large-scale reanalysis of public datasets, providing standardised and reproducible resources for machine learning",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/bigbio/quantms",
+        "stars": 81,
+        "forks": 57,
+        "open_issues": 57,
+        "pushed_at": "2026-07-28T08:57:42Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Nextflow",
+        "description": "Quantitative mass spectrometry workflow. Currently supports proteomics experiments with complex experimental designs for DDA-LFQ, DDA-Isobaric and DIA-LFQ quantification.",
+        "days_since_push": 0
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 48,
+        "influential_citations": 2,
+        "venue": "Nature Methods"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "quantms: a cloud-based pipeline for quantitative proteomics enables the reanalysis of public proteomics data.",
+        "journal": "Nature methods",
+        "year": "2024",
+        "doi": "10.1038/s41592-024-02343-1",
+        "pmid": "38965444",
+        "pmcid": "PMC11399091",
+        "cited_by": 61,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/38965444"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:21.680581+00:00"
+  },
+  {
+    "id": "deep-visual-proteomics",
+    "name": "Deep Visual Proteomics (DVP)",
+    "category": "spatial-proteomics",
+    "tasks": [
+      "single-cell-spatial-proteome",
+      "laser-microdissection-guided-MS"
+    ],
+    "model_type": "deep-learning image segmentation + classification driving laser capture, then ultrasensitive MS",
+    "modality": [
+      "microscopy imaging + MS proteomics"
+    ],
+    "tissue": "multi-tissue; demonstrated in liver (proteotoxicity), skin, cancer",
+    "data_types": {
+      "input": [
+        "IF/H&E images",
+        "LMD coordinates",
+        "MS raw"
+      ],
+      "output": [
+        "cell-type-resolved protein abundance matrices with spatial provenance"
+      ]
+    },
+    "org": "Mann lab, MPI Biochemistry",
+    "paper": "https://doi.org/10.1038/s41587-022-01302-5",
+    "maturity": "T",
+    "reality_check": "the most important entry in this file for anyone doing imaging. DVP closes the loop that antibody-panel spatial proteomics cannot: unbiased, discovery-scale protein measurement with cell-level spatial attribution. no 40-marker panel ceiling. cost is throughput - it is microdissection, so it does not scale to whole-slide the way CODEX does.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective",
+        "claim": "highlighted as the AI-driven framework integrating imaging with ultrasensitive MS to map protein expression at single-cell resolution",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      },
+      {
+        "source": "Nature 2025",
+        "claim": "mapped proteotoxicity in a genetic liver disease",
+        "url": "https://doi.org/10.1038/s41586-025-08885-4"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 448,
+        "influential_citations": 14,
+        "venue": "Nature Biotechnology"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Deep Visual Proteomics defines single-cell identity and heterogeneity.",
+        "journal": "Nature biotechnology",
+        "year": "2022",
+        "doi": "10.1038/s41587-022-01302-5",
+        "pmid": "35590073",
+        "pmcid": "PMC9371970",
+        "cited_by": 447,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/35590073"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:22.362772+00:00"
+  },
+  {
+    "id": "spatial-proteomics-jaki",
+    "name": "spatial proteomics -> therapy selection (Nordmann et al.)",
+    "category": "spatial-proteomics",
+    "tasks": [
+      "therapy-target-identification"
+    ],
+    "modality": [
+      "spatial proteomics"
+    ],
+    "tissue": "skin (lethal inflammatory skin disease)",
+    "paper": "https://doi.org/10.1038/s41586-024-08061-0",
+    "maturity": "T",
+    "reality_check": "Nature 2024. spatial proteomics identified JAK inhibition as treatment for a lethal skin disease. one of the very few instances where a spatial assay changed clinical management rather than describing a cohort. worth citing whenever someone asks what spatial is actually for.\n",
+    "data_types": {
+      "input": [
+        "spatial proteomic profiles"
+      ],
+      "output": [
+        "therapeutic target hypothesis"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as spatial proteomics driving a therapy decision",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 123,
+        "influential_citations": 5,
+        "venue": "Nature"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Spatial proteomics identifies JAKi as treatment for a lethal skin disease.",
+        "journal": "Nature",
+        "year": "2024",
+        "doi": "10.1038/s41586-024-08061-0",
+        "pmid": "39415009",
+        "pmcid": "PMC11602713",
+        "cited_by": 95,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/39415009"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:23.029156+00:00"
+  },
+  {
+    "id": "spatial-proteomics-pdac",
+    "name": "multimodal single-cell spatial proteomics of pancreatic tumour heterogeneity (Xu et al.)",
+    "category": "spatial-proteomics",
+    "modality": [
+      "spatial proteomics",
+      "single-cell"
+    ],
+    "tissue": "pancreas (pancreatic tumour)",
+    "paper": "https://doi.org/10.1038/s41467-024-54364-1",
+    "maturity": "R",
+    "reality_check": "Nat Commun 2024. directly relevant to pancreatic precancer work - a spatial proteomic view of PDAC heterogeneity that complements the transcriptomic and H&E-based atlases.\n",
+    "data_types": {
+      "input": [
+        "multiplex spatial proteomics",
+        "single-cell"
+      ],
+      "output": [
+        "cell-state maps of tumour heterogeneity"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited under spatial proteomics of tumour heterogeneity",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 69,
+        "influential_citations": 1,
+        "venue": "Nature Communications"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Single cell and spatial transcriptomics highlight the interaction of club-like cells with immunosuppressive myeloid cells in prostate cancer.",
+        "journal": "Nature communications",
+        "year": "2024",
+        "doi": "10.1038/s41467-024-54364-1",
+        "pmid": "39550375",
+        "pmcid": "PMC11569175",
+        "cited_by": 59,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/39550375"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:23.703935+00:00"
+  },
+  {
+    "id": "microfluidic-spatial-proteomics",
+    "name": "microfluidics + transfer learning spatial proteomics (Hu et al.)",
+    "category": "spatial-proteomics",
+    "model_type": "microfluidic sampling + transfer learning",
+    "modality": [
+      "spatially resolved MS proteomics"
+    ],
+    "tissue": "complex tissues, multi-organ",
+    "paper": "https://doi.org/10.1016/j.cell.2024.12.006",
+    "maturity": "R",
+    "reality_check": "Cell 2025. high-resolution spatially resolved proteomics at throughput, using transfer learning to compensate for sparse sampling. the sparse-sampling trick is the same idea as virtual ST - measure less, infer the rest - and inherits the same validation burden.\n",
+    "data_types": {
+      "input": [
+        "tissue section, microfluidic sampling",
+        "MS raw"
+      ],
+      "output": [
+        "spatially resolved protein abundance maps"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "highlighted as an AI-driven approach enabling precise high-throughput mapping of tissue microenvironments",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 14,
+        "influential_citations": 0,
+        "venue": "Cell"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Direct visualization of electric-field-stimulated ion conduction in a potassium channel.",
+        "journal": "Cell",
+        "year": "2025",
+        "doi": "10.1016/j.cell.2024.12.006",
+        "pmid": "39793560",
+        "pmcid": "PMC11924917",
+        "cited_by": 20,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/39793560"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:24.311002+00:00"
+  },
+  {
+    "id": "glue",
+    "name": "GLUE",
+    "category": "multi-omics-integration",
+    "tasks": [
+      "unpaired-multi-omics-integration",
+      "regulatory-inference"
+    ],
+    "model_type": "graph-linked variational autoencoder",
+    "modality": [
+      "scRNA-seq",
+      "scATAC-seq",
+      "snmC-seq"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "AnnData per modality",
+        "prior regulatory graph"
+      ],
+      "output": [
+        "joint embedding",
+        "regulatory links"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41587-022-01284-4",
+    "github": "gao-lab/GLUE",
+    "maturity": "R",
+    "reality_check": "handles unpaired modalities, which is the realistic case. most integration methods quietly assume paired cells you do not have.",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited under multi-omics data integration",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/gao-lab/GLUE",
+        "stars": 474,
+        "forks": 77,
+        "open_issues": 24,
+        "pushed_at": "2026-02-09T00:27:33Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "Graph-linked unified embedding for single-cell multi-omics data integration",
+        "days_since_push": 169
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 506,
+        "influential_citations": 55,
+        "venue": "Nature Biotechnology"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Multi-omics single-cell data integration and regulatory inference with graph-linked embedding.",
+        "journal": "Nature biotechnology",
+        "year": "2022",
+        "doi": "10.1038/s41587-022-01284-4",
+        "pmid": "35501393",
+        "pmcid": "PMC9546775",
+        "cited_by": 443,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/35501393"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:25.210957+00:00"
+  },
+  {
+    "id": "totalvi",
+    "name": "totalVI",
+    "category": "multi-omics-integration",
+    "model_type": "joint probabilistic model (scvi-tools)",
+    "modality": [
+      "CITE-seq (RNA + surface protein)"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "paired RNA + ADT counts"
+      ],
+      "output": [
+        "joint latent space",
+        "denoised protein"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41592-020-01050-x",
+    "github": "scverse/scvi-tools",
+    "maturity": "R",
+    "reality_check": "same family as cell2location. if you already use scvi-tools this is a free addition.",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited under multi-omics data integration",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/scverse/scvi-tools",
+        "stars": 1670,
+        "forks": 473,
+        "open_issues": 21,
+        "pushed_at": "2026-07-28T11:25:16Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "Deep probabilistic analysis of single-cell and spatial omics data",
+        "days_since_push": 0
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 516,
+        "influential_citations": 45,
+        "venue": "Nature Methods"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Joint probabilistic modeling of single-cell multi-omic data with totalVI.",
+        "journal": "Nature methods",
+        "year": "2021",
+        "doi": "10.1038/s41592-020-01050-x",
+        "pmid": "33589839",
+        "pmcid": "PMC7954949",
+        "cited_by": 480,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/33589839"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:26.407080+00:00"
+  },
+  {
+    "id": "geneformer",
+    "name": "Geneformer",
+    "category": "single-cell-FM",
+    "tasks": [
+      "network-biology-prediction",
+      "in-silico-perturbation"
+    ],
+    "model_type": "transformer, rank-value gene encoding",
+    "modality": [
+      "scRNA-seq"
+    ],
+    "tissue": "cross-tissue (Genecorpus-30M)",
+    "data_types": {
+      "input": [
+        "rank-ordered gene expression"
+      ],
+      "output": [
+        "cell/gene embeddings",
+        "perturbation predictions"
+      ]
+    },
+    "paper": "https://doi.org/10.1038/s41586-023-06139-9",
+    "hf": "ctheodoris/Geneformer",
+    "maturity": "R",
+    "reality_check": "the original transfer-learning-in-network-biology result. independent evaluations have been more mixed than the headline, as with the pathology FMs.",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited among foundation models pretrained for transfer learning in network biology",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/ctheodoris/Geneformer",
+        "downloads_30d": 4988,
+        "likes": 302,
+        "gated": false,
+        "last_modified": "2026-05-26T20:22:25.000Z",
+        "pipeline_tag": "fill-mask",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "bert",
+          "fill-mask",
+          "single-cell",
+          "genomics",
+          "dataset:ctheodoris/Genecorpus-30M",
+          "license:apache-2.0",
+          "endpoints_compatible"
+        ]
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 1117,
+        "influential_citations": 123,
+        "venue": "Nature"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Transfer learning enables predictions in network biology.",
+        "journal": "Nature",
+        "year": "2023",
+        "doi": "10.1038/s41586-023-06139-9",
+        "pmid": "37258680",
+        "pmcid": "PMC10949956",
+        "cited_by": 808,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/37258680"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:27.158362+00:00"
+  },
+  {
+    "id": "scfoundation",
+    "name": "scFoundation",
+    "category": "single-cell-FM",
+    "model_type": "large transformer, 100M parameters",
+    "modality": [
+      "scRNA-seq"
+    ],
+    "tissue": "cross-tissue",
+    "paper": "https://doi.org/10.1038/s41592-024-02305-7",
+    "github": "biomap-research/scFoundation",
+    "maturity": "R",
+    "reality_check": "Nat Methods 2024. scale-first approach. the open question across all single-cell FMs is whether they beat a well-tuned PCA plus kNN, and that comparison is still not routinely reported.",
+    "data_types": {
+      "input": [
+        "scRNA-seq count matrix"
+      ],
+      "output": [
+        "cell/gene embeddings"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited among large-scale single-cell transcriptomic foundation models",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/biomap-research/scFoundation",
+        "stars": 423,
+        "forks": 75,
+        "open_issues": 31,
+        "pushed_at": "2025-11-23T08:31:22Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Jupyter Notebook",
+        "description": null,
+        "days_since_push": 247
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 599,
+        "influential_citations": 32,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Large-scale foundation model on single-cell transcriptomics.",
+        "journal": "Nature methods",
+        "year": "2024",
+        "doi": "10.1038/s41592-024-02305-7",
+        "pmid": "38844628",
+        "pmcid": null,
+        "cited_by": 274,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/38844628"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:28.039841+00:00"
+  },
+  {
+    "id": "state",
+    "name": "STATE",
+    "category": "perturbation-model",
+    "tasks": [
+      "perturbation-response-prediction"
+    ],
+    "model_type": "transformer trained across cellular contexts",
+    "modality": [
+      "perturbation scRNA-seq"
+    ],
+    "tissue": "cross-context",
+    "paper": "https://doi.org/10.1101/2025.06.26.661135",
+    "org": "Arc Institute",
+    "maturity": "R",
+    "reality_check": "predicting cellular responses to perturbation across contexts. paired with the Virtual Cell Challenge as the field's attempt to define a falsifiable benchmark, which is more than the spatial FM literature currently has.",
+    "data_types": {
+      "input": [
+        "perturbation scRNA-seq"
+      ],
+      "output": [
+        "predicted post-perturbation expression"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as predicting cellular responses to perturbation across diverse contexts",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 118,
+        "influential_citations": 21,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Predicting cellular responses to perturbation across diverse contexts with State",
+        "journal": null,
+        "year": "2025",
+        "doi": "10.1101/2025.06.26.661135",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 45,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1043725"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:28.644881+00:00"
+  },
+  {
+    "id": "cellbox",
+    "name": "CellBox",
+    "category": "perturbation-model",
+    "model_type": "interpretable ODE-based ML",
+    "modality": [
+      "perturbation proteomics/transcriptomics"
+    ],
+    "tissue": "cancer cell lines",
+    "paper": "https://doi.org/10.1016/j.cels.2020.11.013",
+    "github": "sanderlab/CellBox",
+    "maturity": "R",
+    "reality_check": "interpretable rather than black-box, and designs combination therapy rather than describing variance. cited in the 2026 Perspective as the model for mechanistic perturbation prediction. the counter-argument to scaling-only approaches.\n",
+    "data_types": {
+      "input": [
+        "perturbation response matrices"
+      ],
+      "output": [
+        "interpretable interaction network",
+        "combination therapy predictions"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "highlighted as an interpretable ML framework modelling cellular perturbation responses, enabling rational design of cancer combination therapy",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/sanderlab/CellBox",
+        "stars": 56,
+        "forks": 28,
+        "open_issues": 17,
+        "pushed_at": "2023-07-27T17:33:41Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Jupyter Notebook",
+        "description": "CellBox: Interpretable Machine Learning for Perturbation Biology",
+        "days_since_push": 1097
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 114,
+        "influential_citations": 3,
+        "venue": "Cell Systems"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "CellBox: Interpretable Machine Learning for Perturbation Biology with Application to the Design of Cancer Combination Therapy.",
+        "journal": "Cell systems",
+        "year": "2021",
+        "doi": "10.1016/j.cels.2020.11.013",
+        "pmid": "33373583",
+        "pmcid": null,
+        "cited_by": 96,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/33373583"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:29.561182+00:00"
+  },
+  {
+    "id": "virtual-cell-challenge",
+    "name": "Virtual Cell Challenge",
+    "category": "benchmark-harness",
+    "tasks": [
+      "virtual-cell-evaluation"
+    ],
+    "modality": [
+      "perturbation single-cell"
+    ],
+    "tissue": "cross-context",
+    "paper": "https://doi.org/10.1016/j.cell.2025.05.045",
+    "maturity": "I",
+    "reality_check": "Cell 2025, framed as a Turing test for the virtual cell. whether or not the target is reachable, a community benchmark with held-out ground truth is exactly what the spatial foundation model space lacks.\n",
+    "data_types": {
+      "input": [
+        "held-out perturbation data"
+      ],
+      "output": [
+        "leaderboard metrics"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "situated as part of the virtual-cell framework combining multi-scale state representations with virtual instruments",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 2,
+        "influential_citations": 0,
+        "venue": "Cell"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Response to: The mechanism for GTP-mediated RNA capping by the SARS-CoV-2 NiRAN domain remains unresolved.",
+        "journal": "Cell",
+        "year": "2025",
+        "doi": "10.1016/j.cell.2025.05.045",
+        "pmid": "40570837",
+        "pmcid": null,
+        "cited_by": 3,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/40570837"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:30.151992+00:00"
+  },
+  {
+    "id": "hca-foundation-model",
+    "name": "Human Cell Atlas: from cell census to unified foundation model",
+    "category": "consortium",
+    "modality": [
+      "scRNA-seq",
+      "spatial"
+    ],
+    "tissue": "whole human body",
+    "paper": "https://doi.org/10.1038/s41586-024-08338-4",
+    "maturity": "I",
+    "reality_check": "Nature 2025. the atlas-to-model transition argument. relevant to any consortium data-model work, since it makes the case that atlas schemas should be designed for training, not only for browsing.",
+    "data_types": {
+      "input": [
+        "atlas-scale scRNA + spatial"
+      ],
+      "output": [
+        "unified cell reference / model"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited in the atlas-to-foundation-model transition",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 124,
+        "influential_citations": 0,
+        "venue": "Nature"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "The Human Cell Atlas from a cell census to a unified foundation model.",
+        "journal": "Nature",
+        "year": "2025",
+        "doi": "10.1038/s41586-024-08338-4",
+        "pmid": "39566552",
+        "pmcid": null,
+        "cited_by": 107,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/39566552"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:30.727699+00:00"
+  },
+  {
+    "id": "llm-agent-benchmark-singlecell",
+    "name": "Benchmarking LLM-based agents for single-cell omics analysis",
+    "category": "benchmark-harness",
+    "tasks": [
+      "agent-evaluation",
+      "automated-analysis"
+    ],
+    "model_type": "LLM agents orchestrating standard bioinformatics tools",
+    "modality": [
+      "scRNA-seq",
+      "spatial transcriptomics"
+    ],
+    "tissue": "cross-tissue",
+    "data_types": {
+      "input": [
+        "natural language task + AnnData"
+      ],
+      "output": [
+        "executed analysis",
+        "tool calls",
+        "results"
+      ]
+    },
+    "paper": "https://arxiv.org/abs/2508.13201",
+    "maturity": "R",
+    "reality_check": "evaluates agents on real analysis tasks including spatial deconvolution (DestVI, Stereoscope, cell2location, Tangram) and cell-cell communication (CellPhoneDB, NicheNet, CellChat). the important finding for anyone building agentic pipelines is that tool selection, not tool execution, is where agents fail - which is precisely what a registry like this one exists to fix.\n",
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:31.116115+00:00"
+  },
+  {
+    "id": "qust-llm",
+    "name": "QuST-LLM",
+    "category": "llm-tooling",
+    "tasks": [
+      "spatial-transcriptomics-interpretation"
+    ],
+    "model_type": "LLM wrapper over QuPath/QuST spatial analysis",
+    "modality": [
+      "spatial transcriptomics + histology"
+    ],
+    "tissue": "cross-tissue",
+    "paper": "https://arxiv.org/abs/2406.14307",
+    "maturity": "R",
+    "reality_check": "natural-language interface to spatial analysis. useful as an interpretation layer, not an analysis layer - it does not remove the need to know whether the deconvolution was valid.",
+    "data_types": {
+      "input": [
+        "QuST spatial analysis output",
+        "natural language"
+      ],
+      "output": [
+        "natural language interpretation"
+      ]
+    },
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:31.515365+00:00"
+  },
+  {
+    "id": "pride",
+    "name": "PRIDE",
+    "category": "data-archive",
+    "modality": [
+      "MS proteomics"
+    ],
+    "tissue": "all",
+    "data_types": {
+      "input": [
+        "submitted raw + search results"
+      ],
+      "output": [
+        "public datasets",
+        "SDRF metadata"
+      ]
+    },
+    "paper": "https://doi.org/10.1093/nar/gkae1011",
+    "url": "https://www.ebi.ac.uk/pride/",
+    "maturity": "I",
+    "reality_check": "the proteomics equivalent of GDC/HTAN. 20+ years of deposits, and the 2026 Perspective's central complaint is that the archives are not AI-ready - metadata heterogeneity, not data volume, is the binding constraint. familiar problem.\n",
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "central to the argument that public archives are not yet AI-ready",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 1493,
+        "influential_citations": 33,
+        "venue": "Nucleic Acids Research"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "The PRIDE database at 20 years: 2025 update.",
+        "journal": "Nucleic acids research",
+        "year": "2025",
+        "doi": "10.1093/nar/gkae1011",
+        "pmid": "39494541",
+        "pmcid": "PMC11701690",
+        "cited_by": 1548,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/39494541"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:32.141557+00:00"
+  },
+  {
+    "id": "massive-kb",
+    "name": "MassIVE / MassIVE-KB",
+    "category": "data-archive",
+    "modality": [
+      "MS proteomics"
+    ],
+    "tissue": "all",
+    "url": "https://massive.ucsd.edu/",
+    "paper": "https://doi.org/10.1038/s41592-018-0283-9",
+    "maturity": "I",
+    "reality_check": "reuse-oriented archive. pairs with quantms for reanalysis at scale.",
+    "data_types": {
+      "input": [
+        "submitted MS datasets"
+      ],
+      "output": [
+        "public spectral libraries"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as a reuse-oriented proteomics archive",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 5,
+        "influential_citations": 0,
+        "venue": "Nature Methods"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Proteomics data reuse with MassIVE-KB.",
+        "journal": "Nature methods",
+        "year": "2019",
+        "doi": "10.1038/s41592-018-0283-9",
+        "pmid": "30573830",
+        "pmcid": null,
+        "cited_by": 4,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/30573830"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:32.726087+00:00"
+  },
+  {
+    "id": "proteomicsml",
+    "name": "ProteomicsML",
+    "category": "benchmark + dataset",
+    "tasks": [
+      "ml-ready-datasets",
+      "tutorials"
+    ],
+    "modality": [
+      "MS proteomics"
+    ],
+    "tissue": "cross-tissue",
+    "paper": "https://doi.org/10.1021/acs.jproteome.2c00629",
+    "url": "https://www.proteomicsml.org/",
+    "maturity": "I",
+    "reality_check": "community-curated ML-ready datasets with tutorials. the model other modalities should copy - it separates \"data exists\" from \"data is trainable\".",
+    "data_types": {
+      "input": [
+        "curated MS datasets"
+      ],
+      "output": [
+        "ML-ready train/test splits",
+        "tutorials"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as community-curated ML-ready datasets and tutorials",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 23,
+        "influential_citations": 0,
+        "venue": "Journal of Proteome Research"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "ProteomicsML: An Online Platform for Community-Curated Data sets and Tutorials for Machine Learning in Proteomics.",
+        "journal": "Journal of proteome research",
+        "year": "2023",
+        "doi": "10.1021/acs.jproteome.2c00629",
+        "pmid": "36693629",
+        "pmcid": "PMC9903315",
+        "cited_by": 17,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/36693629"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:33.344804+00:00"
+  },
+  {
+    "id": "federated-proteomics",
+    "name": "federated deep learning for proteomic cancer subtyping (Cai et al.)",
+    "category": "method",
+    "tasks": [
+      "privacy-preserving-training",
+      "cancer-subtyping"
+    ],
+    "model_type": "federated deep learning",
+    "modality": [
+      "MS proteomics"
+    ],
+    "tissue": "pan-cancer",
+    "paper": "https://doi.org/10.1158/2159-8290.CD-24-1488",
+    "maturity": "R",
+    "reality_check": "Cancer Discovery 2025. federated training across decentralised cohorts without moving patient data. directly relevant to consortium settings where data-sharing agreements, not model quality, are the blocker.\n",
+    "data_types": {
+      "input": [
+        "decentralised proteomic cohorts"
+      ],
+      "output": [
+        "subtype model without data movement"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "highlighted as showing privacy-preserving AI can integrate decentralised datasets while improving generalisation and data security",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "ai-omics.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 14,
+        "influential_citations": 1,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Federated Deep Learning Enables Cancer Subtyping by Proteomics.",
+        "journal": "Cancer discovery",
+        "year": "2025",
+        "doi": "10.1158/2159-8290.cd-24-1488",
+        "pmid": "40488620",
+        "pmcid": "PMC12409279",
+        "cited_by": 5,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/40488620"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:34.052651+00:00"
+  },
+  {
+    "id": "trident",
+    "name": "TRIDENT",
+    "category": "pipeline",
+    "tasks": [
+      "tissue-segmentation",
+      "patching",
+      "patch-embedding",
+      "slide-embedding",
+      "format-conversion"
+    ],
+    "model_type": "orchestration toolkit (not a model)",
+    "modality": [
+      "H&E WSI",
+      "IHC",
+      "multi-stain; OpenSlide/CuCIM/OME-Zarr/CZI/SDPC/PNG/JPEG readers"
+    ],
+    "org": "Mahmood Lab",
+    "paper": "https://arxiv.org/abs/2502.06750",
+    "github": "mahmoodlab/TRIDENT",
+    "license": "CC-BY-NC-ND-4.0 - non-commercial academic only",
+    "maturity": "I",
+    "reality_check": "the single highest-leverage adoption on this page. one command from WSI directory to embeddings, 22+ patch encoders and 5 slide encoders (Titan, GigaPath, PRISM, CHIEF, Madeleine, Feather) behind one API, plus tissue segmentation via GrandQC/HEST/Otsu and optional artifact and pen-mark removal. successor to CLAM. LICENCE WARNING - CC-BY-NC-ND blocks any commercial or industry-collaboration use.\n",
+    "tissue": "any tissue, any stain",
+    "data_types": {
+      "input": [
+        "WSI: SVS, TIFF, OME-Zarr, CZI, SDPC, PNG/JPEG"
+      ],
+      "output": [
+        "tissue masks (GeoJSON)",
+        "patch coords (h5)",
+        "patch/slide features (h5)"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/TRIDENT",
+        "stars": 603,
+        "forks": 136,
+        "open_issues": 32,
+        "pushed_at": "2026-07-24T06:41:39Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Python",
+        "description": "Toolkit for large-scale whole-slide image processing. ",
+        "days_since_push": 4
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:34.797825+00:00"
+  },
+  {
+    "id": "clam",
+    "name": "CLAM",
+    "category": "pipeline",
+    "tasks": [
+      "weakly-supervised-slide-classification",
+      "attention-MIL"
+    ],
+    "org": "Mahmood Lab",
+    "paper": "https://www.nature.com/articles/s41551-020-00682-w",
+    "github": "mahmoodlab/CLAM",
+    "maturity": "I",
+    "reality_check": "five years of community use, now superseded by TRIDENT for processing but still the reference attention-MIL implementation.",
+    "tissue": "pan-cancer",
+    "data_types": {
+      "input": [
+        "patch features h5"
+      ],
+      "output": [
+        "slide-level prediction",
+        "attention heatmaps"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/CLAM",
+        "stars": 1716,
+        "forks": 511,
+        "open_issues": 49,
+        "pushed_at": "2025-04-14T19:42:01Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "Python",
+        "description": "Open source tools for computational pathology - Nature BME",
+        "days_since_push": 469
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Transcriptomic and cellular responses to salinity stress in two populations of Asian clam (Corbicula fluminea) from estuarine and freshwater habitats",
+        "journal": "Aquaculture.",
+        "year": "2026",
+        "doi": null,
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/AGR/IND609235496"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:35.647793+00:00"
+  },
+  {
+    "id": "mcmicro",
+    "name": "MCMICRO",
+    "category": "pipeline",
+    "tasks": [
+      "multiplex-image-processing",
+      "registration",
+      "segmentation",
+      "quantification"
+    ],
+    "model_type": "modular Nextflow pipeline (ASHLAR, Coreograph, Cypository, UnMICST, S3segmenter)",
+    "modality": [
+      "CyCIF",
+      "CODEX",
+      "mIHC",
+      "IMC",
+      "MIBI",
+      "TMA and WSI"
+    ],
+    "org": "Laboratory of Systems Pharmacology, Harvard / HTAN",
+    "paper": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8916956/",
+    "github": "labsyspharm/mcmicro",
+    "docs": "https://mcmicro.org",
+    "license": "MIT",
+    "maturity": "I",
+    "reality_check": "HTAN-native and community-maintained, which matters more than any benchmark - it will still exist in three years. modular, so you can swap the segmenter without rewriting.\n",
+    "tissue": "any; TMA and WSI",
+    "data_types": {
+      "input": [
+        "per-cycle multiplex images"
+      ],
+      "output": [
+        "registered OME-TIFF",
+        "segmentation masks",
+        "single-cell feature CSV"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/labsyspharm/mcmicro",
+        "stars": 155,
+        "forks": 63,
+        "open_issues": 66,
+        "pushed_at": "2026-06-16T21:02:58Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Nextflow",
+        "description": "Multiple-choice microscopy pipeline",
+        "days_since_push": 41
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Odon: An ultra-fast viewer for spatial proteomics",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.03.30.715233",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/PPR/PPR1216938"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:36.580820+00:00"
+  },
+  {
+    "id": "scimap",
+    "name": "SCIMAP",
+    "category": "analysis-toolkit",
+    "tasks": [
+      "phenotyping",
+      "neighbourhood-analysis",
+      "spatial-statistics"
+    ],
+    "modality": [
+      "multiplexed imaging feature tables"
+    ],
+    "org": "Laboratory of Systems Pharmacology",
+    "paper": "https://joss.theoj.org/papers/10.21105/joss.06604",
+    "github": "labsyspharm/scimap",
+    "license": "MIT",
+    "maturity": "I",
+    "reality_check": "consumes MCMICRO output directly. prior-knowledge phenotyping (marker-rule based) is often more reproducible than unsupervised clustering for clinical cohorts.",
+    "tissue": "any multiplexed tissue",
+    "data_types": {
+      "input": [
+        "single-cell feature table (CSV/AnnData)"
+      ],
+      "output": [
+        "phenotypes",
+        "neighbourhood statistics",
+        "plots"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/labsyspharm/scimap",
+        "stars": 113,
+        "forks": 37,
+        "open_issues": 53,
+        "pushed_at": "2026-03-11T23:29:43Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "Spatial Single-Cell Analysis Toolkit",
+        "days_since_push": 138
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Comparison and optimization of cellular neighbor preference methods for quantitative tissue analysis.",
+        "journal": "Nature communications",
+        "year": "2026",
+        "doi": "10.1038/s41467-026-71699-z",
+        "pmid": "41986357",
+        "pmcid": "PMC13083810",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41986357"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:37.464520+00:00"
+  },
+  {
+    "id": "steinbock",
+    "name": "steinbock",
+    "category": "pipeline",
+    "tasks": [
+      "imc-processing",
+      "segmentation",
+      "quantification"
+    ],
+    "modality": [
+      "Imaging Mass Cytometry"
+    ],
+    "org": "Bodenmiller lab",
+    "paper": "https://www.nature.com/articles/s41596-023-00881-0",
+    "github": "BodenmillerGroup/steinbock",
+    "maturity": "I",
+    "reality_check": "the IMC equivalent of MCMICRO. containerised, reproducible.",
+    "tissue": "any; IMC",
+    "data_types": {
+      "input": [
+        "IMC .mcd/.txt"
+      ],
+      "output": [
+        "OME-TIFF",
+        "masks",
+        "single-cell tables"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/BodenmillerGroup/steinbock",
+        "stars": 69,
+        "forks": 21,
+        "open_issues": 43,
+        "pushed_at": "2026-07-13T16:50:43Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "A toolkit for processing multiplexed tissue images",
+        "days_since_push": 15
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Differential assembly of RNP granules via activation of distinct dsRNA sensors by adenovirus mutants.",
+        "journal": "PLoS pathogens",
+        "year": "2026",
+        "doi": "10.1371/journal.ppat.1014452",
+        "pmid": "42497219",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42497219"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:38.370814+00:00"
+  },
+  {
+    "id": "spatialdata",
+    "name": "SpatialData",
+    "category": "data-framework",
+    "tasks": [
+      "storage",
+      "coordinate-transforms",
+      "cross-modal-query",
+      "ML-dataloading"
+    ],
+    "model_type": "format spec + python library, built on OME-NGFF / OME-Zarr + Parquet",
+    "modality": [
+      "all major spatial omics platforms via spatialdata-io readers"
+    ],
+    "org": "scverse (Stegle/Marconato et al.)",
+    "paper": "https://www.nature.com/articles/s41592-024-02212-x",
+    "github": "scverse/spatialdata",
+    "docs": "https://spatialdata.scverse.org",
+    "license": "BSD-3",
+    "maturity": "I",
+    "reality_check": "THE convergence point. five primitives (images, labels, points, shapes, tables), explicit coordinate transforms tracked on disk, lazy loading of larger-than-memory data, cloud IO, and a PyTorch Dataset class so you can train directly off the store. as of the June 2026 hackathon it also has R/Bioconductor interop, 2.5D/3D rendering, chunked multiscale points, and a language-agnostic OME-NGFF coordinate-transform conformance test suite. if you are designing schema work, design against this.\n",
+    "endorsements": [
+      {
+        "source": "Advanced Science 2026 spatial omics guide",
+        "claim": "named with OME-Zarr as the standardisation effort providing unified data architectures",
+        "url": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202520806"
+      },
+      {
+        "source": "2nd SpatialData Hackathon report (BioHackrXiv, June 2026)",
+        "claim": "R interop, 3D rendering, cloud IO, lazy file linking and NGFF conformance suite delivered",
+        "url": "https://index.biohackrxiv.org/2026/06/07/s6bph.html"
+      }
+    ],
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "vendor formats via spatialdata-io: Visium, Xenium, MERSCOPE, CosMx, IMC, CODEX"
+      ],
+      "output": [
+        "OME-Zarr + Parquet SpatialData store",
+        "PyTorch Dataset"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/scverse/spatialdata",
+        "stars": 383,
+        "forks": 90,
+        "open_issues": 277,
+        "pushed_at": "2026-07-28T17:36:44Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "An open and interoperable data framework for spatial omics data",
+        "days_since_push": 0
+      },
+      "literature": {
+        "status": "ok",
+        "title": "2nd SpatialData Hackathon: Frameworks, Formats and Interoperability",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.37044/osf.io/s6bph_v2",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1264462"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:39.198854+00:00"
+  },
+  {
+    "id": "ome-ngff",
+    "name": "OME-NGFF / OME-Zarr",
+    "category": "standard",
+    "tasks": [
+      "cloud-native-bioimage-storage"
+    ],
+    "org": "Open Microscopy Environment",
+    "paper": "https://www.nature.com/articles/s41592-021-01326-w",
+    "github": "ome/ngff",
+    "license": "BSD-2",
+    "maturity": "I",
+    "reality_check": "readers exist in python, java and javascript. the substrate under SpatialData, and the thing consortium submissions will eventually require.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "bioimaging arrays"
+      ],
+      "output": [
+        "OME-Zarr with multiscale + transform metadata"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/ome/ngff",
+        "stars": 166,
+        "forks": 73,
+        "open_issues": 115,
+        "pushed_at": "2026-07-17T07:07:54Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Python",
+        "description": "Next-generation file format (NGFF) specifications for storing bioimaging data in the cloud.",
+        "days_since_push": 11
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Visualizing Volumetric and Segmentation Data using Mol* Volumes & Segmentations 2.0.",
+        "journal": "Current protocols",
+        "year": "2024",
+        "doi": "10.1002/cpz1.70070",
+        "pmid": "39651964",
+        "pmcid": "PMC11627126",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/39651964"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:40.251064+00:00"
+  },
+  {
+    "id": "squidpy",
+    "name": "Squidpy",
+    "category": "analysis-toolkit",
+    "tasks": [
+      "spatial-statistics",
+      "neighbourhood-enrichment",
+      "ligand-receptor",
+      "image-features"
+    ],
+    "org": "scverse / Theis lab",
+    "paper": "https://www.nature.com/articles/s41592-021-01358-2",
+    "github": "scverse/squidpy",
+    "maturity": "I",
+    "reality_check": "the python default, SpatialData-native. scanpy for expression, squidpy for the spatial layer.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "AnnData / SpatialData"
+      ],
+      "output": [
+        "spatial statistics",
+        "neighbourhood graphs",
+        "image features"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/scverse/squidpy",
+        "stars": 587,
+        "forks": 118,
+        "open_issues": 100,
+        "pushed_at": "2026-07-27T17:57:25Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "Spatial Single Cell Analysis in Python",
+        "days_since_push": 1
+      },
+      "literature": {
+        "status": "ok",
+        "title": "ModelistsGCN: a multimodal graph convolutional network framework for single-cell spatial transcriptomic cell typing.",
+        "journal": "Briefings in bioinformatics",
+        "year": "2026",
+        "doi": "10.1093/bib/bbag340",
+        "pmid": "42328843",
+        "pmcid": "PMC13284712",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42328843"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:41.498415+00:00"
+  },
+  {
+    "id": "giotto",
+    "name": "Giotto Suite",
+    "category": "analysis-toolkit",
+    "modality": [
+      "multi-platform spatial omics"
+    ],
+    "paper": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2",
+    "github": "drieslab/Giotto",
+    "maturity": "I",
+    "reality_check": "R ecosystem equivalent. Giotto Suite adds multi-modal and 3D support over the original.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "multi-platform spatial"
+      ],
+      "output": [
+        "Giotto object",
+        "domains",
+        "statistics"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/giotto-suite/Giotto",
+        "stars": 385,
+        "forks": 107,
+        "open_issues": 137,
+        "pushed_at": "2026-06-02T17:12:18Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "R",
+        "description": "Spatial omics analysis toolbox",
+        "days_since_push": 56
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Giotto Suite: a multiscale and technology-agnostic spatial multiomics analysis ecosystem.",
+        "journal": "Nature methods",
+        "year": "2025",
+        "doi": "10.1038/s41592-025-02817-w",
+        "pmid": "41034612",
+        "pmcid": "PMC12510873",
+        "cited_by": 12,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41034612"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:42.764699+00:00"
+  },
+  {
+    "id": "voyager",
+    "name": "Voyager",
+    "category": "analysis-toolkit",
+    "tasks": [
+      "exploratory-spatial-data-analysis",
+      "spatial-autocorrelation"
+    ],
+    "org": "Pachter lab",
+    "paper": "https://www.nature.com/articles/s41592-024-02502-4",
+    "github": "pachterlab/voyager",
+    "maturity": "I",
+    "reality_check": "brings classical geospatial statistics (Moran's I, local indicators) properly into ST. underused and conceptually the most rigorous of the toolkits.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "SpatialFeatureExperiment"
+      ],
+      "output": [
+        "spatial autocorrelation statistics (Moran's I, LISA)"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/pachterlab/voyager",
+        "stars": 103,
+        "forks": 15,
+        "open_issues": 23,
+        "pushed_at": "2026-07-24T23:45:11Z",
+        "archived": false,
+        "license": "Artistic-2.0",
+        "language": "R",
+        "description": "From geospatial to spatial -omics",
+        "days_since_push": 3
+      },
+      "literature": {
+        "status": "ok",
+        "title": "The hidden mysteries of our ice giant planets.",
+        "journal": "Nature communications",
+        "year": "2026",
+        "doi": "10.1038/s41467-026-72079-3",
+        "pmid": "42115155",
+        "pmcid": "PMC13161206",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42115155"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:43.687736+00:00"
+  },
+  {
+    "id": "vitessce",
+    "name": "Vitessce",
+    "category": "visualisation",
+    "tasks": [
+      "web-based-multimodal-visualisation"
+    ],
+    "org": "Gehlenborg lab, HMS",
+    "paper": "https://www.nature.com/articles/s41592-024-02436-x",
+    "github": "vitessce/vitessce",
+    "maturity": "I",
+    "reality_check": "browser-based, reads OME-NGFF remotely. what HTAN and HuBMAP portals use for public data views.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "OME-Zarr, AnnData-Zarr over HTTP"
+      ],
+      "output": [
+        "interactive browser view"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/vitessce/vitessce",
+        "stars": 260,
+        "forks": 69,
+        "open_issues": 501,
+        "pushed_at": "2026-07-27T20:10:27Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "JavaScript",
+        "description": "Vitessce is a visual integration tool for exploration of spatial single-cell experiments. ",
+        "days_since_push": 0
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Interactive visualisation of spatial transcriptomics data",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.6019/tol.st-data-visualisation-w.2026.00001.1",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/CTX/C8425"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:44.572429+00:00"
+  },
+  {
+    "id": "napari-spatialdata",
+    "name": "napari-spatialdata",
+    "category": "visualisation",
+    "github": "scverse/napari-spatialdata",
+    "maturity": "I",
+    "reality_check": "local interactive annotation over SpatialData objects. the annotation loop most projects hand-roll badly.",
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "SpatialData store"
+      ],
+      "output": [
+        "annotations, shapes"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/scverse/napari-spatialdata",
+        "stars": 87,
+        "forks": 24,
+        "open_issues": 73,
+        "pushed_at": "2026-07-02T20:45:31Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "Interactive visualization of spatial omics data",
+        "days_since_push": 25
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:45.237331+00:00"
+  },
+  {
+    "id": "patho-bench",
+    "name": "Patho-Bench",
+    "category": "benchmark-harness",
+    "tasks": [
+      "model-evaluation"
+    ],
+    "org": "Mahmood Lab",
+    "paper": "https://arxiv.org/abs/2502.06750",
+    "github": "mahmoodlab/patho-bench",
+    "hf": "MahmoodLab/patho-bench",
+    "maturity": "I",
+    "reality_check": "42 public WSI-level and patient-level tasks with canonical train-test splits across six families - morphological subtyping, tumour grading, molecular subtyping, mutation prediction, treatment response, survival. handles thousands of parallel experiments. the most extensive public computational pathology benchmark released to date.\n",
+    "tissue": "pan-cancer, 42 tasks",
+    "data_types": {
+      "input": [
+        "slide/patient features h5"
+      ],
+      "output": [
+        "benchmark metrics with canonical splits"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/Patho-Bench",
+        "stars": 152,
+        "forks": 30,
+        "open_issues": 11,
+        "pushed_at": "2025-11-07T18:23:02Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Python",
+        "description": "Standardized benchmark for computational pathology foundation models. ",
+        "days_since_push": 263
+      },
+      "hf": {
+        "status": "gated",
+        "url": "https://huggingface.co/MahmoodLab/patho-bench"
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:46.118773+00:00"
+  },
+  {
+    "id": "pathbench",
+    "name": "PathBench",
+    "category": "benchmark-harness",
+    "org": "HKUST (birkhoffkiki)",
+    "github": "birkhoffkiki/PathBench",
+    "docs": "https://birkhoffkiki.github.io/PathBench/",
+    "maturity": "I",
+    "reality_check": "20+ pathology foundation models, multi-organ real-world clinical datasets, 10 validation runs with varied seeds on identical hardware and preprocessing. dynamic leaderboards. check this before believing any single-paper claim.\n",
+    "tissue": "breast, lung, colorectal, prostate, kidney and others",
+    "data_types": {
+      "input": [
+        "WSI + labels"
+      ],
+      "output": [
+        "leaderboard metrics, heatmaps"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/birkhoffkiki/PathBench",
+        "stars": 27,
+        "forks": 2,
+        "open_issues": 0,
+        "pushed_at": "2025-12-19T16:07:13Z",
+        "archived": false,
+        "license": null,
+        "language": "TypeScript",
+        "description": null,
+        "days_since_push": 221
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:46.754748+00:00"
+  },
+  {
+    "id": "spddb",
+    "name": "spDDB",
+    "category": "benchmark-harness",
+    "tasks": [
+      "deconvolution-benchmark",
+      "domain-detection-benchmark"
+    ],
+    "paper": "https://www.biorxiv.org/content/10.64898/2026.05.11.724248v1.full",
+    "maturity": "I",
+    "reality_check": "21 deconvolution methods across 37 datasets, 4 technologies, plus SynthST (graph attention autoencoder simulator) and a bivariate Geary's C metric. May 2026, the current reference.\n",
+    "tissue": "brain, cancer, multi-organ; 37 datasets",
+    "data_types": {
+      "input": [
+        "ST + reference"
+      ],
+      "output": [
+        "deconvolution and domain benchmark metrics",
+        "SynthST simulations"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "literature": {
+        "status": "ok",
+        "title": "A Comprehensive Benchmarking of Spatial Deconvolution and Domain Detection Methods across Diverse Tissues and Spatial Transcriptomic Technologies",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.05.11.724248",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1210192"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:47.307599+00:00"
+  },
+  {
+    "id": "spotless",
+    "name": "Spotless",
+    "category": "benchmark-harness",
+    "tasks": [
+      "deconvolution-benchmark"
+    ],
+    "paper": "https://elifesciences.org/articles/88431",
+    "github": "saeyslab/spotless-benchmark",
+    "maturity": "I",
+    "reality_check": "reproducible nextflow benchmarking pipeline. the source of the \"plain regression beats half of them\" finding.",
+    "tissue": "multi-organ, synthetic + real",
+    "data_types": {
+      "input": [
+        "ST + scRNA reference"
+      ],
+      "output": [
+        "benchmark metrics"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/saeyslab/spotless-benchmark",
+        "stars": 37,
+        "forks": 5,
+        "open_issues": 0,
+        "pushed_at": "2025-05-13T14:16:27Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "R",
+        "description": "A repository for benchmarking spatial deconvolution and mapping tools",
+        "days_since_push": 441
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Constraining an exoplanet's magnetic field using star-planet interactions.",
+        "journal": "Science (New York, N.Y.)",
+        "year": "2026",
+        "doi": "10.1126/science.adv3075",
+        "pmid": "42348675",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42348675"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:48.224011+00:00"
+  },
+  {
+    "id": "paige-prostate",
+    "name": "Paige Prostate (Detect / Grade & Quantify / Perineural Invasion)",
+    "category": "clinical-product",
+    "tasks": [
+      "prostate-cancer-detection",
+      "gleason-grading"
+    ],
+    "modality": [
+      "H&E prostate core biopsy WSI"
+    ],
+    "org": "Paige (acquired by Tempus, August 2025)",
+    "regulatory": [
+      "FDA de novo class II marketing authorisation, 2021 - first AI in pathology",
+      "EU IVDR certification, 2025 (all three modules)"
+    ],
+    "url": "https://www.paige.ai/diagnostic-ai",
+    "maturity": "C",
+    "reality_check": "reported 7.3 percentage-point sensitivity gain, 70% reduction in false negatives and 24% reduction in false positives in the pivotal study; non-specialists using it matched unassisted specialists. validated across 150+ institutions. adjunct only - it does not make the diagnosis.\n",
+    "tissue": "prostate core biopsy",
+    "data_types": {
+      "input": [
+        "H&E WSI via FullFocus viewer"
+      ],
+      "output": [
+        "suspicious-focus flags",
+        "Gleason grade",
+        "tumour quantification"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {},
+    "_checked_at": "2026-07-28T19:22:48.567280+00:00"
+  },
+  {
+    "id": "ibex-prostate",
+    "name": "Ibex Prostate Detect (Galen Second Read)",
+    "category": "clinical-product",
+    "org": "Ibex Medical Analytics",
+    "regulatory": [
+      "FDA 510(k) clearance",
+      "February 2025"
+    ],
+    "maturity": "C",
+    "reality_check": "second entrant into the regulated prostate niche. the market is validating one organ at a time.",
+    "tissue": "prostate biopsy",
+    "data_types": {
+      "input": [
+        "H&E WSI"
+      ],
+      "output": [
+        "cancer detection flags"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {},
+    "_checked_at": "2026-07-28T19:22:48.908846+00:00"
+  },
+  {
+    "id": "paige-pancancer",
+    "name": "Paige PanCancer Detect",
+    "category": "clinical-product",
+    "regulatory": [
+      "FDA Breakthrough Device Designation",
+      "April 2025 - first for multi-tissue AI assist"
+    ],
+    "maturity": "T",
+    "reality_check": "designation, not clearance. multi-tissue is the hard generalisation problem and this is the first serious attempt at regulatory scale.",
+    "tissue": "multi-tissue",
+    "data_types": {
+      "input": [
+        "H&E WSI"
+      ],
+      "output": [
+        "suspicious-focus flags"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {},
+    "_checked_at": "2026-07-28T19:22:49.253090+00:00"
+  },
+  {
+    "id": "spatial-clinical-gap",
+    "name": "spatial omics clinical status (placeholder row - track, do not adopt)",
+    "category": "clinical-product",
+    "maturity": "T",
+    "reality_check": "THERE IS NO FDA-CLEARED SPATIAL TRANSCRIPTOMICS OR SPATIAL PROTEOMICS DIAGNOSTIC. CLIA/CAP-accredited service labs exist and trials are running (ex. NCT07624981 DIAGNO-KA, spatial transcriptomics for cutaneous precancer progression, active 2026). named blockers are cost at clinical scale, reproducibility across centres, and the absence of multi-centre prospective validation with clinically compliant SOPs. every regulated product above is an H&E morphology classifier.\n",
+    "endorsements": [
+      {
+        "source": "Nature Reviews Bioengineering 2026, Clinical translation of spatial omics",
+        "claim": "dedicated review of the translation gap",
+        "url": "https://www.nature.com/articles/s44222-026-00458-y"
+      },
+      {
+        "source": "PLOS Medicine 2026",
+        "claim": "H&E morphology plus virtual spatial proteomics outperformed conventional approaches for immunotherapy response in lung",
+        "url": "https://journals.plos.org/plosmedicine/article?id=10.1371%2Fjournal.pmed.1005049"
+      }
+    ],
+    "tissue": "all",
+    "data_types": {
+      "input": [
+        "n/a"
+      ],
+      "output": [
+        "n/a"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {},
+    "_checked_at": "2026-07-28T19:22:49.595843+00:00"
+  },
+  {
+    "id": "ist-qc-standards",
+    "name": "imaging-based ST QC metrics and best practice",
+    "category": "standard",
+    "tasks": [
+      "dataset-qc",
+      "reproducibility"
+    ],
+    "paper": "https://www.nature.com/articles/s41587-025-02556-5",
+    "maturity": "I",
+    "reality_check": "standardised metrics for assessment and reproducibility of imaging-based ST (Nat Biotech 2025) plus Xenium-specific best-practice QC workflows (Nat Methods 2025). adopt now - these become submission requirements, and GESTALT (Global Alliance for Spatial Technologies) is pushing them.\n",
+    "tissue": "any IST",
+    "data_types": {
+      "input": [
+        "Xenium/MERFISH/CosMx output"
+      ],
+      "output": [
+        "QC metric set, pass/fail criteria"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "literature": {
+        "status": "not_found"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:53.043195+00:00"
+  },
+  {
+    "id": "gestalt",
+    "name": "GESTALT",
+    "category": "consortium",
+    "paper": "https://www.nature.com/articles/s41588-024-02069-y",
+    "maturity": "I",
+    "reality_check": "the standards body to watch for minimum-information requirements in spatial biology.",
+    "tissue": "all",
+    "data_types": {
+      "input": [
+        "n/a"
+      ],
+      "output": [
+        "minimum-information specifications"
+      ]
+    },
+    "_source_file": "infra.yaml",
+    "_live": {
+      "literature": {
+        "status": "ok",
+        "title": "Usage-based theory and the gestalt language processor: an integrative perspective on language processing",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.1590/scielopreprints.15002",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1161070"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:53.617683+00:00"
+  },
+  {
+    "id": "cellpose-sam",
+    "name": "Cellpose-SAM",
+    "category": "segmentation",
+    "tasks": [
+      "cell-instance-segmentation"
+    ],
+    "model_type": "SAM image encoder + newly trained decoder + Cellpose-style flow postprocessing",
+    "modality": [
+      "phase contrast",
+      "brightfield",
+      "fluorescence microscopy",
+      "H&E"
+    ],
+    "training": {
+      "corpus": "Cellpose generalist corpus + SAM pretraining",
+      "tissues": "multi-modality cell culture and tissue",
+      "public": true
+    },
+    "org": "Stringer/Pachitariu, Janelia",
+    "paper": "https://doi.org/10.1101/2025.04.28.651001",
+    "github": "MouseLand/cellpose",
+    "license": "BSD-3",
+    "maturity": "R",
+    "reality_check": "strongest general default and dominant on phase contrast. a March 2026 comparative study places it among the strongest microscopy-specific baselines and reports it outperforming SAM, SAM3 and CellSAM in aggregate. still needs diameter sanity-checking per dataset.\n",
+    "endorsements": [
+      {
+        "source": "Revisiting foundation models for cell instance segmentation (Archit et al., Mar 2026)",
+        "claim": "outperforms SAM, SAM3 and CellSAM in aggregate; SAM2 excluded as inferior",
+        "url": "https://www.emergentmind.com/topics/cellposesam"
+      },
+      {
+        "source": "bioRxiv 2026.04.18 foundation segmentation benchmark",
+        "claim": "strong performance on phase contrast; SAM-based models consistent on fluorescence cell culture",
+        "url": "https://www.biorxiv.org/content/10.64898/2026.04.18.719315v1"
+      }
+    ],
+    "tissue": "any; cell culture, tissue sections",
+    "data_types": {
+      "input": [
+        "TIFF/PNG 2D or 3D image stacks"
+      ],
+      "output": [
+        "instance label mask (uint16)",
+        "flows"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/MouseLand/cellpose",
+        "stars": 2288,
+        "forks": 642,
+        "open_issues": 63,
+        "pushed_at": "2026-06-14T13:21:03Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "a generalist algorithm for cellular segmentation with human-in-the-loop capabilities",
+        "days_since_push": 44
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 193,
+        "influential_citations": 35,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Cellpose-SAM: superhuman generalization for cellular segmentation",
+        "journal": null,
+        "year": "2025",
+        "doi": "10.1101/2025.04.28.651001",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 108,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1012604"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:54.489277+00:00"
+  },
+  {
+    "id": "stardist",
+    "name": "StarDist",
+    "category": "segmentation",
+    "tasks": [
+      "nuclear-segmentation"
+    ],
+    "model_type": "CNN with star-convex polygon parameterisation",
+    "modality": [
+      "DAPI/Hoechst fluorescence",
+      "H&E",
+      "IHC"
+    ],
+    "org": "Weigert/Schmidt",
+    "paper": "https://arxiv.org/abs/1806.03535",
+    "github": "stardist/stardist",
+    "license": "BSD-3",
+    "maturity": "T",
+    "reality_check": "still the best single choice for IHC and DAPI nuclei despite the foundation model wave. fine-tunes from as few as 20-50 annotated images and is often faster than Cellpose on the same GPU. star-convexity fails on complex whole-cell morphology - nuclei only.\n",
+    "tissue": "histology and DAPI, any organ",
+    "data_types": {
+      "input": [
+        "2D/3D image, nuclear channel"
+      ],
+      "output": [
+        "star-convex polygon instances",
+        "label mask"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/stardist/stardist",
+        "stars": 1245,
+        "forks": 280,
+        "open_issues": 69,
+        "pushed_at": "2026-02-14T16:16:18Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "StarDist - Object Detection with Star-convex Shapes",
+        "days_since_push": 164
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:55.185429+00:00"
+  },
+  {
+    "id": "mesmer",
+    "name": "Mesmer (DeepCell)",
+    "category": "segmentation",
+    "tasks": [
+      "whole-cell-segmentation",
+      "nuclear-segmentation"
+    ],
+    "model_type": "CNN (ResNet-FPN), dual-channel nuclear + membrane input",
+    "modality": [
+      "CODEX",
+      "MIBI",
+      "IMC",
+      "Vectra",
+      "multiplexed IF"
+    ],
+    "training": {
+      "corpus": "TissueNet",
+      "tissues": "multi-tissue multiplexed",
+      "public": true
+    },
+    "org": "Van Valen lab, Caltech",
+    "paper": "https://www.nature.com/articles/s41587-021-01094-0",
+    "github": "vanvalenlab/deepcell-tf",
+    "data": "TissueNet (https://datasets.deepcell.org)",
+    "license": "modified Apache (non-commercial terms)",
+    "maturity": "T",
+    "reality_check": "purpose-built beats generalist here. takes nuclear AND membrane channels and produces masks that respect real membrane boundaries, which generalist models cannot do from a single channel. the default for CyCIF/CODEX/mIHC pipelines.\n",
+    "endorsements": [
+      {
+        "source": "J Imaging 2026 segmentation review",
+        "claim": "strong generalisability across tissues and imaging protocols for multiplexed images",
+        "url": "https://doi.org/10.3390/jimaging12070297"
+      }
+    ],
+    "tissue": "multi-tissue (TissueNet)",
+    "data_types": {
+      "input": [
+        "2-channel image: nuclear + membrane"
+      ],
+      "output": [
+        "whole-cell and nuclear label masks"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/vanvalenlab/deepcell-tf",
+        "stars": 476,
+        "forks": 108,
+        "open_issues": 56,
+        "pushed_at": "2026-06-04T01:21:08Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Python",
+        "description": "Deep Learning Library for Single Cell Analysis",
+        "days_since_push": 54
+      },
+      "literature": {
+        "status": "ok",
+        "title": "micronuclAI enables automated quantification of micronuclei for assessment of chromosomal instability.",
+        "journal": "Communications biology",
+        "year": "2025",
+        "doi": "10.1038/s42003-025-07796-4",
+        "pmid": "40038430",
+        "pmcid": "PMC11880189",
+        "cited_by": 8,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/40038430"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:56.175596+00:00"
+  },
+  {
+    "id": "instanseg",
+    "name": "InstanSeg",
+    "category": "segmentation",
+    "tasks": [
+      "cell-instance-segmentation"
+    ],
+    "model_type": "embedding-based instance segmentation, GPU-efficient",
+    "modality": [
+      "brightfield",
+      "fluorescence",
+      "multiplexed"
+    ],
+    "org": "Edinburgh / QuPath group",
+    "paper": "https://arxiv.org/abs/2408.15954",
+    "github": "instanseg/InstanSeg",
+    "license": "Apache-2.0",
+    "maturity": "R",
+    "reality_check": "fast and QuPath-integrated. benchmarked against Mesmer on CODEX in the 2026 bioRxiv comparison.",
+    "tissue": "brightfield and fluorescence tissue",
+    "data_types": {
+      "input": [
+        "image, arbitrary channels"
+      ],
+      "output": [
+        "instance masks",
+        "QuPath objects"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/instanseg/instanseg",
+        "stars": 232,
+        "forks": 39,
+        "open_issues": 13,
+        "pushed_at": "2026-02-04T20:10:04Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Python",
+        "description": null,
+        "days_since_push": 173
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:56.897149+00:00"
+  },
+  {
+    "id": "cellsam",
+    "name": "CellSAM",
+    "category": "segmentation",
+    "tasks": [
+      "cell-instance-segmentation"
+    ],
+    "model_type": "SAM encoder + box detector + promptable mask decoder",
+    "modality": [
+      "multi-modality microscopy"
+    ],
+    "org": "Van Valen lab",
+    "paper": "https://doi.org/10.1101/2023.11.17.567630",
+    "github": "vanvalenlab/cellSAM",
+    "maturity": "R",
+    "reality_check": "strong on fluorescence cell culture, beaten by Cellpose-SAM in aggregate in the 2026 comparison.",
+    "tissue": "multi-modality culture and tissue",
+    "data_types": {
+      "input": [
+        "image"
+      ],
+      "output": [
+        "instance masks"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/vanvalenlab/cellSAM",
+        "stars": 208,
+        "forks": 37,
+        "open_issues": 49,
+        "pushed_at": "2026-06-04T06:44:21Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Python",
+        "description": "Codebase for \"A Foundation Model for Cell Segmentation\"",
+        "days_since_push": 54
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 90,
+        "influential_citations": 10,
+        "venue": "bioRxiv"
+      },
+      "literature": {
+        "status": "ok",
+        "title": "CellSAM: A Foundation Model for Cell Segmentation",
+        "journal": null,
+        "year": "2023",
+        "doi": "10.1101/2023.11.17.567630",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR761787"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:57.829315+00:00"
+  },
+  {
+    "id": "baysor",
+    "name": "Baysor",
+    "category": "transcript-assignment",
+    "tasks": [
+      "segmentation-free-cell-calling",
+      "transcript-to-cell-assignment"
+    ],
+    "model_type": "Bayesian mixture model over transcript point clouds",
+    "modality": [
+      "MERFISH",
+      "Xenium",
+      "CosMx",
+      "Stereo-seq",
+      "ISS"
+    ],
+    "org": "Kharchenko lab",
+    "paper": "https://www.nature.com/articles/s41587-021-01044-w",
+    "github": "kharchenkolab/Baysor",
+    "license": "MIT",
+    "maturity": "T",
+    "reality_check": "the reference for using molecule positions rather than stains to define cells. essential when membrane staining is poor. Julia, which is a real adoption barrier in python shops.\n",
+    "tissue": "multi-organ IST",
+    "data_types": {
+      "input": [
+        "transcript table (x,y,gene)",
+        "optional prior mask"
+      ],
+      "output": [
+        "cell assignment per molecule",
+        "polygons"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/kharchenkolab/Baysor",
+        "stars": 208,
+        "forks": 42,
+        "open_issues": 40,
+        "pushed_at": "2026-06-26T15:54:58Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "C++",
+        "description": "Bayesian Segmentation of Spatial Transcriptomics Data",
+        "days_since_push": 32
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Cell Segmentation as Strategic Decision Making.",
+        "journal": "Research (Washington, D.C.)",
+        "year": "2026",
+        "doi": "10.34133/research.1304",
+        "pmid": "42232295",
+        "pmcid": "PMC13223358",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42232295"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:58.685228+00:00"
+  },
+  {
+    "id": "rna2seg",
+    "name": "RNA2seg",
+    "category": "transcript-assignment",
+    "tasks": [
+      "cell-segmentation-in-IST"
+    ],
+    "model_type": "teacher-student deep model fusing RNA point clouds with membrane and nuclear stains",
+    "modality": [
+      "MERFISH",
+      "CosMx"
+    ],
+    "training": {
+      "corpus": "4M+ cells",
+      "tissues": "seven organs",
+      "public": true
+    },
+    "org": "Institut Curie",
+    "paper": "https://link.springer.com/article/10.1186/s13059-025-03908-9",
+    "github": "fish-quant/rna2seg",
+    "license": "open",
+    "maturity": "R",
+    "reality_check": "current frontier for imaging-based ST segmentation. superior in zero-shot and few-shot settings against image-based, RNA-based and hybrid approaches including vendor segmentation. published Genome Biology Jan 2026.\n",
+    "tissue": "seven organs (MERFISH, CosMx)",
+    "data_types": {
+      "input": [
+        "transcript point cloud",
+        "membrane + nuclear stains"
+      ],
+      "output": [
+        "cell instance masks",
+        "transcript-cell assignment"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/fish-quant/rna2seg",
+        "stars": 26,
+        "forks": 2,
+        "open_issues": 5,
+        "pushed_at": "2025-05-15T12:11:26Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "rna2seg",
+        "days_since_push": 439
+      },
+      "literature": {
+        "status": "ok",
+        "title": "RNA2seg: a generalist model for cell segmentation in image-based spatial transcriptomics.",
+        "journal": "Genome biology",
+        "year": "2026",
+        "doi": "10.1186/s13059-025-03908-9",
+        "pmid": "41618375",
+        "pmcid": "PMC12934110",
+        "cited_by": 2,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41618375"
+      }
+    },
+    "_checked_at": "2026-07-28T19:22:59.574085+00:00"
+  },
+  {
+    "id": "segmentation-error-correction",
+    "name": "Segmentation error impact and correction (Mason et al.)",
+    "category": "qc",
+    "tasks": [
+      "segmentation-error-quantification"
+    ],
+    "model_type": "analysis / correction method",
+    "modality": [
+      "imaging-based spatial transcriptomics"
+    ],
+    "paper": "https://www.nature.com/articles/s41588-025-02393-x",
+    "maturity": "R",
+    "reality_check": "Nature Genetics 2026. read before trusting any cell-type proportion you have ever computed from IST. segmentation error is the largest single source of downstream irreproducibility in this field.\n",
+    "tissue": "IST, multi-organ",
+    "data_types": {
+      "input": [
+        "segmentation masks",
+        "count matrix"
+      ],
+      "output": [
+        "error estimates",
+        "corrected assignments"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "literature": {
+        "status": "not_found"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:01.752754+00:00"
+  },
+  {
+    "id": "valis",
+    "name": "VALIS",
+    "category": "registration",
+    "tasks": [
+      "wsi-registration",
+      "multi-stain-alignment",
+      "3d-reconstruction"
+    ],
+    "model_type": "feature-based + non-rigid registration, ome.tiff output",
+    "modality": [
+      "brightfield WSI",
+      "immunofluorescence WSI"
+    ],
+    "org": "Moffitt (Gatenby/Anderson group)",
+    "paper": "https://www.nature.com/articles/s41467-023-40218-9",
+    "github": "MathOnco/valis",
+    "license": "MIT",
+    "maturity": "T",
+    "reality_check": "aligns arbitrary numbers of brightfield and/or IF WSIs and writes ome.tiff, which is the part that actually matters - registration is a two-part problem and applying transforms to multi-gigapixel images is the half everyone underestimates. reports state-of-the-art accuracy on public benchmarks for both registration and 3D reconstruction.\n",
+    "tissue": "any; serial and multi-stain",
+    "data_types": {
+      "input": [
+        "brightfield + IF WSI (any format)"
+      ],
+      "output": [
+        "registered ome.tiff",
+        "transformation matrices",
+        "3D stack"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/MathOnco/valis",
+        "stars": 234,
+        "forks": 65,
+        "open_issues": 117,
+        "pushed_at": "2025-06-25T15:01:36Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "Virtual Alignment of pathoLogy Image Series",
+        "days_since_push": 398
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Determinants of cervical screening in Ghana: a systematic review.",
+        "journal": "BMJ open",
+        "year": "2026",
+        "doi": "10.1136/bmjopen-2025-111770",
+        "pmid": "42425573",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42425573"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:02.798041+00:00"
+  },
+  {
+    "id": "ashlar",
+    "name": "ASHLAR",
+    "category": "registration",
+    "tasks": [
+      "cyclic-if-registration",
+      "tile-stitching"
+    ],
+    "model_type": "phase-correlation stitching and cycle alignment",
+    "modality": [
+      "CyCIF",
+      "cyclic IF",
+      "mIHC"
+    ],
+    "org": "Laboratory of Systems Pharmacology, Harvard",
+    "paper": "https://academic.oup.com/bioinformatics/article/38/19/4613/6668279",
+    "github": "labsyspharm/ashlar",
+    "license": "MIT",
+    "maturity": "T",
+    "reality_check": "the HTAN-native cycle registration step. if you run MCMICRO you are already running this.",
+    "tissue": "any; cyclic IF",
+    "data_types": {
+      "input": [
+        "per-cycle tiled images"
+      ],
+      "output": [
+        "stitched registered OME-TIFF pyramid"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/labsyspharm/ashlar",
+        "stars": 180,
+        "forks": 54,
+        "open_issues": 73,
+        "pushed_at": "2026-05-14T17:51:08Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "ASHLAR: Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+        "days_since_push": 75
+      },
+      "literature": {
+        "status": "ok",
+        "title": "STARCall integrates image stitching, alignment, and read calling to enable scalable analysis of in situ sequencing data.",
+        "journal": "PLoS computational biology",
+        "year": "2026",
+        "doi": "10.1371/journal.pcbi.1013689",
+        "pmid": "42044152",
+        "pmcid": "PMC13160441",
+        "cited_by": 1,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42044152"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:03.675575+00:00"
+  },
+  {
+    "id": "coda",
+    "name": "CODA",
+    "category": "3d-reconstruction",
+    "tasks": [
+      "serial-section-3d-reconstruction",
+      "microanatomy-segmentation",
+      "cell-detection"
+    ],
+    "model_type": "image registration + deep semantic segmentation + cell detection",
+    "modality": [
+      "serial H&E histology"
+    ],
+    "training": {
+      "corpus": "institution-specific",
+      "tissues": "pancreas (primary)",
+      "extended to other organs": null,
+      "public": "partial"
+    },
+    "org": "Kiemen / Wirtz lab, JHU",
+    "paper": "https://www.nature.com/articles/s41592-022-01650-9",
+    "github": "ashleylk/CODA",
+    "license": "academic",
+    "maturity": "T",
+    "reality_check": "builds micron-resolution 3D maps from serial H&E and can carry molecular and mutational data into the volume. destructive by design - section loss and tearing are the practical limiters, not the software. every third section (~12um) is the published sampling.\n",
+    "tissue": "pancreas primary; extended to other organs",
+    "data_types": {
+      "input": [
+        "serial H&E WSI, every ~12um"
+      ],
+      "output": [
+        "3D labelled volume",
+        "microanatomy segmentation",
+        "cell coordinates"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/ashleylk/CODA",
+        "stars": 65,
+        "forks": 15,
+        "open_issues": 8,
+        "pushed_at": "2024-05-07T20:47:08Z",
+        "archived": false,
+        "license": null,
+        "language": "MATLAB",
+        "description": "version 1 scripts for CODA ",
+        "days_since_push": 811
+      },
+      "literature": {
+        "status": "ok",
+        "title": "CoDA: Interactive Segmentation and Morphological Analysis of Dendroid Structures Exemplified on Stony Cold-Water Corals.",
+        "journal": "IEEE transactions on visualization and computer graphics",
+        "year": "2026",
+        "doi": "10.1109/tvcg.2026.3656066",
+        "pmid": "41632664",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/41632664"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:05.340187+00:00"
+  },
+  {
+    "id": "paste",
+    "name": "PASTE / PASTE2",
+    "category": "alignment",
+    "tasks": [
+      "st-slice-alignment",
+      "3d-stacking"
+    ],
+    "model_type": "fused Gromov-Wasserstein optimal transport",
+    "modality": [
+      "Visium",
+      "Slide-seq",
+      "spatial transcriptomics"
+    ],
+    "org": "Raphael lab, Princeton",
+    "paper": "https://www.nature.com/articles/s41592-022-01459-6",
+    "github": "raphael-group/paste",
+    "license": "BSD-3",
+    "maturity": "R",
+    "reality_check": "PASTE2 handles partial overlap between slices, which PASTE cannot. use PASTE2 for real serial data.",
+    "tissue": "multi-organ ST",
+    "data_types": {
+      "input": [
+        "AnnData per slice + coordinates"
+      ],
+      "output": [
+        "pairwise alignment matrix",
+        "stacked 3D coordinates"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/raphael-group/paste",
+        "stars": 103,
+        "forks": 21,
+        "open_issues": 7,
+        "pushed_at": "2025-02-26T14:37:00Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "Probabilistic Alignment of Spatial Transcriptomics Experiments",
+        "days_since_push": 517
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Tissue tearing degrades optimal-transport and diffeomorphic registration of spatial transcriptomics beyond displacement magnitude: a multi-seed deformation benchmark and a supervised graph cross-attention proof-of-concept",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.06.30.735390",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1272041"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:06.485728+00:00"
+  },
+  {
+    "id": "stalign",
+    "name": "STalign",
+    "category": "alignment",
+    "tasks": [
+      "st-to-atlas-alignment",
+      "cross-technology-alignment"
+    ],
+    "model_type": "diffeomorphic metric mapping (LDDMM)",
+    "modality": [
+      "Visium",
+      "MERFISH",
+      "Slide-seq",
+      "histology"
+    ],
+    "org": "JEFworks lab, JHU",
+    "paper": "https://www.nature.com/articles/s41467-023-43915-7",
+    "github": "JEFworks-Lab/STalign",
+    "license": "GPL-3",
+    "maturity": "R",
+    "reality_check": "the right tool when aligning ST to a reference atlas rather than slice-to-slice.",
+    "tissue": "brain and multi-organ",
+    "data_types": {
+      "input": [
+        "ST coordinates",
+        "reference atlas or histology"
+      ],
+      "output": [
+        "diffeomorphic transform",
+        "aligned coordinates"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/JEFworks-Lab/STalign",
+        "stars": 103,
+        "forks": 26,
+        "open_issues": 23,
+        "pushed_at": "2023-12-11T21:09:28Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "HTML",
+        "description": "Python tool for alignment of spatial transcriptomics (ST) data using diffeomorphic metric mapping",
+        "days_since_push": 959
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Tissue tearing degrades optimal-transport and diffeomorphic registration of spatial transcriptomics beyond displacement magnitude: a multi-seed deformation benchmark and a supervised graph cross-attention proof-of-concept",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.06.30.735390",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1272041"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:07.464607+00:00"
+  },
+  {
+    "id": "openst",
+    "name": "Open-ST",
+    "category": "platform + 3d",
+    "tasks": [
+      "subcellular-st-protocol",
+      "serial-registration",
+      "3d-virtual-tissue-block"
+    ],
+    "model_type": "wet-lab protocol + computational pipeline",
+    "modality": [
+      "open-source subcellular spatial transcriptomics"
+    ],
+    "org": "Rajewsky lab, MDC Berlin",
+    "paper": "https://www.cell.com/cell/fulltext/S0092-8674(24)00636-6",
+    "github": "rajewsky-lab/openst",
+    "license": "open",
+    "maturity": "R",
+    "reality_check": "end-to-end 2D/3D protocol plus tooling including serial-section registration and virtual tissue block reconstruction. the lowest-cost route into volumetric ST, since it is not tied to a commercial platform.\n",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "Open-ST raw reads",
+        "serial section images"
+      ],
+      "output": [
+        "AnnData",
+        "3D virtual tissue block"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/rajewsky-lab/openst",
+        "stars": 116,
+        "forks": 21,
+        "open_issues": 21,
+        "pushed_at": "2025-07-04T14:54:50Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "HTML",
+        "description": "Open-ST: profile and analyze tissue transcriptomes in 3D with high resolution in your lab",
+        "days_since_push": 389
+      },
+      "literature": {
+        "status": "ok",
+        "title": "KaroSpace: a rapid-access framework for interactive exploration of multi-sample spatial omics data",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.03.10.710790",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/PPR/PPR1220275"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:08.636869+00:00"
+  },
+  {
+    "id": "soapy",
+    "name": "SOAPy",
+    "category": "alignment",
+    "tasks": [
+      "multi-modal-spatial-integration",
+      "landmark-registration"
+    ],
+    "modality": [
+      "multi-platform spatial omics"
+    ],
+    "paper": "https://www.nature.com/articles/s41467-024-52368-5",
+    "github": "LiHongCSBLab/SOAPy",
+    "maturity": "R",
+    "reality_check": "cited in the Advanced Science 2026 guide as a reference for landmark-aware cross-platform registration.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "multi-platform spatial data"
+      ],
+      "output": [
+        "aligned multi-modal object"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/LiHongCSBLab/SOAPy",
+        "stars": 34,
+        "forks": 3,
+        "open_issues": 5,
+        "pushed_at": "2025-02-25T05:34:28Z",
+        "archived": false,
+        "license": "AGPL-3.0",
+        "language": "Jupyter Notebook",
+        "description": null,
+        "days_since_push": 518
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Odor Modification in Rigid Polyethylene Waste: Impact of Different Washing on Sensory Analysis and Characterization.",
+        "journal": "Global challenges (Hoboken, NJ)",
+        "year": "2026",
+        "doi": "10.1002/gch2.70114",
+        "pmid": "42253839",
+        "pmcid": "PMC13240158",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42253839"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:09.540986+00:00"
+  },
+  {
+    "id": "cell2location",
+    "name": "cell2location",
+    "category": "deconvolution",
+    "tasks": [
+      "spot-deconvolution",
+      "cell-abundance-estimation"
+    ],
+    "model_type": "Bayesian hierarchical model (pyro/scvi-tools)",
+    "modality": [
+      "Visium",
+      "Slide-seq",
+      "ST"
+    ],
+    "org": "Bayraktar lab, Sanger",
+    "paper": "https://www.nature.com/articles/s41587-021-01139-4",
+    "github": "BayraktarLab/cell2location",
+    "license": "Apache-2.0",
+    "maturity": "T",
+    "reality_check": "estimates absolute densities rather than proportions and models technical variation explicitly. consistently top-2 across independent benchmarks. slow, GPU-hungry, and sensitive to reference quality - a bad scRNA reference beats the algorithm every time.\n",
+    "endorsements": [
+      {
+        "source": "bioRxiv 2026 spDDB (21 methods, 37 datasets, 4 technologies)",
+        "claim": "top-performing alongside RCTD and SONAR",
+        "url": "https://www.biorxiv.org/content/10.64898/2026.05.11.724248v1.full"
+      },
+      {
+        "source": "eLife Spotless benchmark",
+        "claim": "top-performing with RCTD and SpatialDWLS",
+        "url": "https://elifesciences.org/articles/88431"
+      },
+      {
+        "source": "Nature Communications 2023 (18 methods, 50 datasets)",
+        "claim": "best methods are CARD, cell2location and Tangram",
+        "url": "https://www.nature.com/articles/s41467-023-37168-7"
+      }
+    ],
+    "tissue": "multi-organ (brain, gut, lymphoid, tumour)",
+    "data_types": {
+      "input": [
+        "Visium AnnData",
+        "scRNA reference AnnData"
+      ],
+      "output": [
+        "absolute cell-type abundance per spot (posterior)"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/BayraktarLab/cell2location",
+        "stars": 452,
+        "forks": 74,
+        "open_issues": 141,
+        "pushed_at": "2026-07-13T21:48:31Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Python",
+        "description": "Comprehensive mapping of tissue cell architecture via integrated single cell and spatial transcriptomics (cell2location model)",
+        "days_since_push": 14
+      },
+      "literature": {
+        "status": "ok",
+        "title": "A Comprehensive Benchmarking of Spatial Deconvolution and Domain Detection Methods across Diverse Tissues and Spatial Transcriptomic Technologies",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.21203/rs.3.rs-9676637/v1",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/PPR/PPR1249492"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:10.403491+00:00"
+  },
+  {
+    "id": "rctd",
+    "name": "RCTD (spacexr)",
+    "category": "deconvolution",
+    "tasks": [
+      "spot-deconvolution"
+    ],
+    "model_type": "supervised probabilistic MLE with platform-effect correction",
+    "modality": [
+      "Visium",
+      "Slide-seq"
+    ],
+    "org": "Macosko/Irizarry labs, Broad",
+    "paper": "https://www.nature.com/articles/s41587-021-00830-w",
+    "github": "dmcable/spacexr",
+    "license": "GPL-3",
+    "maturity": "T",
+    "reality_check": "top-2 in essentially every benchmark and much faster than cell2location. R-only.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "Visium/Slide-seq counts",
+        "scRNA reference"
+      ],
+      "output": [
+        "cell-type weights per spot"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/dmcable/spacexr",
+        "stars": 473,
+        "forks": 94,
+        "open_issues": 73,
+        "pushed_at": "2026-01-22T15:04:34Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "HTML",
+        "description": "Spatial-eXpression-R: Cell type identification (including cell type mixtures) and cell type-specific differential expression for spatial transcriptomics",
+        "days_since_push": 187
+      },
+      "literature": {
+        "status": "ok",
+        "title": "A Meta-Review of Spatial Transcriptomics Analysis Software.",
+        "journal": "Cells",
+        "year": "2025",
+        "doi": "10.3390/cells14141060",
+        "pmid": "40710313",
+        "pmcid": "PMC12293887",
+        "cited_by": 1,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/40710313"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:11.827718+00:00"
+  },
+  {
+    "id": "card",
+    "name": "CARD",
+    "category": "deconvolution",
+    "tasks": [
+      "spot-deconvolution"
+    ],
+    "model_type": "conditional autoregressive NMF using spatial correlation",
+    "modality": [
+      "Visium",
+      "ST"
+    ],
+    "paper": "https://www.nature.com/articles/s41587-022-01273-7",
+    "github": "YMa-lab/CARD",
+    "maturity": "R",
+    "reality_check": "uses spatial correlation in the deconvolution itself, unlike most competitors. top-3 in the Nat Commun 2023 benchmark.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "ST counts + coordinates",
+        "scRNA reference"
+      ],
+      "output": [
+        "cell-type proportions",
+        "refined spatial map"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/YMa-lab/CARD",
+        "stars": 136,
+        "forks": 26,
+        "open_issues": 24,
+        "pushed_at": "2024-02-11T23:14:20Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "R",
+        "description": null,
+        "days_since_push": 897
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Endoscopic posterior vault distraction osteogenesis (PVDO): advantages of eliminating the bicoronal incision.",
+        "journal": "Child's nervous system : ChNS : official journal of the International Society for Pediatric Neurosurgery",
+        "year": "2026",
+        "doi": "10.1007/s00381-026-07391-w",
+        "pmid": "42487007",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42487007"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:12.939817+00:00"
+  },
+  {
+    "id": "tangram",
+    "name": "Tangram",
+    "category": "deconvolution + mapping",
+    "tasks": [
+      "sc-to-spatial-mapping",
+      "gene-imputation"
+    ],
+    "model_type": "deep-learning optimal-transport-style alignment",
+    "modality": [
+      "Visium",
+      "MERFISH",
+      "STARmap"
+    ],
+    "org": "Broad Institute",
+    "paper": "https://www.nature.com/articles/s41592-021-01264-7",
+    "github": "broadinstitute/Tangram",
+    "maturity": "R",
+    "reality_check": "maps single cells onto space rather than estimating proportions - different question, often the one you actually want.",
+    "tissue": "brain, multi-organ",
+    "data_types": {
+      "input": [
+        "scRNA AnnData",
+        "spatial AnnData"
+      ],
+      "output": [
+        "cell-to-spot mapping matrix",
+        "imputed genes"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/broadinstitute/Tangram",
+        "stars": 370,
+        "forks": 66,
+        "open_issues": 64,
+        "pushed_at": "2025-07-01T21:31:14Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Jupyter Notebook",
+        "description": "Spatial alignment of single cell transcriptomic data. ",
+        "days_since_push": 391
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Consistently longer silent gaps in autistic speaker pairs across three conversational contexts.",
+        "journal": "Scientific reports",
+        "year": "2026",
+        "doi": "10.1038/s41598-026-53132-z",
+        "pmid": "42141075",
+        "pmcid": "PMC13179315",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42141075"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:13.966189+00:00"
+  },
+  {
+    "id": "baseline-regression",
+    "name": "plain NNLS / ridge regression baseline",
+    "category": "deconvolution",
+    "tasks": [
+      "spot-deconvolution"
+    ],
+    "model_type": "linear",
+    "maturity": "I",
+    "reality_check": "ALWAYS RUN THIS. the Spotless benchmark found a simple regression model outperforms almost half of dedicated spatial deconvolution methods. if your fancy method cannot beat NNLS on your data, it is not earning its dependency.\n",
+    "endorsements": [
+      {
+        "source": "eLife Spotless",
+        "claim": "a simple regression model outperforms almost half of dedicated deconvolution methods",
+        "url": "https://elifesciences.org/articles/88431"
+      }
+    ],
+    "tissue": "any",
+    "data_types": {
+      "input": [
+        "ST counts",
+        "reference signature matrix"
+      ],
+      "output": [
+        "proportions"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {},
+    "_checked_at": "2026-07-28T19:23:14.307527+00:00"
+  },
+  {
+    "id": "bayesspace",
+    "name": "BayesSpace",
+    "category": "domain-detection",
+    "model_type": "Bayesian Markov random field, sub-spot resolution enhancement",
+    "modality": [
+      "Visium",
+      "ST"
+    ],
+    "paper": "https://www.nature.com/articles/s41587-021-00935-2",
+    "github": "edward130603/BayesSpace",
+    "maturity": "R",
+    "reality_check": "strong on layered tissue (brain cortex), weaker on irregular tumour architecture.",
+    "tissue": "layered tissue, brain cortex, tumour",
+    "data_types": {
+      "input": [
+        "Visium counts + coordinates"
+      ],
+      "output": [
+        "spatial domain labels",
+        "enhanced sub-spot resolution"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/edward130603/BayesSpace",
+        "stars": 181,
+        "forks": 26,
+        "open_issues": 54,
+        "pushed_at": "2026-01-08T15:44:14Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "R",
+        "description": "Bayesian model for clustering and enhancing the resolution of spatial gene expression experiments.",
+        "days_since_push": 201
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Histology-informed spatial domain identification through multi-view graph convolutional networks.",
+        "journal": "PLoS computational biology",
+        "year": "2026",
+        "doi": "10.1371/journal.pcbi.1014281",
+        "pmid": "42224211",
+        "pmcid": "PMC13225418",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42224211"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:15.192596+00:00"
+  },
+  {
+    "id": "spagcn",
+    "name": "SpaGCN",
+    "category": "domain-detection",
+    "model_type": "graph convolutional network integrating expression, position and histology",
+    "modality": [
+      "Visium",
+      "MERFISH",
+      "Slide-seq"
+    ],
+    "paper": "https://www.nature.com/articles/s41592-021-01255-8",
+    "github": "jianhuupenn/SpaGCN",
+    "maturity": "R",
+    "reality_check": "one of the few that actually consumes the H&E image alongside expression.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "ST counts",
+        "coordinates",
+        "H&E image"
+      ],
+      "output": [
+        "spatial domain labels",
+        "SVG list"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/jianhuupenn/SpaGCN",
+        "stars": 265,
+        "forks": 67,
+        "open_issues": 25,
+        "pushed_at": "2026-02-09T14:33:32Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": "SpaGCN: Integrating gene expression, spatial location and histology to identify spatial domains and spatially variable genes by graph convolutional network",
+        "days_since_push": 169
+      },
+      "literature": {
+        "status": "ok",
+        "title": "ModelistsGCN: a multimodal graph convolutional network framework for single-cell spatial transcriptomic cell typing.",
+        "journal": "Briefings in bioinformatics",
+        "year": "2026",
+        "doi": "10.1093/bib/bbag340",
+        "pmid": "42328843",
+        "pmcid": "PMC13284712",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42328843"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:16.015802+00:00"
+  },
+  {
+    "id": "graphst",
+    "name": "GraphST",
+    "category": "domain-detection + deconvolution",
+    "model_type": "graph self-supervised contrastive learning",
+    "modality": [
+      "Visium",
+      "Stereo-seq",
+      "Slide-seq"
+    ],
+    "paper": "https://www.nature.com/articles/s41467-023-36796-3",
+    "github": "JinmiaoChenLab/GraphST",
+    "maturity": "R",
+    "reality_check": "best-performing alongside cell2location in the SpatialPrompt comparison. does domains and deconvolution in one model.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "ST counts + coordinates",
+        "optional scRNA reference"
+      ],
+      "output": [
+        "domain labels",
+        "cell-type proportions",
+        "embedding"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/JinmiaoChenLab/GraphST",
+        "stars": 162,
+        "forks": 24,
+        "open_issues": 47,
+        "pushed_at": "2024-03-19T03:01:34Z",
+        "archived": false,
+        "license": "AGPL-3.0",
+        "language": "Python",
+        "description": null,
+        "days_since_push": 861
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Histology-informed spatial domain identification through multi-view graph convolutional networks.",
+        "journal": "PLoS computational biology",
+        "year": "2026",
+        "doi": "10.1371/journal.pcbi.1014281",
+        "pmid": "42224211",
+        "pmcid": "PMC13225418",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42224211"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:16.900291+00:00"
+  },
+  {
+    "id": "cellcharter",
+    "name": "CellCharter",
+    "category": "niche-detection",
+    "model_type": "scaled Gaussian mixture over neighbourhood-aggregated embeddings",
+    "modality": [
+      "IMC",
+      "CODEX",
+      "Visium",
+      "Xenium",
+      "MERFISH"
+    ],
+    "org": "Ciriello lab, Lausanne",
+    "paper": "https://www.nature.com/articles/s41588-023-01588-4",
+    "github": "CSOgroup/cellcharter",
+    "maturity": "R",
+    "reality_check": "scales to millions of cells and works on proteomics as well as transcriptomics, which most domain methods do not. the standard for tissue-remodelling and plasticity niches.\n",
+    "tissue": "multi-organ; works on proteomics and transcriptomics",
+    "data_types": {
+      "input": [
+        "cell-level embedding + coordinates"
+      ],
+      "output": [
+        "niche labels",
+        "neighbourhood composition"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/CSOgroup/cellcharter",
+        "stars": 182,
+        "forks": 9,
+        "open_issues": 16,
+        "pushed_at": "2026-07-26T15:01:01Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "A Python package for the identification, characterization and comparison of spatial clusters from spatial -omics data.",
+        "days_since_push": 2
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Comparison and optimization of cellular neighbor preference methods for quantitative tissue analysis.",
+        "journal": "Nature communications",
+        "year": "2026",
+        "doi": "10.1038/s41467-026-71699-z",
+        "pmid": "41986357",
+        "pmcid": "PMC13083810",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41986357"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:17.809350+00:00"
+  },
+  {
+    "id": "banksy",
+    "name": "BANKSY",
+    "category": "domain-detection",
+    "model_type": "neighbourhood-augmented feature space (azimuthal Gabor filters)",
+    "modality": [
+      "Visium",
+      "Slide-seq",
+      "MERFISH",
+      "CosMx"
+    ],
+    "paper": "https://www.nature.com/articles/s41588-024-01664-3",
+    "github": "prabhakarlab/Banksy",
+    "maturity": "R",
+    "reality_check": "unifies cell typing and domain segmentation in one embedding. fast, and unusually easy to reason about.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "counts + coordinates"
+      ],
+      "output": [
+        "cell type and domain labels in one embedding"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/prabhakarlab/Banksy",
+        "stars": 158,
+        "forks": 24,
+        "open_issues": 17,
+        "pushed_at": "2026-05-30T04:39:15Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "R",
+        "description": "BANKSY: spatial clustering",
+        "days_since_push": 59
+      },
+      "literature": {
+        "status": "ok",
+        "title": "JGR-NMF: joint graph-regularized non-negative matrix factorization for spatial domain identification.",
+        "journal": "PeerJ",
+        "year": "2026",
+        "doi": "10.7717/peerj.20585",
+        "pmid": "41695707",
+        "pmcid": "PMC12903897",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41695707"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:18.664771+00:00"
+  },
+  {
+    "id": "bass",
+    "name": "BASS",
+    "category": "domain-detection",
+    "model_type": "Bayesian hierarchical, joint multi-slice cell-type and domain inference",
+    "modality": [
+      "multi-slice ST"
+    ],
+    "paper": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02734-7",
+    "github": "zhengli09/BASS",
+    "maturity": "R",
+    "reality_check": "multi-slice consistency is the underserved case and the one consortium data actually needs. this and SpaDo are the options.",
+    "tissue": "multi-slice, brain and tumour",
+    "data_types": {
+      "input": [
+        "multi-slice ST counts + coordinates"
+      ],
+      "output": [
+        "joint cell-type and domain labels across slices"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/zhengli09/BASS",
+        "stars": 33,
+        "forks": 10,
+        "open_issues": 2,
+        "pushed_at": "2025-05-04T16:58:38Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "C++",
+        "description": "Bayesian Analytics for Spatial Segmentation",
+        "days_since_push": 450
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Establishing LMBV infection resistance models in largemouth bass: Exploration and confirmation of pathways and genes relevant to disease resistance in breeding programs",
+        "journal": "Aquaculture.",
+        "year": "2026",
+        "doi": null,
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/AGR/IND609221179"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:19.507608+00:00"
+  },
+  {
+    "id": "spado",
+    "name": "SpaDo",
+    "category": "domain-detection",
+    "model_type": "neighbourhood cell-type-proportion profiles + hierarchical clustering",
+    "modality": [
+      "multi-slice",
+      "cross-platform ST"
+    ],
+    "paper": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03213-x",
+    "github": "bm2-lab/SpaDo",
+    "maturity": "R",
+    "reality_check": "cross-slice domain annotation and large-scale clustering across platforms. infrastructure for stack-aware reasoning.",
+    "tissue": "multi-slice, cross-platform",
+    "data_types": {
+      "input": [
+        "multi-slice ST or cell-type annotations"
+      ],
+      "output": [
+        "cross-slice domain labels"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/bm2-lab/SpaDo",
+        "stars": 13,
+        "forks": 3,
+        "open_issues": 1,
+        "pushed_at": "2024-12-13T00:58:51Z",
+        "archived": false,
+        "license": "GPL-2.0",
+        "language": "R",
+        "description": "Multi-slice Spatial Transcriptome Domain Analysis.",
+        "days_since_push": 592
+      },
+      "literature": {
+        "status": "ok",
+        "title": "MMSpa is a deep learning-based tool that enhances the identification of spatial domains in spatial transcriptomics studies.",
+        "journal": "PLoS biology",
+        "year": "2026",
+        "doi": "10.1371/journal.pbio.3003580",
+        "pmid": "41490241",
+        "pmcid": "PMC12768284",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41490241"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:20.405824+00:00"
+  },
+  {
+    "id": "cellchat",
+    "name": "CellChat",
+    "category": "cell-cell-communication",
+    "model_type": "mass-action law of communication probability + pattern recognition",
+    "modality": [
+      "scRNA-seq",
+      "spatial transcriptomics"
+    ],
+    "paper": "https://www.nature.com/articles/s41467-021-21246-9",
+    "github": "jinworks/CellChat",
+    "maturity": "R",
+    "reality_check": "the most-used option. v2 adds spatial constraint; v1 is not spatially aware at all.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "AnnData/Seurat with cell-type labels"
+      ],
+      "output": [
+        "ligand-receptor interaction scores",
+        "signalling pathway networks"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/jinworks/CellChat",
+        "stars": 639,
+        "forks": 108,
+        "open_issues": 366,
+        "pushed_at": "2026-03-04T12:08:33Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "R",
+        "description": "R toolkit for inference, visualization and analysis of cell-cell communication from single-cell and spatially resolved transcriptomics",
+        "days_since_push": 146
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Multi-omics integrative analysis of the glioma microenvironment reveals IDH-dependent cellular communication and prognostic signatures",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.21203/rs.3.rs-10343657/v1",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1283847"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:21.230262+00:00"
+  },
+  {
+    "id": "cellphonedb",
+    "name": "CellPhoneDB v5",
+    "category": "cell-cell-communication",
+    "model_type": "curated LR complexes + permutation testing",
+    "modality": [
+      "scRNA-seq",
+      "spatial"
+    ],
+    "paper": "https://arxiv.org/abs/2311.04567",
+    "github": "ventolab/CellphoneDB",
+    "maturity": "R",
+    "reality_check": "not spatially aware by construction. treat spatial claims from it with suspicion.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "counts + cell-type labels"
+      ],
+      "output": [
+        "LR pairs with permutation p-values"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/ventolab/CellphoneDB",
+        "stars": 478,
+        "forks": 64,
+        "open_issues": 65,
+        "pushed_at": "2025-06-06T09:27:54Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Jupyter Notebook",
+        "description": "CellPhoneDB can be used to search for a particular ligand/receptor, or interrogate your own HUMAN single-cell transcriptomics data.",
+        "days_since_push": 417
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:21.940497+00:00"
+  },
+  {
+    "id": "commot",
+    "name": "COMMOT",
+    "category": "cell-cell-communication",
+    "model_type": "collective optimal transport with spatial distance constraints",
+    "modality": [
+      "Visium",
+      "MERFISH",
+      "Stereo-seq"
+    ],
+    "paper": "https://www.nature.com/articles/s41592-022-01728-4",
+    "github": "zcang/COMMOT",
+    "maturity": "R",
+    "reality_check": "genuinely spatial - transport cost encodes physical distance. the right default for spatial CCC.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "ST counts + coordinates"
+      ],
+      "output": [
+        "spatially constrained LR signalling fields"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/zcang/COMMOT",
+        "stars": 143,
+        "forks": 23,
+        "open_issues": 27,
+        "pushed_at": "2026-06-25T13:59:53Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Python",
+        "description": null,
+        "days_since_push": 33
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Proximity-Aware Graph Attention Networks for Spatially Resolved Cell-Cell Inference",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.04.20.719753",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1213585"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:22.788063+00:00"
+  },
+  {
+    "id": "liana",
+    "name": "LIANA+",
+    "category": "cell-cell-communication",
+    "model_type": "consensus framework wrapping multiple LR methods",
+    "modality": [
+      "scRNA-seq",
+      "spatial",
+      "multi-omics"
+    ],
+    "org": "Saez-Rodriguez lab",
+    "paper": "https://www.nature.com/articles/s41556-024-01469-w",
+    "github": "saezlab/liana-py",
+    "maturity": "R",
+    "reality_check": "the pragmatic answer to method disagreement - run several and take consensus. given the 2026 Genome Biology benchmark showing method performance varies by platform and metric, consensus is defensible where a single method is not.\n",
+    "endorsements": [
+      {
+        "source": "Genome Biology 2026, 9 CCI methods on Visium/Stereo-seq/Xenium",
+        "claim": "performance varies by LR accuracy, spatial coherence, pathway relevance and efficiency - no single winner",
+        "url": "https://link.springer.com/article/10.1186/s13059-026-04063-5"
+      }
+    ],
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "AnnData, optional spatial"
+      ],
+      "output": [
+        "consensus LR ranking across methods"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/saezlab/liana-py",
+        "stars": 306,
+        "forks": 36,
+        "open_issues": 31,
+        "pushed_at": "2026-07-16T13:45:28Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "LIANA+: an all-in-one framework for cell-cell communication",
+        "days_since_push": 12
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Hypothetical food purchase tasks and eating behavior: A systematized review and future directions.",
+        "journal": "Journal of the experimental analysis of behavior",
+        "year": "2026",
+        "doi": "10.1002/jeab.70132",
+        "pmid": "42499228",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42499228"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:23.671869+00:00"
+  },
+  {
+    "id": "hest",
+    "name": "HEST-1k / HEST-Benchmark / HEST-Library",
+    "category": "benchmark + dataset",
+    "tasks": [
+      "gene-expression-from-histology"
+    ],
+    "modality": [
+      "paired H&E WSI + spatial transcriptomics"
+    ],
+    "training": {
+      "corpus": "1229 paired ST + H&E samples, 2.1M expression-morphology pairs, 60M detected nuclei",
+      "tissues": "25 organs, 2 species, 320 cancer samples across 25 subtypes, 131 cohorts",
+      "public": true
+    },
+    "org": "Mahmood Lab",
+    "paper": "https://arxiv.org/abs/2406.16192",
+    "github": "mahmoodlab/HEST",
+    "hf": "MahmoodLab/hest",
+    "license": "open (per-cohort terms vary)",
+    "maturity": "R",
+    "reality_check": "the reference benchmark, and its own authors flag the limits - ST data is inherently noisy and label noise is unavoidable. downstream papers add that HEST-1k is heterogeneous in acquisition technology, resolution, species (mouse-heavy) and therapeutic domain, so topping HEST does not imply transfer to your cohort. best correlations sit near 0.3 Pearson on top variable genes.\n",
+    "endorsements": [
+      {
+        "source": "Nature Communications 2025 multiscale spatial omics integration",
+        "claim": "introduced to address dataset-size limitations, but remains heterogeneous across technology, resolution and species",
+        "url": "https://www.nature.com/articles/s41467-025-66691-y"
+      }
+    ],
+    "tissue": "25 organs, 2 species, 25 cancer subtypes",
+    "data_types": {
+      "input": [
+        "paired H&E WSI + ST"
+      ],
+      "output": [
+        "harmonised AnnData + patches",
+        "benchmark splits",
+        "nuclei segmentations"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/HEST",
+        "stars": 423,
+        "forks": 51,
+        "open_issues": 23,
+        "pushed_at": "2026-04-16T07:48:46Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Jupyter Notebook",
+        "description": "Integrating histology and spatial transcriptomics - NeurIPS 2024",
+        "days_since_push": 103
+      },
+      "hf": {
+        "status": "gated",
+        "url": "https://huggingface.co/MahmoodLab/hest"
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:24.547625+00:00"
+  },
+  {
+    "id": "istar",
+    "name": "iSTAR",
+    "category": "virtual-st",
+    "tasks": [
+      "super-resolution-gene-expression"
+    ],
+    "model_type": "hierarchical ViT feature extraction + expression prediction",
+    "modality": [
+      "H&E + Visium"
+    ],
+    "paper": "https://www.nature.com/articles/s41551-024-01193-8",
+    "github": "daviddaiweizhang/istar",
+    "maturity": "R",
+    "reality_check": "near-single-cell resolution inference from spot data. widely cited as the strongest of the pre-foundation-model generation.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "H&E WSI",
+        "Visium counts"
+      ],
+      "output": [
+        "super-resolution gene expression map"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/daviddaiweizhang/istar",
+        "stars": 169,
+        "forks": 33,
+        "open_issues": 36,
+        "pushed_at": "2024-12-20T19:40:47Z",
+        "archived": false,
+        "license": "GPL-3.0",
+        "language": "Python",
+        "description": null,
+        "days_since_push": 584
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Methodology of peri-operative imaging data reporting for stone disease: a systematic review toward the development of a novel checklist-iSTAR.",
+        "journal": "World journal of urology",
+        "year": "2026",
+        "doi": "10.1007/s00345-026-06433-x",
+        "pmid": "42274829",
+        "pmcid": "PMC13260150",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42274829"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:25.460928+00:00"
+  },
+  {
+    "id": "scellst",
+    "name": "sCellST",
+    "category": "virtual-st",
+    "tasks": [
+      "single-cell-expression-from-histology"
+    ],
+    "model_type": "multiple-instance learning over segmented cells",
+    "modality": [
+      "H&E + Visium"
+    ],
+    "org": "Institut Curie",
+    "paper": "https://www.nature.com/articles/s41467-025-67965-1",
+    "github": "LoicChadoutaud/sCellST",
+    "maturity": "R",
+    "reality_check": "matches patch-based methods at spot level while recovering finer cell populations. the point is that patch-based methods discard subcellular morphology by construction. Nat Commun Jan 2026.\n",
+    "tissue": "breast and other cancers",
+    "data_types": {
+      "input": [
+        "H&E WSI",
+        "Visium counts",
+        "cell segmentations"
+      ],
+      "output": [
+        "per-cell predicted expression"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/sysbio-curie/sCellST",
+        "stars": 28,
+        "forks": 4,
+        "open_issues": 2,
+        "pushed_at": "2026-04-29T10:20:30Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Python",
+        "description": null,
+        "days_since_push": 90
+      },
+      "literature": {
+        "status": "ok",
+        "title": "sCellST predicts single-cell gene expression from H&amp; E images.",
+        "journal": "Nature communications",
+        "year": "2026",
+        "doi": "10.1038/s41467-025-67965-1",
+        "pmid": "41513659",
+        "pmcid": "PMC12858858",
+        "cited_by": 3,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41513659"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:26.640098+00:00"
+  },
+  {
+    "id": "stflow",
+    "name": "STFlow",
+    "category": "virtual-st",
+    "tasks": [
+      "whole-slide-expression-generation"
+    ],
+    "model_type": "flow matching over whole-slide graphs",
+    "modality": [
+      "H&E + HEST-1k / STImage-1K4M"
+    ],
+    "paper": "https://arxiv.org/abs/2506.05361",
+    "maturity": "R",
+    "reality_check": "scalable whole-slide generation rather than per-spot regression. evaluated on HEST-1k with patient-stratified splits.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "H&E WSI"
+      ],
+      "output": [
+        "whole-slide predicted expression"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:27.016755+00:00"
+  },
+  {
+    "id": "triplex",
+    "name": "TRIPLEX",
+    "category": "virtual-st",
+    "model_type": "multi-resolution transformer",
+    "modality": [
+      "H&E + Visium"
+    ],
+    "paper": "https://openaccess.thecvf.com/content/CVPR2024/html/Chung_Accurate_Spatial_Gene_Expression_Prediction_by_Integrating_Multi-Resolution_Features_CVPR_2024_paper.html",
+    "github": "NEXGEM/TRIPLEX",
+    "maturity": "R",
+    "reality_check": "CVPR 2024, multi-resolution context. a standard baseline in the 2025-2026 comparisons.",
+    "tissue": "multi-organ",
+    "data_types": {
+      "input": [
+        "H&E WSI multi-resolution"
+      ],
+      "output": [
+        "spot-level predicted expression"
+      ]
+    },
+    "_source_file": "methods.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/NEXGEM/TRIPLEX",
+        "stars": 52,
+        "forks": 12,
+        "open_issues": 6,
+        "pushed_at": "2025-05-19T02:43:18Z",
+        "archived": false,
+        "license": null,
+        "language": "Python",
+        "description": null,
+        "days_since_push": 435
+      },
+      "literature": {
+        "status": "ok",
+        "title": "RNA\u2022DNA:DNA triplex formation by &lt;i&gt;HIF1\u03b1-AS1&lt;/i&gt; modulates individual base pair stabilities in the &lt;i&gt;adrenomedullin&lt;/i&gt; DNA target duplex.",
+        "journal": "RNA (New York, N.Y.)",
+        "year": "2026",
+        "doi": "10.1261/rna.080909.125",
+        "pmid": "42086308",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42086308"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:28.104994+00:00"
+  },
+  {
+    "id": "virchow2",
+    "name": "Virchow2",
+    "category": "patch-encoder",
+    "tasks": [
+      "tile-embedding",
+      "tile-classification",
+      "biomarker-prediction"
+    ],
+    "model_type": "vision SSL (modified DINOv2), ViT-H/14, 632M params",
+    "modality": [
+      "H&E WSI",
+      "IHC",
+      "multi-stain brightfield"
+    ],
+    "training": {
+      "corpus": "3.1M WSIs / 1.7B tiles, 225401 patients",
+      "tissues": "pan-cancer, globally diverse institutions, mixed magnification, diverse stains",
+      "public": false
+    },
+    "org": "Paige + MSK (with Microsoft Research)",
+    "paper": "https://arxiv.org/abs/2408.00738",
+    "github": null,
+    "hf": "paige-ai/Virchow2",
+    "data": null,
+    "license": "CC-BY-NC-ND-4.0 (gated, institutional email required)",
+    "maturity": "R",
+    "reality_check": "top-tier but not uniformly. CLS+mean-of-patch-tokens embedding is required to reproduce reported numbers, not CLS alone. pretraining corpus is proprietary so benchmark contamination cannot be audited. licence blocks anything commercial.\n",
+    "endorsements": [
+      {
+        "source": "Nature Biomedical Engineering 2025, 19 FMs / 13 cohorts / 6818 patients",
+        "claim": "best vision-only model, significantly better than all others on 6-12 tasks; ties CONCH overall",
+        "url": "https://www.nature.com/articles/s41551-025-01516-3"
+      },
+      {
+        "source": "medRxiv/PMC 2025, 31 FMs across 41 tasks",
+        "claim": "highest mean performance on TCGA tasks (0.706 +/- 0.10); top-3 on CPTAC",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12236927/"
+      },
+      {
+        "source": "Bioengineering 2026 review",
+        "claim": "named top-tier alongside CONCH and H-Optimus-1",
+        "url": "https://www.mdpi.com/2306-5354/13/5/577"
+      }
+    ],
+    "tissue": "pan-cancer, multi-organ (3.1M WSI, globally diverse)",
+    "data_types": {
+      "input": [
+        "SVS/TIFF/OME-TIFF WSI tiles 224px"
+      ],
+      "output": [
+        "1280-d tile embedding (use CLS+mean)"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/paige-ai/Virchow2",
+        "downloads_30d": 73412,
+        "likes": 141,
+        "gated": "auto",
+        "last_modified": "2024-10-26T17:29:19.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "timm",
+          "pytorch",
+          "safetensors",
+          "image-feature-extraction",
+          "PyTorch",
+          "arxiv:2408.00738",
+          "license:cc-by-nc-nd-4.0"
+        ]
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 234,
+        "influential_citations": 44,
+        "venue": "arXiv.org"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:28.667784+00:00"
+  },
+  {
+    "id": "virchow2g",
+    "name": "Virchow2G / Virchow2G-Mini",
+    "category": "patch-encoder",
+    "tasks": [
+      "tile-embedding"
+    ],
+    "model_type": "vision SSL (DINOv2), ViT-G, 1.9B params; Mini distilled to 22M",
+    "modality": [
+      "H&E WSI"
+    ],
+    "training": {
+      "corpus": "1.9B tiles from 3.1M WSIs",
+      "tissues": "pan-cancer",
+      "public": false
+    },
+    "org": "Paige",
+    "paper": "https://arxiv.org/abs/2408.00738",
+    "github": null,
+    "hf": null,
+    "license": "CC-BY-NC-ND-4.0",
+    "maturity": "R",
+    "reality_check": "Virchow2G-Mini at 22M params is competitive with 632M-1.1B models on HEST-Benchmark. if inference cost matters this is the interesting entry, not the giant.\n",
+    "endorsements": [
+      {
+        "source": "Virchow2 paper self-report",
+        "claim": "Virchow2G best average on HEST-Benchmark (0.350), ahead of H-optimus-0 (0.347)",
+        "url": "https://arxiv.org/html/2408.00738v3"
+      }
+    ],
+    "tissue": "pan-cancer, multi-organ",
+    "data_types": {
+      "input": [
+        "WSI tiles"
+      ],
+      "output": [
+        "tile embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:29.076917+00:00"
+  },
+  {
+    "id": "uni",
+    "name": "UNI / UNI2",
+    "category": "patch-encoder",
+    "tasks": [
+      "tile-embedding",
+      "tile-classification",
+      "weakly-supervised-slide"
+    ],
+    "model_type": "vision SSL (DINOv2), ViT-L (UNI) / ViT-H (UNI2)",
+    "modality": [
+      "H&E WSI"
+    ],
+    "training": {
+      "corpus": "100M tiles / ~100k WSIs (Mass-100K)",
+      "tissues": "pan-cancer BWH+MGH+GTEx",
+      "public": false
+    },
+    "org": "Mahmood Lab, Harvard/BWH",
+    "paper": "https://www.nature.com/articles/s41591-024-02857-3",
+    "github": "mahmoodlab/UNI",
+    "hf": "MahmoodLab/UNI",
+    "license": "CC-BY-NC-ND-4.0 (gated)",
+    "maturity": "R",
+    "reality_check": "UNI2 does NOT uniformly beat UNI - at least one 41-task benchmark has UNI ahead (0.70 vs 0.69). do not upgrade on version number. UNI is the most pretraining-token-efficient model tested.\n",
+    "endorsements": [
+      {
+        "source": "Nature Communications 2025 clinical benchmark",
+        "claim": "most efficient model per pretraining dataset size; best on lung NGS mutation tasks",
+        "url": "https://www.nature.com/articles/s41467-025-58796-1"
+      }
+    ],
+    "tissue": "pan-cancer (BWH/MGH/GTEx)",
+    "data_types": {
+      "input": [
+        "WSI tiles 256px"
+      ],
+      "output": [
+        "1024-d (UNI) / 1536-d (UNI2) tile embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/UNI",
+        "stars": 761,
+        "forks": 90,
+        "open_issues": 32,
+        "pushed_at": "2025-03-26T04:45:41Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Jupyter Notebook",
+        "description": "Pathology Foundation Model - Nature Medicine",
+        "days_since_push": 489
+      },
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/MahmoodLab/UNI",
+        "downloads_30d": 48322,
+        "likes": 332,
+        "gated": "auto",
+        "last_modified": "2025-03-06T22:57:31.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "timm",
+          "pytorch",
+          "histology",
+          "pathology",
+          "vision",
+          "self-supervised",
+          "vit",
+          "image-feature-extraction",
+          "en",
+          "license:cc-by-nc-nd-4.0"
+        ]
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Multiple instance learning using pathology foundation models effectively predicts kidney disease diagnosis and clinical classification.",
+        "journal": "Scientific reports",
+        "year": "2025",
+        "doi": "10.1038/s41598-025-19297-9",
+        "pmid": "41068284",
+        "pmcid": "PMC12511320",
+        "cited_by": 1,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/41068284"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:30.402233+00:00"
+  },
+  {
+    "id": "conch",
+    "name": "CONCH / CONCHv1.5",
+    "category": "vision-language-encoder",
+    "tasks": [
+      "tile-embedding",
+      "zero-shot-classification",
+      "cross-modal-retrieval"
+    ],
+    "model_type": "vision-language (CoCa-style contrastive captioning)",
+    "modality": [
+      "H&E WSI",
+      "pathology text captions"
+    ],
+    "training": {
+      "corpus": "1.17M image-caption pairs",
+      "tissues": "pan-cancer",
+      "public": false
+    },
+    "org": "Mahmood Lab",
+    "paper": "https://www.nature.com/articles/s41591-024-02856-4",
+    "github": "mahmoodlab/CONCH",
+    "hf": "MahmoodLab/CONCH",
+    "license": "CC-BY-NC-ND-4.0 (gated)",
+    "maturity": "R",
+    "reality_check": "the quiet winner. far smaller than the giants yet matches Virchow2 overall and leads on prognostic tasks. lower embedding dimension also behaves better under ridge regression - the giants suffer curse-of-dimensionality on small-n spatial tasks.\n",
+    "endorsements": [
+      {
+        "source": "Nature Biomedical Engineering 2025",
+        "claim": "highest AUROC across 29 binary tasks; leads 7 prognostic tasks; on par with Virchow2 overall",
+        "url": "https://www.nature.com/articles/s41551-025-01516-3"
+      },
+      {
+        "source": "HEST-Benchmark",
+        "claim": "best ridge-regression result for gene expression prediction (0.316)",
+        "url": "https://github.com/mahmoodlab/HEST"
+      }
+    ],
+    "tissue": "pan-cancer",
+    "data_types": {
+      "input": [
+        "WSI tiles",
+        "free text"
+      ],
+      "output": [
+        "512-d joint image-text embedding",
+        "zero-shot logits"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/CONCH",
+        "stars": 519,
+        "forks": 53,
+        "open_issues": 16,
+        "pushed_at": "2025-03-26T04:44:28Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Python",
+        "description": "Vision-Language Pathology Foundation Model - Nature Medicine",
+        "days_since_push": 489
+      },
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/MahmoodLab/CONCH",
+        "downloads_30d": 59260,
+        "likes": 184,
+        "gated": "auto",
+        "last_modified": "2024-05-05T06:05:43.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "timm",
+          "pytorch",
+          "pathology",
+          "vision",
+          "vision language",
+          "image-feature-extraction",
+          "en",
+          "license:cc-by-nc-nd-4.0"
+        ]
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Towards robust foundation models for digital pathology.",
+        "journal": "Nature communications",
+        "year": "2026",
+        "doi": "10.1038/s41467-026-73923-2",
+        "pmid": "42277006",
+        "pmcid": "PMC13260997",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42277006"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:31.596199+00:00"
+  },
+  {
+    "id": "prov-gigapath",
+    "name": "Prov-GigaPath",
+    "category": "patch-encoder + slide-encoder",
+    "tasks": [
+      "tile-embedding",
+      "slide-embedding",
+      "mutation-prediction",
+      "subtyping"
+    ],
+    "model_type": "DINOv2 tile encoder (ViT-G) + LongNet slide aggregator (masked autoencoder)",
+    "modality": [
+      "H&E WSI",
+      "IHC WSI"
+    ],
+    "training": {
+      "corpus": "1.3B tiles / 171189 WSIs / 30000+ patients",
+      "tissues": "31 tissue types, Providence Health network, 28 US cancer centers",
+      "public": false
+    },
+    "org": "Microsoft Research + Providence",
+    "paper": "https://www.nature.com/articles/s41586-024-07441-w",
+    "github": "prov-gigapath/prov-gigapath",
+    "hf": "prov-gigapath/prov-gigapath",
+    "license": "gated, non-commercial",
+    "maturity": "R",
+    "reality_check": "excels on lung and pan-cancer - almost certainly because lung is over-represented in pretraining. this is the canonical worked example of why you read pretraining composition before trusting a leaderboard. real-world US cohort, so distribution is closer to clinic than TCGA-trained models.\n",
+    "endorsements": [
+      {
+        "source": "PMC 2025 41-task benchmark",
+        "claim": "highest performance on tumor type classification; top-3 on CPTAC",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12236927/"
+      },
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "cited as the whole-slide foundation model precedent from digital pathology",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "tissue": "31 tissue types, Providence real-world US cohort",
+    "data_types": {
+      "input": [
+        "WSI tiles 256px"
+      ],
+      "output": [
+        "1536-d tile embedding",
+        "slide embedding via LongNet"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/prov-gigapath/prov-gigapath",
+        "stars": 626,
+        "forks": 107,
+        "open_issues": 74,
+        "pushed_at": "2026-07-20T22:21:10Z",
+        "archived": false,
+        "license": "Apache-2.0",
+        "language": "Python",
+        "description": "Prov-GigaPath: A whole-slide foundation model for digital pathology from real-world data",
+        "days_since_push": 7
+      },
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/prov-gigapath/prov-gigapath",
+        "downloads_30d": 90763,
+        "likes": 181,
+        "gated": "auto",
+        "last_modified": "2025-04-21T17:24:43.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "timm",
+          "pytorch",
+          "vision",
+          "medical",
+          "image-feature-extraction",
+          "license:apache-2.0"
+        ]
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Harness Behavioural Analysis for Unpacking the Bio-Interpretability of Pathology Foundation Models",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.21203/rs.3.rs-8090378/v1",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/PPR/PPR1148450"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:32.823495+00:00"
+  },
+  {
+    "id": "h-optimus",
+    "name": "H-optimus-0 / H-optimus-1",
+    "category": "patch-encoder",
+    "tasks": [
+      "tile-embedding",
+      "tile-classification",
+      "slide-level-biomarker"
+    ],
+    "model_type": "vision SSL (DINOv2), ViT-G/14, 1.1B params, 4 register tokens",
+    "modality": [
+      "H&E WSI"
+    ],
+    "training": {
+      "corpus": "500000+ WSIs",
+      "tissues": "undisclosed",
+      "public": false
+    },
+    "org": "Bioptimus",
+    "paper": null,
+    "github": null,
+    "hf": "bioptimus/H-optimus-1",
+    "license": "proprietary / gated",
+    "maturity": "R",
+    "reality_check": "consistently top-3 and no published pretraining description. zero reproducibility and zero contamination auditing possible. fine for a production embedding, weak for a paper where a reviewer asks about data leakage.\n",
+    "endorsements": [
+      {
+        "source": "Bioengineering 2026 review",
+        "claim": "named top-tier alongside Virchow2 and CONCH",
+        "url": "https://www.mdpi.com/2306-5354/13/5/577"
+      }
+    ],
+    "tissue": "undisclosed",
+    "data_types": {
+      "input": [
+        "WSI tiles"
+      ],
+      "output": [
+        "tile embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/bioptimus/H-optimus-1",
+        "downloads_30d": 46247,
+        "likes": 56,
+        "gated": "manual",
+        "last_modified": "2026-06-11T09:00:50.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "timm",
+          "pytorch",
+          "safetensors",
+          "image-feature-extraction",
+          "pathology",
+          "histology",
+          "medical imaging",
+          "self-supervised learning",
+          "vision transformer",
+          "foundation model",
+          "license:cc-by-nc-nd-4.0"
+        ]
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:33.266751+00:00"
+  },
+  {
+    "id": "phikon",
+    "name": "Phikon / Phikon-v2",
+    "category": "patch-encoder",
+    "tasks": [
+      "tile-embedding"
+    ],
+    "model_type": "vision SSL (iBOT / DINOv2), ViT",
+    "modality": [
+      "H&E WSI"
+    ],
+    "training": {
+      "corpus": "TCGA-derived",
+      "tissues": "pan-cancer",
+      "public": true
+    },
+    "org": "Owkin",
+    "paper": "https://arxiv.org/abs/2409.09173",
+    "github": "owkin/HistoSSLscaling",
+    "hf": "owkin/phikon-v2",
+    "license": "open (permissive relative to peers)",
+    "maturity": "R",
+    "reality_check": "the honest open baseline. TCGA-pretrained, which means it is contaminated with respect to TCGA benchmarks - use it on non-TCGA cohorts. underperforms the giants but the licence lets you actually ship.\n",
+    "tissue": "pan-cancer (TCGA)",
+    "data_types": {
+      "input": [
+        "WSI tiles"
+      ],
+      "output": [
+        "tile embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/owkin/HistoSSLscaling",
+        "stars": 172,
+        "forks": 14,
+        "open_issues": 4,
+        "pushed_at": "2024-01-29T22:35:32Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Jupyter Notebook",
+        "description": "Code associated to the publication: Scaling self-supervised learning for histopathology with masked image modeling, A. Filiot et al., MedRxiv (2023). We publicly release Phikon \ud83d\ude80",
+        "days_since_push": 910
+      },
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/owkin/phikon-v2",
+        "downloads_30d": 22431,
+        "likes": 43,
+        "gated": false,
+        "last_modified": "2026-01-19T08:58:52.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "dinov2",
+          "image-feature-extraction",
+          "histology",
+          "pathology",
+          "vision",
+          "pytorch",
+          "self-supervised",
+          "vit",
+          "en",
+          "arxiv:2409.09173",
+          "license:other",
+          "endpoints_compatible"
+        ]
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:34.140915+00:00"
+  },
+  {
+    "id": "titan",
+    "name": "TITAN",
+    "category": "slide-encoder + vision-language",
+    "tasks": [
+      "slide-embedding",
+      "zero-shot-classification",
+      "rare-cancer-retrieval",
+      "report-generation"
+    ],
+    "model_type": "multimodal whole-slide VLM, built on CONCHv1.5 patch features (512px @ 20x)",
+    "modality": [
+      "H&E WSI",
+      "pathology reports",
+      "synthetic captions"
+    ],
+    "training": {
+      "corpus": "335645 WSIs (Mass-340K) + 182000 reports + 423000 PathChat-generated synthetic captions",
+      "tissues": "neoplastic, infectious, inflammatory; BWH/MGH private + GTEx public",
+      "public": "partial (GTEx portion)"
+    },
+    "org": "Mahmood Lab",
+    "paper": "https://www.nature.com/articles/s41591-025-03824-2",
+    "github": "mahmoodlab/TITAN",
+    "hf": "MahmoodLab/TITAN",
+    "data": "https://huggingface.co/MahmoodLab/TITAN (TCGA_TITAN_features.pkl precomputed)",
+    "license": "CC-BY-NC-ND-4.0 (gated, institutional email)",
+    "maturity": "T",
+    "reality_check": "published in Nature Medicine and genuinely strong, but 423k of its captions are machine-generated by PathChat. that is a provenance question nobody is asking loudly enough - a model trained on another model's output, evaluated by the same lab. precomputed TCGA features are a real time-saver.\n",
+    "tissue": "neoplastic/infectious/inflammatory, pan-organ",
+    "data_types": {
+      "input": [
+        "CONCHv1.5 patch features 512px@20x",
+        "pathology report text"
+      ],
+      "output": [
+        "slide embedding",
+        "generated report text",
+        "zero-shot logits"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/TITAN",
+        "stars": 358,
+        "forks": 39,
+        "open_issues": 3,
+        "pushed_at": "2025-12-13T02:04:53Z",
+        "archived": false,
+        "license": null,
+        "language": "Python",
+        "description": "Multimodal Whole Slide Foundation Model for Pathology - Nature Medicine",
+        "days_since_push": 227
+      },
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/MahmoodLab/TITAN",
+        "downloads_30d": 94921,
+        "likes": 95,
+        "gated": "auto",
+        "last_modified": "2025-11-11T12:45:40.000Z",
+        "pipeline_tag": "image-feature-extraction",
+        "tags": [
+          "safetensors",
+          "titan",
+          "histology",
+          "pathology",
+          "vision",
+          "pytorch",
+          "self-supervised",
+          "vit",
+          "image-feature-extraction",
+          "custom_code",
+          "en",
+          "license:cc-by-nc-nd-4.0"
+        ]
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Behind the mask: Hidden dangers of the operating room.",
+        "journal": "American journal of surgery",
+        "year": "2026",
+        "doi": "10.1016/j.amjsurg.2026.117133",
+        "pmid": "42430871",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42430871"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:35.208760+00:00"
+  },
+  {
+    "id": "threads",
+    "name": "THREADS",
+    "category": "slide-encoder",
+    "tasks": [
+      "slide-embedding",
+      "molecular-subtyping"
+    ],
+    "model_type": "molecularly-supervised slide foundation model",
+    "modality": [
+      "H&E WSI",
+      "paired molecular profiles"
+    ],
+    "training": {
+      "corpus": "undisclosed at preprint",
+      "tissues": "pan-cancer",
+      "public": false
+    },
+    "org": "Mahmood Lab",
+    "paper": "https://arxiv.org/abs/2501.16652",
+    "github": null,
+    "hf": null,
+    "maturity": "R",
+    "reality_check": "the interesting idea is supervising slide representations with molecular rather than text labels. preprint stage, no independent evaluation. watchlist, not adoption.\n",
+    "tissue": "pan-cancer",
+    "data_types": {
+      "input": [
+        "patch features",
+        "paired molecular profiles"
+      ],
+      "output": [
+        "slide embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:35.592770+00:00"
+  },
+  {
+    "id": "prism",
+    "name": "PRISM",
+    "category": "slide-encoder + vision-language",
+    "tasks": [
+      "slide-embedding",
+      "report-generation"
+    ],
+    "model_type": "multimodal slide-level model over Virchow tile features",
+    "modality": [
+      "H&E WSI",
+      "clinical reports"
+    ],
+    "training": {
+      "corpus": "587000 WSIs + 195000 paired clinical reports",
+      "tissues": "pan-cancer",
+      "public": false
+    },
+    "org": "Paige",
+    "paper": "https://arxiv.org/abs/2405.10254",
+    "hf": "paige-ai/Prism",
+    "license": "CC-BY-NC-ND-4.0 (gated)",
+    "maturity": "R",
+    "reality_check": "slide-encoder choice moves numbers more than patch-encoder choice. swap this against TITAN before committing.",
+    "tissue": "pan-cancer",
+    "data_types": {
+      "input": [
+        "Virchow tile features",
+        "report text"
+      ],
+      "output": [
+        "slide embedding",
+        "report text"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "hf": {
+        "status": "ok",
+        "url": "https://huggingface.co/paige-ai/Prism",
+        "downloads_30d": 1032,
+        "likes": 37,
+        "gated": "auto",
+        "last_modified": "2025-07-16T14:40:51.000Z",
+        "pipeline_tag": null,
+        "tags": [
+          "transformers",
+          "safetensors",
+          "prism",
+          "nlp",
+          "code",
+          "vision",
+          "PyTorch",
+          "custom_code",
+          "arxiv:2405.10254",
+          "license:cc-by-nc-nd-4.0",
+          "endpoints_compatible"
+        ]
+      },
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:36.075349+00:00"
+  },
+  {
+    "id": "chief",
+    "name": "CHIEF",
+    "category": "slide-encoder",
+    "tasks": [
+      "slide-embedding",
+      "survival-prediction"
+    ],
+    "model_type": "weakly-supervised slide aggregator",
+    "modality": [
+      "H&E WSI"
+    ],
+    "org": "Harvard (Yu lab)",
+    "paper": "https://www.nature.com/articles/s41586-024-07894-z",
+    "github": "hms-dbmi/CHIEF",
+    "maturity": "R",
+    "reality_check": "wrapped by TRIDENT, easy to A/B against TITAN and PRISM.",
+    "tissue": "pan-cancer",
+    "data_types": {
+      "input": [
+        "patch features"
+      ],
+      "output": [
+        "slide embedding",
+        "survival risk score"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/hms-dbmi/CHIEF",
+        "stars": 716,
+        "forks": 117,
+        "open_issues": 50,
+        "pushed_at": "2026-01-08T04:58:12Z",
+        "archived": false,
+        "license": "AGPL-3.0",
+        "language": "Python",
+        "description": "Clinical Histopathology Imaging Evaluation Foundation Model",
+        "days_since_push": 201
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Operating a Street Medicine Program within New York City's Public Health Care System.",
+        "journal": "NEJM catalyst innovations in care delivery",
+        "year": "2026",
+        "doi": "10.1056/cat.25.0334",
+        "pmid": "42454889",
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/MED/42454889"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:37.035974+00:00"
+  },
+  {
+    "id": "pathchat",
+    "name": "PathChat / PathChat DX",
+    "category": "LLM / multimodal assistant",
+    "tasks": [
+      "conversational-diagnosis-support",
+      "caption-generation"
+    ],
+    "model_type": "multimodal LLM (vision encoder + LLM), pathology-instruction-tuned",
+    "modality": [
+      "H&E WSI ROIs",
+      "natural language"
+    ],
+    "org": "Mahmood Lab / Modella AI",
+    "paper": "https://www.nature.com/articles/s41586-024-07618-3",
+    "github": null,
+    "hf": null,
+    "license": "commercial (DX version)",
+    "maturity": "T",
+    "reality_check": "FDA Breakthrough Device Designation - one of the first generative AI tools in pathology to get it. designation is NOT clearance and confers no diagnostic authority. also note PathChat generated the synthetic captions inside TITAN's training set.\n",
+    "tissue": "pan-organ diagnostic",
+    "data_types": {
+      "input": [
+        "ROI image",
+        "natural language"
+      ],
+      "output": [
+        "natural language diagnosis support"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "literature": {
+        "status": "not_found"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:37.637316+00:00"
+  },
+  {
+    "id": "nicheformer",
+    "name": "Nicheformer",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "cell-embedding",
+      "spatial-label-transfer",
+      "niche-density-prediction",
+      "spatial-deconvolution"
+    ],
+    "model_type": "transformer (autoregressive/masked), single-cell + spatial joint pretraining",
+    "modality": [
+      "scRNA-seq dissociated",
+      "imaging-based spatial transcriptomics"
+    ],
+    "training": {
+      "corpus": "SpatialCorpus-110M (110M+ cells; ~57M dissociated + ~53M spatially resolved)",
+      "tissues": "73 human and mouse tissues, 17 organs, 18 cell lines",
+      "public": true
+    },
+    "org": "Theis lab, Helmholtz Munich",
+    "paper": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12695652/",
+    "github": "theislab/nicheformer",
+    "hf": null,
+    "data": "SpatialCorpus-110M",
+    "license": "open",
+    "maturity": "R",
+    "reality_check": "genuinely useful trick - transfers spatial context onto dissociated scRNA-seq, so legacy single-cell archives gain neighbourhood information. but it uses gene expression ONLY and discards spatial coordinates, which several follow-ups call out explicitly.\n",
+    "endorsements": [
+      {
+        "source": "SToFM (ICML 2025)",
+        "claim": "acknowledged as the ST-specialised single-cell model, while noting it ignores spatial coordinates",
+        "url": "https://arxiv.org/pdf/2507.11588"
+      }
+    ],
+    "tissue": "73 human and mouse tissues, 17 organs",
+    "data_types": {
+      "input": [
+        "AnnData (.h5ad) expression, no coordinates used"
+      ],
+      "output": [
+        "cell embedding",
+        "spatial label",
+        "niche density"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/theislab/nicheformer",
+        "stars": 167,
+        "forks": 21,
+        "open_issues": 24,
+        "pushed_at": "2025-11-23T13:38:26Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Jupyter Notebook",
+        "description": "Repository for Nicheformer: a foundation model for single-cell and spatial omics",
+        "days_since_push": 247
+      },
+      "literature": {
+        "status": "ok",
+        "title": "STORM: spatial transcriptomics optimization by resolution via matrix factorization.",
+        "journal": "Briefings in bioinformatics",
+        "year": "2026",
+        "doi": "10.1093/bib/bbag324",
+        "pmid": "42328842",
+        "pmcid": "PMC13284717",
+        "cited_by": 0,
+        "is_oa": "Y",
+        "url": "https://europepmc.org/article/MED/42328842"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:38.482288+00:00"
+  },
+  {
+    "id": "scgpt-spatial",
+    "name": "scGPT-spatial",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "cross-modal-imputation",
+      "deconvolution",
+      "protocol-harmonisation"
+    ],
+    "model_type": "transformer with Mixture-of-Experts decoder, continual pretraining from scGPT",
+    "modality": [
+      "Visium",
+      "Visium HD",
+      "Xenium",
+      "MERFISH"
+    ],
+    "training": {
+      "corpus": "SpatialHuman30M - 30M human cells/spots",
+      "tissues": "human, four protocols",
+      "public": true
+    },
+    "org": "Wang lab, Toronto",
+    "paper": "https://www.biorxiv.org/content/10.1101/2025.02.05.636714",
+    "github": "bowang-lab/scGPT-spatial",
+    "maturity": "R",
+    "reality_check": "the MoE-per-protocol decoder is the right architectural response to platform heterogeneity and is the part worth stealing even if you do not use the model. human-only.\n",
+    "endorsements": [
+      {
+        "source": "Advanced Science 2026 spatial omics guide",
+        "claim": "cited as the reference approach for cross-modal imputation of sparse spatial data",
+        "url": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202520806"
+      }
+    ],
+    "tissue": "human, four ST protocols",
+    "data_types": {
+      "input": [
+        "AnnData spatial (Visium/VisiumHD/Xenium/MERFISH)"
+      ],
+      "output": [
+        "cell/spot embedding",
+        "imputed expression",
+        "deconvolution"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/bowang-lab/scGPT-spatial",
+        "stars": 144,
+        "forks": 15,
+        "open_issues": 11,
+        "pushed_at": "2025-02-13T03:54:12Z",
+        "archived": false,
+        "license": "MIT",
+        "language": "Jupyter Notebook",
+        "description": null,
+        "days_since_push": 530
+      },
+      "literature": {
+        "status": "ok",
+        "title": "scGPT-spatial: Continual Pretraining of Single-Cell Foundation Model for Spatial Transcriptomics",
+        "journal": null,
+        "year": "2025",
+        "doi": "10.1101/2025.02.05.636714",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 16,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR975768"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:39.334394+00:00"
+  },
+  {
+    "id": "kronos",
+    "name": "KRONOS",
+    "category": "spatial-proteomics-FM",
+    "tasks": [
+      "cell-phenotyping",
+      "region-classification",
+      "patient-stratification",
+      "artifact-detection"
+    ],
+    "model_type": "ViT-S/16 DINOv2 with channel-wise stem + sinusoidal marker-identity embeddings",
+    "modality": [
+      "CODEX",
+      "COMET",
+      "IBEX",
+      "and 5 other fluorescence multiplex platforms"
+    ],
+    "training": {
+      "corpus": "SPM-47M - 47M single-marker patches from 3.67M multiplex patches",
+      "tissues": "16 tissue types (normal + malignant), 175 protein markers, 30 cohorts, 5 institutions",
+      "public": "partial (56% public / 44% in-house)"
+    },
+    "org": "Mahmood Lab",
+    "paper": "https://arxiv.org/abs/2506.03373",
+    "github": "mahmoodlab/KRONOS",
+    "license": "CC-BY-NC-ND-4.0",
+    "maturity": "R",
+    "reality_check": "panel-agnostic by construction - marker-identity embeddings mean it does not break when your antibody panel differs from the training panels. that solves the single biggest blocker to cross-study spatial proteomics. small model (ViT-S), cheap to run.\n",
+    "tissue": "16 tissue types, normal and malignant",
+    "data_types": {
+      "input": [
+        "multiplex OME-TIFF, per-marker channels + DAPI",
+        "cell masks"
+      ],
+      "output": [
+        "marker-specific patch embedding",
+        "cell phenotype",
+        "region class"
+      ]
+    },
+    "endorsements": [
+      {
+        "source": "Nat Methods 2026 AI proteomics Perspective (Sun et al.)",
+        "claim": "spatial proteomics named as one of six areas AI is actively reshaping, following Method of the Year 2024",
+        "url": "https://www.nature.com/articles/s41592-026-03085-y"
+      }
+    ],
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/mahmoodlab/KRONOS",
+        "stars": 206,
+        "forks": 37,
+        "open_issues": 4,
+        "pushed_at": "2026-07-27T17:09:09Z",
+        "archived": false,
+        "license": "NOASSERTION",
+        "language": "Jupyter Notebook",
+        "description": "Foundation Model for Multiplex Spatial Proteomic Images",
+        "days_since_push": 1
+      },
+      "scholar": {
+        "status": "ok",
+        "citations": 32,
+        "influential_citations": 5,
+        "venue": "arXiv.org"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:40.142440+00:00"
+  },
+  {
+    "id": "novae",
+    "name": "Novae",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "niche-identification",
+      "domain-detection"
+    ],
+    "model_type": "graph neural network foundation model, self-supervised",
+    "modality": [
+      "Visium",
+      "Xenium",
+      "MERFISH",
+      "CosMx"
+    ],
+    "org": "MICS Lab / Gustave Roussy",
+    "paper": "https://www.biorxiv.org/content/10.1101/2024.09.09.612009",
+    "github": "MICS-Lab/novae",
+    "maturity": "R",
+    "reality_check": "graph-native rather than sequence-native, so it actually uses coordinates. zero-shot niche assignment across slides is the selling point.",
+    "tissue": "multi-tissue",
+    "data_types": {
+      "input": [
+        "AnnData spatial + coordinates"
+      ],
+      "output": [
+        "niche assignment",
+        "graph embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/prism-oncology/novae",
+        "stars": 146,
+        "forks": 14,
+        "open_issues": 6,
+        "pushed_at": "2026-07-08T11:40:24Z",
+        "archived": false,
+        "license": "BSD-3-Clause",
+        "language": "Python",
+        "description": "Graph-based foundation model for spatial transcriptomics data. Zero-shot spatial domain inference, batch-effect correction, and many other features.",
+        "days_since_push": 20
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Nucleosynthesized Elements Shooting Out from a Nova",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.21203/rs.3.rs-9899519/v1",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1244783"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:41.153973+00:00"
+  },
+  {
+    "id": "stofm",
+    "name": "SToFM",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "multi-scale-representation",
+      "tissue-context-modelling"
+    ],
+    "model_type": "multi-scale transformer",
+    "modality": [
+      "spatial transcriptomics"
+    ],
+    "paper": "https://arxiv.org/abs/2507.11588",
+    "github": null,
+    "maturity": "R",
+    "reality_check": "ICML 2025, self-reported benchmarks only. no third-party evaluation yet.",
+    "tissue": "multi-tissue",
+    "data_types": {
+      "input": [
+        "ST expression + coordinates"
+      ],
+      "output": [
+        "multi-scale embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "scholar": {
+        "status": "ok",
+        "citations": 14,
+        "influential_citations": 3,
+        "venue": "International Conference on Machine Learning"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:41.548126+00:00"
+  },
+  {
+    "id": "heist",
+    "name": "HEIST",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "spatial-representation"
+    ],
+    "model_type": "graph foundation model",
+    "modality": [
+      "spatial transcriptomics",
+      "spatial proteomics"
+    ],
+    "paper": "https://arxiv.org/abs/2506.11152",
+    "maturity": "R",
+    "reality_check": "preprint. tracked, not adopted.",
+    "tissue": "multi-tissue",
+    "data_types": {
+      "input": [
+        "spatial graph"
+      ],
+      "output": [
+        "node/graph embedding"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "scholar": {
+        "status": "error"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:41.940707+00:00"
+  },
+  {
+    "id": "cellplm",
+    "name": "CellPLM",
+    "category": "spatial-omics-FM",
+    "tasks": [
+      "imputation",
+      "cell-embedding"
+    ],
+    "model_type": "transformer treating cells as spatial tokens",
+    "modality": [
+      "scRNA-seq",
+      "spatial transcriptomics"
+    ],
+    "paper": "https://openreview.net/forum?id=BKXvPDekud",
+    "github": "OmicsML/CellPLM",
+    "maturity": "R",
+    "reality_check": "first model to jointly use expression and spatial position in ST. predates the current wave, still a fair baseline.",
+    "tissue": "multi-tissue",
+    "data_types": {
+      "input": [
+        "AnnData + coordinates"
+      ],
+      "output": [
+        "cell embedding",
+        "imputed expression"
+      ]
+    },
+    "_source_file": "models.yaml",
+    "_live": {
+      "github": {
+        "status": "ok",
+        "url": "https://github.com/OmicsML/CellPLM",
+        "stars": 104,
+        "forks": 15,
+        "open_issues": 10,
+        "pushed_at": "2024-03-28T20:01:04Z",
+        "archived": false,
+        "license": "BSD-2-Clause",
+        "language": "Jupyter Notebook",
+        "description": "Official repo for CellPLM: Pre-training of Cell Language Model Beyond Single Cells.",
+        "days_since_push": 851
+      },
+      "literature": {
+        "status": "ok",
+        "title": "Single-cell foundation models predict durable CAR T response despite imperfect cell annotation",
+        "journal": null,
+        "year": "2026",
+        "doi": "10.64898/2026.07.22.740224",
+        "pmid": null,
+        "pmcid": null,
+        "cited_by": 0,
+        "is_oa": "N",
+        "url": "https://europepmc.org/article/PPR/PPR1284163"
+      }
+    },
+    "_checked_at": "2026-07-28T19:23:42.759834+00:00"
+  }
+]
